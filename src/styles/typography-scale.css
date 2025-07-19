@@ -185,8 +185,10 @@ html {
 }
 
 /* Prevent section titles from extending too far left */
-.cs-sidebar {
-  padding-left: 20px !important; /* Add left padding to section titles */
+/* Match the Approach section's alignment which has margin: 0 30px */
+.cs-section-grid {
+  margin-left: 30px !important;
+  margin-right: 30px !important;
 }
 
 .cs-sidebar-title {
