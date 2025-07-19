@@ -221,6 +221,28 @@ html {
   padding-right: calc(80px * var(--global-scale)) !important;
 }
 
+/* Remove left padding when sidebar is hidden */
+@media (max-width: 1439px) {
+  .cs-content-wrapper {
+    padding-left: calc(60px * var(--global-scale)) !important;
+    padding-right: calc(60px * var(--global-scale)) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cs-content-wrapper {
+    padding-left: calc(2rem * var(--global-scale)) !important;
+    padding-right: calc(2rem * var(--global-scale)) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-content-wrapper {
+    padding-left: calc(1rem * var(--global-scale)) !important;
+    padding-right: calc(1rem * var(--global-scale)) !important;
+  }
+}
+
 /* ========== RESPONSIVE OVERRIDES ========== */
 @media (max-width: 768px) {
   .hero-title {

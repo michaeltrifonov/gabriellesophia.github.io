@@ -147,11 +147,10 @@
 }
 
 /* ========== CONTENT LAYOUT ========== */
+/* Note: cs-content-wrapper base styles are defined above with container settings */
 .cs-content-wrapper {
-  display: block;
   padding-top: 40px;
   padding-bottom: 80px;
-  position: relative;
 }
 
 /* ========== STICKY SIDEBAR NAVIGATION ========== */
@@ -576,6 +575,12 @@
 @media (max-width: 1439px) {
   .cs-sticky-sidebar {
     display: none !important;
+  }
+  
+  /* Reduce content wrapper padding when sidebar is hidden */
+  .cs-content-wrapper {
+    padding-left: 60px;
+    padding-right: 60px;
   }
 }
 
