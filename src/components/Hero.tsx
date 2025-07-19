@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetPath } from '../utils/assets';
 
 interface HeroProps {
   title?: string;
@@ -18,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({
   description = "Designer who moves quickly from 'what if' to 'what works'—without losing sight of the why.",
   variant = 'default',
   showDecorativeElements = true,
-  decorativeImage = `${import.meta.env.BASE_URL}images/headshot.jpeg`,
+  decorativeImage = getAssetPath('/images/headshot.jpeg'),
   decorativeImageAlt = "Gabrielle Sophia",
   className = "",
   children

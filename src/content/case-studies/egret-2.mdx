@@ -31,6 +31,7 @@ implementation: false
 ---
 
 import MDXImage from '../../components/MDXImage.tsx';
+import { getAssetPath } from '../../utils/assets';
 
 <section id="overview" class="cs-section cs-overview">
   <div class="container">
@@ -40,7 +41,7 @@ import MDXImage from '../../components/MDXImage.tsx';
       </div>
       <div class="cs-content">
         <p class="cs-large-text">
-          Six months after launching Egret's initial redesign (<a href={`${import.meta.env.BASE_URL}case-studies/egret`} style="color: #054DA7; text-decoration: underline;">see the original case study here</a>), user feedback revealed we'd only solved half the problem. While the workflow improvements were appreciated, the fundamental architecture wasn't scaling with enterprise needs.
+          Six months after launching Egret's initial redesign (<a href={getAssetPath('/case-studies/egret')} style="color: #054DA7; text-decoration: underline;">see the original case study here</a>), user feedback revealed we'd only solved half the problem. While the workflow improvements were appreciated, the fundamental architecture wasn't scaling with enterprise needs.
         </p>
         
         <div class="cs-meta-grid">

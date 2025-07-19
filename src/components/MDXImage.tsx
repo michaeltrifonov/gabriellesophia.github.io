@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetPath } from '../utils/assets';
 
 interface MDXImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -6,13 +7,8 @@ interface MDXImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const MDXImage: React.FC<MDXImageProps> = ({ src, alt, ...props }) => {
-  // Get the base URL from environment variable
-  const baseUrl = import.meta.env.BASE_URL || '/';
-  
-  // If src starts with /images/, prepend the base URL
-  const imageSrc = src.startsWith('/images/') 
-    ? `${baseUrl}${src.slice(1)}` // Remove leading slash and prepend base URL
-    : src;
+  // If src starts with /images/, use getAssetPath to handle base URL
+  const imageSrc = src.startsWith('/images/') ? getAssetPath(src) : src;
 
   return <img src={imageSrc} alt={alt} {...props} />;
 };
