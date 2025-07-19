@@ -1,0 +1,1835 @@
+---
+title: "Tailorbird: Streamlining Amazon Robotics' Plan of Record System"
+description: "A comprehensive Plan of Record (POR) system that streamlines the process of planning and tracking robotic systems in Amazon fulfillment centers worldwide."
+client: "Amazon Robotics"
+role: "Lead UX Designer"
+duration: "6 months"
+year: "2025"
+tags: ["UX Design", "Product Design", "Enterprise Software"]
+team: "3 Software Engineers, 1 Product Manager, 1 Technical Program Manager, 3 Business Stakeholders"
+technologies: ["Figma", "Figjam", "Chime", "React", "TypeScript"]
+heroImage: "/images/tailorbirdlaptop.svg"
+heroImageAlt: "Tailorbird Project hero image"
+featured: true
+order: 1
+problemStatement: "Amazon Robotics faces significant challenges in planning and implementing robotic systems across its global network of fulfillment centers. The current process for creating and managing Plans of Record (PORs) is fragmented across organizations, leading to delays, errors, and communication gaps."
+outcome: "Delivered a unified POR management system that achieved 100% task success rate in usability testing, unified 5 fragmented systems, and established scalable foundations for future cross-organizational integration."
+keyMetrics:
+  - metric: "100%"
+    value: "task success rate"
+    description: "in usability testing"
+  - metric: "5"
+    value: "systems unified"
+    description: "into single platform"
+  - metric: "75%"
+    value: "reduction in manual work"
+    description: "through bulk operations"
+research: true
+userTesting: true
+visualDesign: true
+implementation: true
+---
+
+import BalanceScale from '../../components/BalanceScale.tsx';
+import CardViewTemplateWithToast from '../../components/CardViewTemplateWithToast.tsx';
+import FormPreviewTemplateWithToast from '../../components/FormPreviewTemplateWithToast.tsx';
+import AnimatedTaskList from '../../components/AnimatedTaskList.tsx';
+import '../../styles/balance-scale.css';
+import '../../styles/case-studies/tailorbird.css';
+
+<section id="overview" class="cs-section cs-overview">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="overview">Overview</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Tailorbird is a comprehensive POR (Plan of Record) management tool designed to streamline how Amazon Robotics plans and manages robotic deployments across fulfillment centers worldwide. This project was initiated for the MVP launch to replace the legacy Clarity PPM system.
+        </p>
+        
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">My Role</h3>
+            <p>Lead UX Designer</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Team</h3>
+            <p>3 Software Engineers, 1 Product Manager, 1 Technical Program Manager, 3 Business Stakeholders</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Timeline</h3>
+            <p>Dec 2024 - June 2025</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Tools</h3>
+            <p>Figma, Figjam, Chime</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid" className="cs-section-grid-extended">
+      <div class="cs-sidebar" className="cs-sidebar-sticky">
+        <h2 class="cs-sidebar-title" data-section-id="problem">The Problem</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Amazon Robotics faces significant challenges in planning and implementing robotic systems across its global network of fulfillment centers. The company's operations span hundreds of facilities worldwide, requiring precise coordination of equipment deployments, upgrades, and maintenance schedules.
+        </p>
+        
+        <p class="text-intro">
+          The current process for creating and managing Plans of Record (PORs) for these installations is fragmented across organizations, with each using different methods. This manual and tedious approach leads to delays, errors, and communication gaps between teams. This fragmentation creates significant inefficiencies that impact the entire supply chain and deployment timeline.
+        </p>
+        
+        <p>This project initiative came about due to the deprecation of an existing subscription to Clarity PPM, a commercial-off-the-shelf-software intended for project management use-cases. At the time of this project, Amazon Robotics' POR was being managed through Clarity PPM as the company had an existing subscription which was being used by World Wide Technology Deployment and Field Support (WWTD), an AR org largely responsible for managing on-the-ground activity within fulfillment centers. As of June 2025, Clarity PPM is to be deprecated as WWTD will have switched software solutions for their specific use cases and needs. With the subscription to Clarity PPM ending, this gap created a need for a new POR management solution.</p>
+        
+        <h3 class="cs-subtitle">What is POR?</h3>
+        
+        <p>The Plan of Record (POR) is a critical component of Amazon Robotics' demand generation process. It serves as the centralized system that tracks all changes, milestones, and requirements for national and international fulfillment centers. POR essentially lays the foundation for determining how much equipment and resources are needed to establish and maintain both new and existing sites.</p>
+        
+        <div class="por-highlight-box">
+          <p class="por-highlight-title">When functioning properly, POR enables Amazon Robotics to:</p>
+          
+          <div class="por-card-grid por-card-grid-two-column">
+            <div class="por-card">
+              <div class="por-card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+              <p class="por-card-text">Plan for equipment needs across global fulfillment centers</p>
+            </div>
+            
+            <div class="por-card">
+              <div class="por-card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <p class="por-card-text">Schedule critical milestones like equipment installation and go-live dates</p>
+            </div>
+            
+            <div class="por-card">
+              <div class="por-card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <p class="por-card-text">Allocate appropriate resources for deployment</p>
+            </div>
+            
+            <div class="por-card">
+              <div class="por-card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </div>
+              <p class="por-card-text">Provide real-time visibility of changes to all stakeholders throughout deployment</p>
+            </div>
+          </div>
+          
+          <p class="por-highlight-note">The POR data directly impacts headcount planning, supply chain operations, and technical deployment scheduling, making it a crucial system for Amazon Robotics' operational success.</p>
+        </div>
+        
+        <h3 class="cs-subtitle">Fragmented Ecosystem</h3>
+        
+        <p>The Plan of Record (POR) system at Amazon Robotics has evolved into a fragmented ecosystem, utilizing different methods and tools across multiple organizations:</p>
+        
+        <div class="list-container">
+          <ul class="animated-list">
+            <li><strong>AR POR:</strong> Created by Amazon Robotics for Greenfield and Brownfield projects</li>
+            <li><strong>MSP POR:</strong> Created by Mechatronics and Sustainable Packaging for Brownfield projects</li>
+            <li><strong>AFT POR:</strong> Created by Amazon Fulfillment Technologies for Brownfield projects</li>
+            <li><strong>AIT POR:</strong> Created by the Amazon Integration Technologies pillar within GRD for Brownfield projects</li>
+            <li><strong>GSS POR:</strong> Created by the Global Safety and Support pillar for retrofit projects</li>
+          </ul>
+        </div>
+        
+        <div class="glossary-terms">
+          <div class="glossary-header">
+            <span class="glossary-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </span>
+            <h4>Key Terms</h4>
+          </div>
+          <div class="glossary-content">
+            <div class="glossary-term">
+              <div class="term-bubble">Greenfield Projects</div>
+              <p>New fulfillment centers built from the ground up, requiring complete robotic system implementation with no existing infrastructure constraints.</p>
+            </div>
+            <div class="glossary-term">
+              <div class="term-bubble">Brownfield Projects</div>
+              <p>Updates or expansions to existing fulfillment centers, involving integration with legacy systems and working within operational constraints.</p>
+            </div>
+          </div>
+        </div>
+        
+        <p class="fragmentation-intro"><strong>This fragmentation has led to critical challenges:</strong></p>
+        
+        <div class="por-card-grid">
+          <div class="por-card">
+            <div class="por-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <p class="por-card-text">Data inconsistency and trust issues</p>
+          </div>
+          
+          <div class="por-card">
+            <div class="por-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <p class="por-card-text">Inefficient resource allocation and increased costs</p>
+          </div>
+          
+          <div class="por-card">
+            <div class="por-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <p class="por-card-text">Complex manual processes for demand planning and supply chain operations</p>
+          </div>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>How might we create a system that achieves feature parity with Clarity PPM while simultaneously addressing critical user friction points to deliver a more efficient and user-friendly experience?</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Critical Pain Points</h3>
+        
+        <div class="cs-findings">
+          <div class="cs-finding">
+            <div class="cs-finding-number">01</div>
+            <div class="cs-finding-content">
+              <h4>Process Issues</h4>
+              <p>Lack of consolidated demand as Penguin on Clarity only supports AR POR collection. Insufficient integrations with both upstream data providers and downstream consumers. Teams spend significant time manually reconciling data across systems.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">02</div>
+            <div class="cs-finding-content">
+              <h4>User Experience Issues</h4>
+              <p>No revision control system or centralized audit trail to track changes. No database-level snapshots to analyze trends over time. Users often need to create 40+ POR records for a single project with no ability to copy and paste entire rows.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="user-groups" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="user-groups">User Groups</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text" style={{marginBottom: '2.5rem'}}>
+          Understanding the distinct needs of different user groups is critical to designing a system that works for all stakeholders. The Tailorbird platform serves two primary user groups with different roles and requirements:
+        </p>
+        
+        <h3 class="cs-subtitle">Stakeholder Ecosystem</h3>
+        
+        <div class="cs-personas-container" style={{marginBottom: '3rem', width: '100%', maxWidth: '100%', padding: 0}}>
+          {/* Data Providers Persona */}
+          <div class="cs-persona">
+            <div class="cs-persona-header">
+              <div class="cs-persona-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+              </div>
+              <div class="cs-persona-title">
+                <h4 class="cs-persona-name">Data Providers</h4>
+                <p class="cs-persona-role">Primary Users: Create and maintain POR data</p>
+              </div>
+            </div>
+            <div class="cs-persona-sections" style={{gridTemplateColumns: '1fr 1fr', gap: '30px', width: '100%', maxWidth: '100%'}}>
+              <div class="cs-persona-section" style={{backgroundColor: 'rgba(5, 77, 167, 0.03)', borderRadius: '8px'}}>
+                <h4>Who They Are</h4>
+                <ul>
+                  <li>POR Project Managers from different AR Verticals (Storage, Sortation, AR BOS)</li>
+                  <li>Program Managers responsible for site implementation</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section" style={{backgroundColor: 'rgba(5, 77, 167, 0.03)', borderRadius: '8px'}}>
+                <h4>Needs</h4>
+                <ul>
+                  <li>Efficient data entry tools</li>
+                  <li>Batch processing capabilities</li>
+                  <li>Historical data access</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          {/* Data Consumers Persona */}
+          <div class="cs-persona">
+            <div class="cs-persona-header">
+              <div class="cs-persona-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="10" cy="4" rx="7" ry="2"></ellipse>
+                  <path d="M17 10c0 1.1-3.1 2-7 2s-7-.9-7-2"></path>
+                  <path d="M3 4v12c0 1.1 3.1 2 7 2c.7 0 1.4 0 2-.1"></path>
+                  <path d="M17 4v4"></path>
+                  <circle cx="18" cy="18" r="3"></circle>
+                  <path d="M20.5 20.5L22 22"></path>
+                </svg>
+              </div>
+              <div class="cs-persona-title">
+                <h4 class="cs-persona-name">Data Consumers</h4>
+                <p class="cs-persona-role">Secondary Users: Utilize POR data for planning and operations</p>
+              </div>
+            </div>
+            <div class="cs-persona-sections" style={{gridTemplateColumns: '1fr 1fr', gap: '30px', width: '100%', maxWidth: '100%'}}>
+              <div class="cs-persona-section" style={{backgroundColor: 'rgba(5, 77, 167, 0.03)', borderRadius: '8px'}}>
+                <h4>Who They Are</h4>
+                <ul>
+                  <li>Headcount Planning teams across GRD organizations</li>
+                  <li>Supply & Demand Planning teams (TD/RSC/RMTO)</li>
+                  <li>Technical Deploy teams requiring milestone dates</li>
+                  <li>Equipment Implementation Planning (EIP) Management teams</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section" style={{backgroundColor: 'rgba(5, 77, 167, 0.03)', borderRadius: '8px'}}>
+                <h4>Needs</h4>
+                <ul>
+                  <li>Reliable, accurate data</li>
+                  <li>Clear visualization tools</li>
+                  <li>Real-time updates and notifications</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid" style={{gap: '80px', margin: '0 30px'}}>
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="approach">Approach</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          My approach to designing Tailorbird was heavily influenced by a critical timeline constraint: with Clarity PPM's deprecation set for June 2025, I and the engineers had just five months for the complete design and development cycle, with only two weeks allocated for the initial design phase. This <em>very</em> aggressive timeline made achieving feature parity with the existing system the top priority while still addressing key user pain points.
+        </p>
+        
+        <h3 class="cs-subtitle">Why Feature Parity Was Critical</h3>
+        
+        <p><strong>Feature parity with Clarity PPM was non-negotiable for several reasons:</strong></p>
+        
+        <div style={{borderRadius: '12px', padding: '40px 0', margin: '40px auto', position: 'relative', maxWidth: '1100px'}}>
+          {/* Section Label */}
+          <div style={{textAlign: 'center', marginBottom: '30px'}}>
+            <p style={{fontSize: '14px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(0, 80, 255, 0.7)', margin: 0}}>Prioritization Balance</p>
+          </div>
+          
+          {/* Balance Scale Visual */}
+          <div style={{display: 'flex', justifyContent: 'center', marginBottom: '25px'}}>
+            <div style={{position: 'relative', width: '300px', height: '120px'}}>
+              {/* Scale Stand */}
+              <div style={{position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '60px', height: '10px', backgroundColor: 'rgba(0, 80, 255, 0.2)', borderRadius: '3px'}}></div>
+              <div style={{position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)', width: '10px', height: '80px', backgroundColor: 'rgba(0, 80, 255, 0.25)'}}></div>
+              {/* Scale Arm (slightly tilted to show weight) */}
+              <div style={{position: 'absolute', top: '30px', left: '50%', transform: 'translateX(-50%) rotate(-2deg)', width: '300px', height: '8px', backgroundColor: 'rgba(0, 80, 255, 0.3)', borderRadius: '4px'}}></div>
+              {/* Connecting Lines */}
+              <div style={{position: 'absolute', top: '32px', left: '60px', height: '38px', width: '2px', backgroundColor: 'rgba(0, 80, 255, 0.4)'}}></div>
+              <div style={{position: 'absolute', top: '36px', right: '60px', height: '54px', width: '2px', backgroundColor: 'rgba(0, 80, 255, 0.2)'}}></div>
+            </div>
+          </div>
+          
+          {/* Two-column Layout */}
+          <div style={{display: 'flex', justifyContent: 'space-between', gap: '40px', margin: '0 auto', width: '90%'}}>
+            {/* Left Side: Feature Parity (Phase 1) */}
+            <div style={{flex: 1, transform: 'translateY(-5px)'}}>
+              <div style={{background: 'white', borderRadius: '12px', padding: '20px', border: '3px solid rgba(0, 80, 255, 0.6)', boxShadow: '0 6px 20px rgba(0, 80, 255, 0.15)'}}>
+                <h4 style={{margin: '0 0 12px', fontSize: '18px', color: 'rgba(0, 80, 255, 0.9)', textAlign: 'center'}}>Phase 1 Priority: Feature Parity</h4>
+                
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '24px', marginTop: '24px'}}>
+                  <div style={{display: 'flex', alignItems: 'flex-start', gap: '16px'}}>
+                    <div style={{backgroundColor: 'rgba(0, 80, 255, 0.1)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '4px'}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 640 512" fill="rgba(0, 80, 255, 0.8)">
+                        <path d="M213.2 32H288V96c0 17.7 14.3 32 32 32s32-14.3 32-32V32h74.8c27.1 0 51.3 17.1 60.3 42.6l42.7 120.6c-10.9-2.1-22.2-3.2-33.8-3.2c-59.5 0-112.1 29.6-144 74.8V224c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 17.7 14.3 32 32 32c2.3 0 4.6-.3 6.8-.7c-4.5 15.5-6.8 31.8-6.8 48.7c0 5.4 .2 10.7 .7 16l-.7 0c-17.7 0-32 14.3-32 32v64H86.6C56.5 480 32 455.5 32 425.4c0-6.2 1.1-12.4 3.1-18.2L152.9 74.6C162 49.1 186.1 32 213.2 32zM352 368a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm211.3-43.3c-6.2-6.2-16.4-6.2-22.6 0L480 385.4l-28.7-28.7c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6l40 40c6.2 6.2 16.4 6.2 22.6 0l72-72c6.2-6.2 6.2-16.4 0-22.6z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{margin: '0 0 4px', fontWeight: 600}}>Business Continuity</p>
+                      <p style={{margin: 0, fontSize: '14px'}}>POR administrators needed to continue their work without disruption when Clarity PPM is deprecated</p>
+                    </div>
+                  </div>
+                  
+                  <div style={{display: 'flex', alignItems: 'flex-start', gap: '16px'}}>
+                    <div style={{backgroundColor: 'rgba(0, 80, 255, 0.1)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '4px'}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="rgba(0, 80, 255, 0.8)">
+                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{margin: '0 0 4px', fontWeight: 600}}>User Acceptance</p>
+                      <p style={{margin: 0, fontSize: '14px'}}>A familiar system would reduce change management challenges and user resistance</p>
+                    </div>
+                  </div>
+                  
+                  <div style={{display: 'flex', alignItems: 'flex-start', gap: '16px'}}>
+                    <div style={{backgroundColor: 'rgba(0, 80, 255, 0.1)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '4px'}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="rgba(0, 80, 255, 0.8)">
+                        <path fillRule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0m2.146 5.146a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{margin: '0 0 4px', fontWeight: 600}}>Risk Mitigation</p>
+                      <p style={{margin: 0, fontSize: '14px'}}>Ensuring all essential functionality was preserved minimized operational risks during transition</p>
+                    </div>
+                  </div>
+                  
+                  <div style={{display: 'flex', alignItems: 'flex-start', gap: '16px'}}>
+                    <div style={{backgroundColor: 'rgba(0, 80, 255, 0.1)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '4px'}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="32">
+                        <path d="M256 64C150 64 64 150 64 256s86 192 192 192 192-86 192-192S362 64 256 64z" stroke-miterlimit="10"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M256 128v144h96"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{margin: '0 0 4px', fontWeight: 600}}>Timeline Constraints</p>
+                      <p style={{margin: 0, fontSize: '14px'}}>With just five months to complete the entire project, we couldn't redesign everything from scratch</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right Side: Innovation (Future Phases) */}
+            <div style={{flex: 1, transform: 'translateY(5px)'}}>
+              <div style={{background: 'rgba(0, 80, 255, 0.02)', borderRadius: '12px', padding: '20px', border: '2px dashed rgba(0, 80, 255, 0.3)', boxShadow: '0 3px 10px rgba(0,0,0,0.03)'}}>
+                <h4 style={{margin: '0 0 12px', fontSize: '18px', color: 'rgba(0, 80, 255, 0.6)', textAlign: 'center'}}>Future Phases: Expanding Capabilities</h4>
+                
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '16px', marginTop: '20px'}}>
+                  <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px'}}>
+                    <div style={{backgroundColor: 'rgba(0, 80, 255, 0.05)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{transform: 'translateX(0px) translateY(0px)'}}>
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <line x1="9" y1="21" x2="9" y2="9"></line>
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{margin: '0 0 4px', fontWeight: 600, color: 'rgba(0, 0, 0, 0.7)'}}>Business Process Alignment</p>
+                      <p style={{margin: 0, fontSize: '14px', color: 'rgba(0, 0, 0, 0.6)'}}>Harmonizing processes across multiple teams and departments to create integrated workflows</p>
+                    </div>
+                  </div>
+                  
+                  <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px'}}>
+                    <div style={{backgroundColor: 'rgba(0, 80, 255, 0.05)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{transform: 'translateX(0px) translateY(0px)'}}>
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{margin: '0 0 4px', fontWeight: 600, color: 'rgba(0, 0, 0, 0.7)'}}>Enhanced Features</p>
+                      <p style={{margin: 0, fontSize: '14px', color: 'rgba(0, 0, 0, 0.6)'}}>Integrating additional aspects of demand planning beyond basic resource management</p>
+                    </div>
+                  </div>
+                  
+                  <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px'}}>
+                    <div style={{backgroundColor: 'rgba(0, 80, 255, 0.05)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{transform: 'translateX(0px) translateY(0px)'}}>
+                        <line x1="18" y1="2" x2="22" y2="6"></line>
+                        <path d="M7.5 20.5L19 9l-4-4L3.5 16.5 2 22l5.5-1.5z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{margin: '0 0 4px', fontWeight: 600, color: 'rgba(0, 0, 0, 0.7)'}}>Process Optimization</p>
+                      <p style={{margin: 0, fontSize: '14px', color: 'rgba(0, 0, 0, 0.6)'}}>Streamlined workflows and improved tooling based on aligned business processes</p>
+                    </div>
+                  </div>
+                  
+                  <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px'}}>
+                    <div style={{backgroundColor: 'rgba(0, 80, 255, 0.05)', borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{transform: 'translateX(0px) translateY(0px)'}}>
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{margin: '0 0 4px', fontWeight: 600, color: 'rgba(0, 0, 0, 0.7)'}}>Technical Improvements</p>
+                      <p style={{margin: 0, fontSize: '14px', color: 'rgba(0, 0, 0, 0.6)'}}>Better performance, data management and integration with related planning systems</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <p style={{margin: '50px auto 0', textAlign: 'center', fontStyle: 'italic', color: 'var(--color-text-light)', maxWidth: '800px', padding: '0 20px'}}>With a 5-month timeline, my design approach balanced immediate business needs against future expansion opportunities, prioritizing feature parity while establishing a foundation for cross-organizational process integration.</p>
+        </div>
+        
+        <h3 class="cs-subtitle">Focus Area: Fast-Track UX Assessment</h3>
+        
+        <p style={{marginBottom: '24px'}}><strong>With limited time, I quickly assessed the current Clarity PPM interface by:</strong></p>
+        
+        <AnimatedTaskList 
+          client:visible
+          tasks={[
+            { text: 'Conducting screen captures and analyses of existing workflows' },
+            { text: 'Observing users interacting with the current system' },
+            { text: 'Mapping out the essential features needed for parity' },
+            { text: 'Identifying critical pain points that could be addressed even in Phase 0' }
+          ]} 
+        />
+        
+        <p>This rapid assessment allowed me to focus my design efforts on what would deliver the most user value within the tight constraints.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research-discovery" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="research-discovery">Research</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text" style={{maxWidth: '100%'}}>My research approach was structured to rapidly gather essential insights while validating business requirements against actual user needs, with each session deliberately divided into two parts: discovery discussions followed by design testing:</p>
+        
+        <div class="cs-methods">
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Dual-Purpose Usability Sessions</h4>
+              <p>I designed 8 sessions with POR administrators across three different AR verticals (Storage, Sortation, and BOS), combining discovery discussions with A/B testing of design approaches.</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Problem Validation</h4>
+              <p>Through discovery discussions, I confirmed whether the business-identified issues aligned with users' actual experiences to ensure we were solving the right problems.</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points="14 2 14 8 20 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points="10 9 9 9 8 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Workflow Analysis</h4>
+              <p>I observed users interacting with Clarity PPM and documented their process for creating and updating POR records, particularly noting where they relied on external tools.</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Pain Point Prioritization</h4>
+              <p>I ranked user pain points based on frequency, severity, and impact on efficiency to identify which issues to address even within our feature parity constraints.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h4>Process Mapping: Understanding the Current Workflow</h4>
+          
+          <div>
+            <div>
+              <img src="/images/Tailorbirdscreenshots/processmap2.png" alt="POR Administrator workflow process diagram - part 1" class="approach-image" />
+            </div>
+            
+            <div>
+              <img src="/images/Tailorbirdscreenshots/part2process.png" alt="POR Administrator workflow process diagram - part 2" class="approach-image" />
+            </div>
+          </div>
+          
+          <p class="component-caption">By mapping the current process flow, I identified critical pain points where users needed to rely on external tools and manual steps to complete their workflow.</p>
+        </div>
+        
+        <h3 class="cs-subtitle">Key Insights from Discovery</h3>
+        
+        <div style={{display: 'inline-block', backgroundColor: 'rgba(0, 80, 255, 0.1)', color: 'rgba(0, 80, 255, 0.8)', fontSize: '1.2rem', fontWeight: 600, padding: '8px 16px', borderRadius: '8px', marginTop: '20px', marginBottom: '20px', boxShadow: '0 2px 4px rgba(0, 80, 255, 0.15)'}}>Process Insights</div>
+        
+        <div class="cs-findings">
+          <div class="cs-finding">
+            <div class="cs-finding-number">01</div>
+            <div class="cs-finding-content">
+              <h4>External Tools Reliance</h4>
+              <p>Users had developed complex workflows involving multiple external tools (Excel, Smartsheet) to compensate for Clarity PPM's limitations.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">02</div>
+            <div class="cs-finding-content">
+              <h4>Inefficient Bulk Operations</h4>
+              <p>One of the most time-consuming aspects was the inability to bulk edit or bulk create records, forcing users to make repetitive updates manually.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">03</div>
+            <div class="cs-finding-content">
+              <h4>Data Trust Issues</h4>
+              <p>Inconsistencies between systems led to trust issues, requiring multiple verification steps and manual reconciliation.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">04</div>
+            <div class="cs-finding-content">
+              <h4>Integration Gaps</h4>
+              <p>The lack of integration with both upstream data sources and downstream systems created significant manual effort to maintain data consistency.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div style={{display: 'inline-block', backgroundColor: 'rgba(0, 80, 255, 0.1)', color: 'rgba(0, 80, 255, 0.8)', fontSize: '1.2rem', fontWeight: 600, padding: '8px 16px', borderRadius: '8px', marginTop: '40px', marginBottom: '20px', boxShadow: '0 2px 4px rgba(0, 80, 255, 0.15)'}}>UI and Interaction Challenges</div>
+        
+        <div class="cs-findings">
+          <div class="cs-finding">
+            <div class="cs-finding-number">01</div>
+            <div class="cs-finding-content">
+              <h4>Bulk Editing Capabilities</h4>
+              <p>The most significant pain point was the inability to efficiently update multiple records, creating enormous manual work for users.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">02</div>
+            <div class="cs-finding-content">
+              <h4>Template Usability</h4>
+              <p>Existing template functionality was cumbersome and unintuitive, yet templates were critical for efficient POR creation.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">03</div>
+            <div class="cs-finding-content">
+              <h4>Information Density</h4>
+              <p>The current interface struggled with displaying and organizing dense information, making it difficult for users to process and make decisions.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">04</div>
+            <div class="cs-finding-content">
+              <h4>System Feedback</h4>
+              <p>Users lacked visibility into system status and confirmation of actions, leading to uncertainty and additional verification work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="design-process" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="design-process">Design Process</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text" style={{maxWidth: '100%'}}>
+          With a tight two-week timeline to create testable mockups, the primary goal was ensuring feature parity with Clarity PPM while strategically enhancing high-impact areas, particularly bulk edit capabilites that would address users' most significant pain points. To accelerate the design process, I leveraged Amazon's Cloudscape components and focused my efforts on solving the unique UX challenges rather than creating basic interface elements from scratch.
+        </p>
+        
+        <h3 class="cs-subtitle">Low-Fidelity Exploration</h3>
+        
+        <p>I created low-fidelity wireframes to rapidly explore potential solutions for key workflow improvements:</p>
+        
+        <div style={{margin: '40px 0'}}>
+          <div style={{position: 'relative', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', margin: '0 auto', maxWidth: '900px'}}>
+            <img src="/images/Tailorbirdscreenshots/lowfid.png" alt="Low-fidelity wireframes for Tailorbird interface" style={{width: '100%', height: 'auto'}} />
+          </div>
+          <p style={{textAlign: 'center', fontStyle: 'italic', color: 'var(--color-text-light)', maxWidth: '700px', margin: '24px auto 0'}}>These early sketches allowed me to quickly iterate on navigation concepts and bulk operations interfaces with stakeholders before committing to higher-fidelity designs.</p>
+        </div>
+        
+        <h3 class="cs-subtitle">UX-Driven Design Alternatives</h3>
+        
+        <p style={{marginBottom: '40px'}}>Given our design prioritization constraints, I focused on two critical template selection approaches that would have the most significant impact on user efficiency and workflow speed.</p>
+        
+        {/* SECTION 1: Card View (Flow A) */}
+        <h4 class="approach-title" style={{marginBottom: '20px'}}>Card View (Flow A)</h4>
+        
+        <div class="approach-row">
+          <div class="approach-text">
+            <p>Cards display template info with all actions (Preview, Select, More) immediately visible. This approach prioritizes discoverability and reduces interaction steps.</p>
+          </div>
+          
+          <div class="approach-visual">
+            <CardViewTemplateWithToast 
+              client:load
+              title="AR Initiated Greenfield"
+              description="Standard template for robotics initiated projects"
+            />
+            <p class="component-caption">The card-based approach puts all actions directly in view, making them immediately discoverable.</p>
+          </div>
+        </div>
+        
+        {/* SECTION 2: Form Preview/Template Underlay (Flow B) */}
+        <h4 class="approach-title" style={{marginBottom: '20px'}}>Form Preview/Template Underlay (Flow B)</h4>
+        
+        <div class="approach-row">
+          <div class="approach-text">
+            <p>Shows visual preview of the actual form structure with actions appearing on hover. This approach provides stronger visual connection between template selection and the resulting form.</p>
+          </div>
+          
+          <div class="approach-visual">
+            <FormPreviewTemplateWithToast
+              client:load
+              title="Storage Capacity Planning"
+              description="Standard template for storage capacity planning records"
+              fields={[
+                { label: 'Name' },
+                { label: 'Type' },
+                { label: 'Status' },
+                { label: 'Manager' },
+                { label: 'Priority' },
+                { label: 'Phase' },
+                { label: 'Start Date' },
+                { label: 'End Date' }
+              ]}
+            />
+            <p class="component-caption">Hover interaction reveals actions only when needed, keeping the interface clean and focused on content.</p>
+          </div>
+        </div>
+        
+        {/* SECTION 1: Form-based editing (Flow A) */}
+        <h4 class="approach-title" style={{marginTop: '60px', marginBottom: '20px'}}>Form-based Bulk Editing (Flow A)</h4>
+        
+        <div class="approach-row">
+          <div class="approach-text">
+            <p>Structured form layout with logically grouped attributes in digestible sections. This approach provides clear field labels and category organization, supporting methodical editing focused on accuracy.</p>
+          </div>
+          
+          <div class="approach-visual">
+            <div class="approach-image-container">
+              <img src="/images/Tailorbirdscreenshots/bulkeditform.png" alt="Form-based bulk editing interface" class="approach-image" />
+            </div>
+            <p class="component-caption">The form-based approach organizes fields into logical sections with clear labels, making complex data editing more manageable.</p>
+          </div>
+        </div>
+        
+        {/* SECTION 2: Table-based editing (Flow B) */}
+        <h4 class="approach-title">Table-based editing (Flow B)</h4>
+        
+        <div class="approach-row">
+          <div class="approach-text">
+            <p>Spreadsheet-like interface with inline editing and efficient keyboard navigation. This familiar Excel-style approach enables quick scanning, pattern identification, and batch operations across multiple records.</p>
+          </div>
+          
+          <div class="approach-visual">
+            <div class="approach-image-container">
+              <img src="/images/Tailorbirdscreenshots/bulkedittable.png" alt="Table-based bulk editing interface" class="approach-image" />
+            </div>
+            <p class="component-caption">The table view provides a familiar spreadsheet-like experience, allowing for quick scanning and efficient inline editing of multiple records.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testing" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="testing">Usability Testing</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Following the discovery portion of my sessions, I immediately transitioned to testing the design alternatives I had prepared. This approach allowed me to capitalize on insights from discovery discussions while they were fresh, testing potential solutions with users who had just articulated their challenges.
+        </p>
+        
+        <h3 class="cs-subtitle">A/B Testing Methodology</h3>
+        
+        <p>I strategically split participants into two groups to evaluate competing approaches to key interactions. This deliberate split allowed direct comparison of approaches while controlling for user variables.</p>
+        
+        <div style={{backgroundColor: 'rgba(0, 80, 255, 0.05)', borderRadius: '12px', padding: '18px 24px', margin: '20px 0', boxShadow: '0 2px 4px rgba(0, 80, 255, 0.05)'}}>
+          <h4 style={{marginTop: 0, marginBottom: '10px', fontWeight: 600, color: 'rgba(0, 0, 0, 0.85)'}}>Participant Selection</h4>
+          <p style={{marginBottom: '15px'}}>All participants were drawn from three key verticals: Storage, Sortation, and BOS. This cross-vertical representation ensured diverse perspectives while maintaining consistent domain expertise.</p>
+          
+          <h4 style={{marginTop: '20px', marginBottom: '15px', fontWeight: 600, color: 'rgba(0, 0, 0, 0.85)'}}>Participant Distribution</h4>
+          
+          <div style={{display: 'flex', justifyContent: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '20px'}}>
+            {/* AR Vertical Distribution */}
+            <div style={{flex: 1, minWidth: '280px', maxWidth: '400px'}}>
+              <h6 style={{marginTop: 0, marginBottom: '15px', fontWeight: 600, fontSize: '14px', textAlign: 'center', color: 'rgba(0, 0, 0, 0.7)'}}>AR Vertical Distribution</h6>
+              <div style={{background: 'white', borderRadius: '12px', padding: '30px', boxShadow: '0 3px 10px rgba(0, 0, 0, 0.05)', border: '1px solid rgba(0, 80, 255, 0.08)', height: '320px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                {/* Donut Chart Container */}
+                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', height: '180px'}}>
+                  {/* SVG Donut Chart */}
+                  <svg width="160" height="160" viewBox="0 0 160 160" style={{transform: 'rotate(-90deg)'}}>
+                    {/* Background Circle */}
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#f0f0f0" stroke-width="20"/>
+                    
+                    {/* AR BOS Segment (50%) */}
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#0050FF" stroke-width="20"
+                            stroke-dasharray="188.5 188.5" stroke-dashoffset="0"
+                            stroke-linecap="butt"/>
+                    
+                    {/* Sortation Segment (37.5%) */}
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#4A7FFF" stroke-width="20"
+                            stroke-dasharray="141.37 235.63" stroke-dashoffset="-188.5"
+                            stroke-linecap="butt"/>
+                    
+                    {/* Storage Segment (12.5%) */}
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#7DA3FF" stroke-width="20"
+                            stroke-dasharray="47.12 329.88" stroke-dashoffset="-329.87"
+                            stroke-linecap="butt"/>
+                  </svg>
+                  
+                  {/* Center Text */}
+                  <div style={{position: 'absolute', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                    <div style={{fontSize: '32px', fontWeight: 700, color: '#0050FF', lineHeight: 1}}>8</div>
+                    <div style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.6)', fontWeight: 500}}>participants</div>
+                  </div>
+                </div>
+                
+                {/* Legend */}
+                <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                      <div style={{width: '12px', height: '12px', background: '#0050FF', borderRadius: '2px'}}></div>
+                      <span style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.8)'}}>AR BOS</span>
+                    </div>
+                    <span style={{fontSize: '14px', fontWeight: 600, color: '#0050FF'}}>50%</span>
+                  </div>
+                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                      <div style={{width: '12px', height: '12px', background: '#4A7FFF', borderRadius: '2px'}}></div>
+                      <span style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.8)'}}>Sortation</span>
+                    </div>
+                    <span style={{fontSize: '14px', fontWeight: 600, color: '#4A7FFF'}}>37.5%</span>
+                  </div>
+                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                      <div style={{width: '12px', height: '12px', background: '#7DA3FF', borderRadius: '2px'}}></div>
+                      <span style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.8)'}}>Storage</span>
+                    </div>
+                    <span style={{fontSize: '14px', fontWeight: 600, color: '#7DA3FF'}}>12.5%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Types of POR Created */}
+            <div style={{flex: 1, minWidth: '280px', maxWidth: '400px'}}>
+              <h6 style={{marginTop: 0, marginBottom: '15px', fontWeight: 600, fontSize: '14px', textAlign: 'center', color: 'rgba(0, 0, 0, 0.7)'}}>Types of POR Created</h6>
+              <div style={{background: 'white', borderRadius: '12px', padding: '30px', boxShadow: '0 3px 10px rgba(0, 0, 0, 0.05)', border: '1px solid rgba(0, 80, 255, 0.08)', height: '320px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                {/* Vertical Grouped Bar Chart */}
+                <div style={{display: 'flex', flexDirection: 'column', flex: 1, height: '220px'}}>
+                  <div style={{display: 'flex', gap: '10px', flex: 1, alignItems: 'flex-end', paddingBottom: '10px', height: '160px'}}>
+                    {/* Y-axis labels */}
+                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '150px', paddingBottom: '0px'}}>
+                      <span style={{fontSize: '11px', color: 'rgba(0, 0, 0, 0.5)'}}>4</span>
+                      <span style={{fontSize: '11px', color: 'rgba(0, 0, 0, 0.5)'}}>3</span>
+                      <span style={{fontSize: '11px', color: 'rgba(0, 0, 0, 0.5)'}}>2</span>
+                      <span style={{fontSize: '11px', color: 'rgba(0, 0, 0, 0.5)'}}>1</span>
+                      <span style={{fontSize: '11px', color: 'rgba(0, 0, 0, 0.5)'}}>0</span>
+                    </div>
+                  
+                  {/* Bars Container */}
+                  <div style={{flex: 1, display: 'flex', gap: '20px', alignItems: 'flex-end', height: '100%', justifyContent: 'space-around'}}>
+                    {/* AR-Initiated Group */}
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%'}}>
+                      <div style={{display: 'flex', gap: '4px', alignItems: 'flex-end', height: '100%'}}>
+                        {/* Flow A */}
+                        <div style={{width: '35px', background: '#0050FF', height: '75%', borderRadius: '6px 6px 0 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '8px'}}>
+                          <span style={{color: 'white', fontWeight: 600, fontSize: '14px'}}>3</span>
+                        </div>
+                        {/* Flow B */}
+                        <div style={{width: '35px', background: 'rgba(0, 80, 255, 0.6)', height: '100%', borderRadius: '6px 6px 0 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '8px'}}>
+                          <span style={{color: 'white', fontWeight: 600, fontSize: '14px'}}>4</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Customer-Initiated Group */}
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%'}}>
+                      <div style={{display: 'flex', gap: '4px', alignItems: 'flex-end', height: '100%'}}>
+                        {/* Flow A */}
+                        <div style={{width: '35px', background: '#0050FF', height: '75%', borderRadius: '6px 6px 0 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '8px'}}>
+                          <span style={{color: 'white', fontWeight: 600, fontSize: '14px'}}>3</span>
+                        </div>
+                        {/* Flow B */}
+                        <div style={{width: '35px', background: 'rgba(0, 80, 255, 0.6)', height: '100%', borderRadius: '6px 6px 0 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '8px'}}>
+                          <span style={{color: 'white', fontWeight: 600, fontSize: '14px'}}>4</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Greenfields Group */}
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%'}}>
+                      <div style={{display: 'flex', gap: '4px', alignItems: 'flex-end', height: '100%'}}>
+                        {/* Flow A */}
+                        <div style={{width: '35px', background: '#0050FF', height: '50%', borderRadius: '6px 6px 0 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '8px'}}>
+                          <span style={{color: 'white', fontWeight: 600, fontSize: '14px'}}>2</span>
+                        </div>
+                        {/* Flow B */}
+                        <div style={{width: '35px', background: 'rgba(0, 80, 255, 0.6)', height: '25%', borderRadius: '6px 6px 0 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '8px'}}>
+                          <span style={{color: 'white', fontWeight: 600, fontSize: '14px'}}>1</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  
+                {/* X-axis labels */}
+                <div style={{display: 'flex', justifyContent: 'space-around', paddingTop: '10px', borderTop: '1px solid #e0e0e0'}}>
+                  <span style={{fontSize: '11px', color: 'rgba(0, 0, 0, 0.7)', textAlign: 'center', lineHeight: 1.2}}>AR-Initiated<br/>Brownfields</span>
+                  <span style={{fontSize: '11px', color: 'rgba(0, 0, 0, 0.7)', textAlign: 'center', lineHeight: 1.2}}>Customer-Initiated<br/>Brownfields</span>
+                  <span style={{fontSize: '11px', color: 'rgba(0, 0, 0, 0.7)', textAlign: 'center'}}>Greenfields</span>
+                </div>
+              </div>
+                
+                {/* Legend */}
+                <div style={{display: 'flex', gap: '30px', justifyContent: 'center', paddingTop: '20px', borderTop: '1px solid rgba(0, 0, 0, 0.05)'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                    <div style={{width: '16px', height: '16px', background: '#0050FF', borderRadius: '3px'}}></div>
+                    <span style={{fontSize: '13px', color: 'rgba(0, 0, 0, 0.7)', fontWeight: 500}}>Flow A</span>
+                  </div>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                    <div style={{width: '16px', height: '16px', background: 'rgba(0, 80, 255, 0.6)', borderRadius: '3px'}}></div>
+                    <span style={{fontSize: '13px', color: 'rgba(0, 0, 0, 0.7)', fontWeight: 500}}>Flow B</span>
+                  </div>
+                </div>
+                
+                {/* Note */}
+                <div style={{marginTop: '15px'}}>
+                  <div style={{margin: 0, textAlign: 'center'}}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{display: 'inline-block', verticalAlign: 'middle', marginRight: '6px'}}>
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="16" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <span style={{fontSize: '11px', color: 'rgba(0, 0, 0, 0.5)'}}>Participants create multiple POR types</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cs-findings">
+          <div class="cs-finding">
+            <div class="cs-finding-number">A</div>
+            <div class="cs-finding-content">
+              <h4>Group A (4 participants)</h4>
+              <p>Tested form-based editing (Flow A) and card-view template selection across Storage, Sortation, and BOS verticals.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">B</div>
+            <div class="cs-finding-content">
+              <h4>Group B (4 participants)</h4>
+              <p>Tested table-based editing (Flow B) and animated underlay template selection with the same cross-vertical representation.</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">UX Evaluation Framework</h3>
+        
+        <p>I evaluated both approaches using a focused framework of metrics and heuristics specifically chosen for this context:</p>
+        
+        <div class="ux-framework-container">
+          <div class="ux-framework-column">
+            <div class="ux-framework-header">
+              <div class="ux-framework-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                </svg>
+              </div>
+              <h4 class="ux-framework-title">UX Metrics</h4>
+            </div>
+            
+            <div class="ux-framework-cards">
+              {/* Task Completion Time Card */}
+              <div class="ux-metric-card">
+                <div class="metric-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div class="metric-content">
+                  <h5>Task Completion Time</h5>
+                  <p>Measuring efficiency gains over current process</p>
+                </div>
+              </div>
+              
+              {/* Success Rate Card */}
+              <div class="ux-metric-card">
+                <div class="metric-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div class="metric-content">
+                  <h5>Success Rate</h5>
+                  <p>Assessing effectiveness of each design approach</p>
+                </div>
+              </div>
+              
+              {/* Misclick Count Card */}
+              <div class="ux-metric-card">
+                <div class="metric-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                </div>
+                <div class="metric-content">
+                  <h5>Misclick Count</h5>
+                  <p>Identifying issues with affordances and clarity</p>
+                </div>
+              </div>
+              
+              {/* Confidence Ratings Card */}
+              <div class="ux-metric-card">
+                <div class="metric-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </div>
+                <div class="metric-content">
+                  <h5>Confidence Ratings</h5>
+                  <p>Gathering subjective feedback after each task</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="ux-framework-column">
+            <div class="ux-framework-header">
+              <div class="ux-framework-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </div>
+              <h4 class="ux-framework-title">Usability Heuristics</h4>
+            </div>
+            
+            <div class="ux-framework-cards">
+              {/* Consistency Card */}
+              <div class="ux-metric-card">
+                <div class="metric-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 22h14"></path>
+                    <path d="M5 2h14"></path>
+                    <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"></path>
+                    <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"></path>
+                  </svg>
+                </div>
+                <div class="metric-content">
+                  <h5>Consistency and Standards</h5>
+                  <p>Critical for users transitioning from Clarity PPM</p>
+                </div>
+              </div>
+              
+              {/* Error Prevention Card */}
+              <div class="ux-metric-card">
+                <div class="metric-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <div class="metric-content">
+                  <h5>Error Prevention</h5>
+                  <p>Essential for a system handling mission-critical planning data</p>
+                </div>
+              </div>
+              
+              {/* System Status Card */}
+              <div class="ux-metric-card">
+                <div class="metric-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="metric-content">
+                  <h5>Visibility of System Status</h5>
+                  <p>Keeping users informed about bulk operation progress</p>
+                </div>
+              </div>
+              
+              {/* Recognition Card */}
+              <div class="ux-metric-card">
+                <div class="metric-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0, 80, 255, 0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                  </svg>
+                </div>
+                <div class="metric-content">
+                  <h5>Recognition Rather than Recall</h5>
+                  <p>Important for complex template structures</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Focused Testing Scenarios</h3>
+        
+        <p>I designed task scenarios to test the most critical UX improvements identified in discovery:</p>
+        
+        <div class="cs-methods">
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Bulk Editing (Tasks 1-7)</h4>
+              <p>Record selection and navigation, individual vs. bulk field updates, verification of changes, and field location identification.</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <rect x="7" y="7" width="3" height="9"></rect>
+                <rect x="14" y="7" width="3" height="5"></rect>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Template Selection (Tasks 8-12)</h4>
+              <p>Template preview and selection, multi-record creation workflow, and understanding of pre-populated fields.</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Key Testing Results</h3>
+        
+        <div class="cs-metrics cs-metrics-three">
+          <div class="cs-metric">
+            <div class="cs-metric-value">100%</div>
+            <div class="cs-metric-label">Task Success Rate<br /><span>for bulk operations</span></div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-value">75%</div>
+            <div class="cs-metric-label">Time Reduction<br /><span>for creating multiple PORs</span></div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-value">92%</div>
+            <div class="cs-metric-label">User Preference<br /><span>for new template system</span></div>
+          </div>
+        </div>
+        
+        <div class="cs-gallery">
+          <div class="cs-gallery-row">
+            <div class="cs-gallery-item">
+              <img src="/images/Tailorbirdscreenshots/jpgs/avgsuccessratebulkedit.jpg" alt="Average success rate for bulk editing" />
+              <p class="cs-caption">Success rates improved significantly with the new bulk editing interface</p>
+            </div>
+          </div>
+          <div class="cs-gallery-row">
+            <div class="cs-gallery-item">
+              <img src="/images/Tailorbirdscreenshots/jpgs/How_confident_did_you_feel_making_bulk_edits.jpg" alt="User confidence in bulk editing" />
+              <p class="cs-caption">Users reported high confidence levels when using the new bulk editing features</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bulk-editing-focus" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Strategic Focus</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Strategic Focus on Bulk Editing</h3>
+        <p style={{fontSize: '1.125rem', lineHeight: '1.75', marginBottom: '32px'}}>
+          Based on our user research and testing, we identified bulk editing as the most critical pain point in the POR creation process. Engineers frequently needed to make the same changes across multiple PORs - such as updating facility addresses, contact information, or compliance requirements - but were forced to edit each POR individually.
+        </p>
+        
+        <h4 style={{fontSize: '1.125rem', fontWeight: '600', marginBottom: '24px'}}>Primary Tasks Evaluated</h4>
+        <ol style={{marginLeft: '24px', marginBottom: '40px', lineHeight: '1.8'}}>
+          <li style={{marginBottom: '12px'}}>Create a greenfield POR from scratch</li>
+          <li style={{marginBottom: '12px'}}>Update existing POR with new requirements</li>
+          <li style={{marginBottom: '12px'}}>Duplicate and modify POR for similar facilities</li>
+          <li style={{marginBottom: '12px'}}>Bulk edit multiple PORs simultaneously</li>
+          <li style={{marginBottom: '12px'}}>Export POR data for reporting</li>
+        </ol>
+        
+        <h4 style={{fontSize: '1.125rem', fontWeight: '600', marginBottom: '24px'}}>Key Findings</h4>
+        <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '40px'}}>
+          <div style={{
+            background: '#f8f9fa',
+            borderRadius: '12px',
+            padding: '24px',
+            border: '1px solid #e9ecef'
+          }}>
+            <h5 style={{fontSize: '1rem', fontWeight: '600', marginBottom: '16px', color: '#0050FF'}}>Flow A: Without Bulk Editing</h5>
+            <ul style={{listStyle: 'none', padding: 0}}>
+              <li style={{marginBottom: '12px', paddingLeft: '20px', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#dc3545'}}>✗</span>
+                Users struggled to update multiple PORs
+              </li>
+              <li style={{marginBottom: '12px', paddingLeft: '20px', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#dc3545'}}>✗</span>
+                Average task time: 45+ minutes
+              </li>
+              <li style={{marginBottom: '12px', paddingLeft: '20px', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#dc3545'}}>✗</span>
+                High error rate due to repetitive tasks
+              </li>
+              <li style={{paddingLeft: '20px', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#dc3545'}}>✗</span>
+                User frustration: "This is tedious"
+              </li>
+            </ul>
+          </div>
+          
+          <div style={{
+            background: '#e8f5e9',
+            borderRadius: '12px',
+            padding: '24px',
+            border: '1px solid #c8e6c9'
+          }}>
+            <h5 style={{fontSize: '1rem', fontWeight: '600', marginBottom: '16px', color: '#2e7d32'}}>Flow B: With Bulk Editing</h5>
+            <ul style={{listStyle: 'none', padding: 0}}>
+              <li style={{marginBottom: '12px', paddingLeft: '20px', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#28a745'}}>✓</span>
+                Users completed tasks efficiently
+              </li>
+              <li style={{marginBottom: '12px', paddingLeft: '20px', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#28a745'}}>✓</span>
+                Average task time: 8 minutes
+              </li>
+              <li style={{marginBottom: '12px', paddingLeft: '20px', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#28a745'}}>✓</span>
+                100% task completion rate
+              </li>
+              <li style={{paddingLeft: '20px', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#28a745'}}>✓</span>
+                User reaction: "This is a game-changer"
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <h4 style={{fontSize: '1.125rem', fontWeight: '600', marginBottom: '24px'}}>User Confidence Ratings</h4>
+        <div style={{marginBottom: '40px'}}>
+          <div style={{marginBottom: '24px'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '8px'}}>
+              <span style={{fontWeight: '500'}}>Creating new PORs</span>
+              <span style={{color: '#666'}}>8.5/10</span>
+            </div>
+            <div style={{background: '#e9ecef', borderRadius: '4px', height: '8px', overflow: 'hidden'}}>
+              <div style={{background: '#0050FF', height: '100%', width: '85%', transition: 'width 0.3s ease'}}></div>
+            </div>
+          </div>
+          
+          <div style={{marginBottom: '24px'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '8px'}}>
+              <span style={{fontWeight: '500'}}>Finding specific PORs</span>
+              <span style={{color: '#666'}}>7.2/10</span>
+            </div>
+            <div style={{background: '#e9ecef', borderRadius: '4px', height: '8px', overflow: 'hidden'}}>
+              <div style={{background: '#0050FF', height: '100%', width: '72%', transition: 'width 0.3s ease'}}></div>
+            </div>
+          </div>
+          
+          <div style={{marginBottom: '24px'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '8px'}}>
+              <span style={{fontWeight: '500'}}>Bulk editing multiple PORs</span>
+              <span style={{color: '#666'}}>9.3/10</span>
+            </div>
+            <div style={{background: '#e9ecef', borderRadius: '4px', height: '8px', overflow: 'hidden'}}>
+              <div style={{background: '#28a745', height: '100%', width: '93%', transition: 'width 0.3s ease'}}></div>
+            </div>
+          </div>
+          
+          <div>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '8px'}}>
+              <span style={{fontWeight: '500'}}>Understanding POR status</span>
+              <span style={{color: '#666'}}>8.8/10</span>
+            </div>
+            <div style={{background: '#e9ecef', borderRadius: '4px', height: '8px', overflow: 'hidden'}}>
+              <div style={{background: '#0050FF', height: '100%', width: '88%', transition: 'width 0.3s ease'}}></div>
+            </div>
+          </div>
+        </div>
+        
+        <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginBottom: '48px'}}>
+          <div style={{
+            background: '#f8f9fa',
+            borderRadius: '12px',
+            padding: '24px',
+            borderLeft: '4px solid #0050FF'
+          }}>
+            <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '16px'}}>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                background: '#e3f2fd',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 7V12C2 16.5 4.5 20.74 8.5 22.5L12 24L15.5 22.5C19.5 20.74 22 16.5 22 12V7L12 2Z" stroke="#0050FF" stroke-width="2"/>
+                  <path d="M9 12L11 14L15 10" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <p style={{fontSize: '0.875rem', fontStyle: 'italic', lineHeight: '1.6', margin: 0}}>
+                  "The bulk editing feature alone will save me hours every week. Being able to update facility addresses across 20 PORs at once is exactly what we needed."
+                </p>
+                <p style={{fontSize: '0.8rem', color: '#666', marginTop: '8px'}}>— Senior Site Reliability Engineer</p>
+                <div style={{display: 'flex', alignItems: 'center', gap: '4px', marginTop: '8px'}}>
+                  <span style={{fontSize: '0.75rem', color: '#666'}}>Confidence:</span>
+                  <div style={{display: 'flex', gap: '2px'}}>
+                    {[1,2,3,4,5].map((star, i) => (
+                      <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill={i < 5 ? "#ffc107" : "#e0e0e0"}>
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div style={{
+            background: '#f8f9fa',
+            borderRadius: '12px',
+            padding: '24px',
+            borderLeft: '4px solid #0050FF'
+          }}>
+            <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '16px'}}>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                background: '#e8f5e9',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" stroke="#28a745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <p style={{fontSize: '0.875rem', fontStyle: 'italic', lineHeight: '1.6', margin: 0}}>
+                  "I can finally see all my PORs in one place and understand their status at a glance. The visual organization makes my job so much easier."
+                </p>
+                <p style={{fontSize: '0.8rem', color: '#666', marginTop: '8px'}}>— Network Operations Manager</p>
+                <div style={{display: 'flex', alignItems: 'center', gap: '4px', marginTop: '8px'}}>
+                  <span style={{fontSize: '0.75rem', color: '#666'}}>Confidence:</span>
+                  <div style={{display: 'flex', gap: '2px'}}>
+                    {[1,2,3,4,5].map((star, i) => (
+                      <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill={i < 4 ? "#ffc107" : "#e0e0e0"}>
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h4 style={{fontSize: '1.125rem', fontWeight: '600', marginBottom: '24px'}}>Bulk Editing Performance</h4>
+        <div class="cs-gallery">
+          <div class="cs-gallery-row">
+            <div class="cs-gallery-item">
+              <img src="/images/Tailorbirdscreenshots/jpgs/bulkEditView.jpg" alt="Bulk editing interface showing multiple PORs selected" />
+              <p class="cs-caption">The new bulk editing interface allows users to select and edit multiple PORs simultaneously</p>
+            </div>
+          </div>
+          <div class="cs-gallery-row">
+            <div class="cs-gallery-item">
+              <img src="/images/Tailorbirdscreenshots/jpgs/bulkEditProgress.jpg" alt="Progress indicator during bulk operations" />
+              <p class="cs-caption">Real-time progress indicators keep users informed during bulk operations</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="outcome" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="outcome">Outcome</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          The redesigned Tailorbird platform represents a complete transformation from a form-based system to an intuitive collaborative workspace. The design addresses all three key improvement areas through a revamped interface focused on user efficiency and data traceability.
+        </p>
+        
+        {/* Home Page Overview */}
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/home.PNG" alt="Tailorbird Homepage" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">The new Tailorbird homepage with streamlined navigation and quick access to key features</p>
+        </div>
+        
+        <h3 class="cs-subtitle">Enhanced Table View</h3>
+        <p>
+          The foundation of the new interface is a powerful table view that provides users with a comprehensive overview of all POR records, featuring advanced filtering, sorting, and inline editing capabilities.
+        </p>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/table.png" alt="Table View" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">The comprehensive table view showing all POR records with filtering options</p>
+        </div>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/tablefunctionality.gif" alt="Table Functionality Demo" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">Interactive demonstration of table filtering, sorting, and quick actions</p>
+        </div>
+        
+        <h3 class="cs-subtitle">Bulk Editing from Homepage</h3>
+        <p>
+          At the heart of the redesign is the Bulk Editing capability, allowing users to efficiently manage multiple POR records simultaneously directly from the homepage, eliminating the need to edit 40+ records individually.
+        </p>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/bulkeditenabled.PNG" alt="Bulk Edit Mode Enabled" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">Bulk edit mode enabled with multi-select functionality</p>
+        </div>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/bulkedittable.gif" alt="Bulk Editing in Action" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">Demonstration of bulk editing multiple records simultaneously</p>
+        </div>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/bulkediterror.gif" alt="Bulk Edit Error Handling" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">Smart error handling and validation during bulk editing operations</p>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>Key features include multi-record selection, spreadsheet-style inline editing, real-time feedback on changes, and keyboard shortcuts for power users—all designed to significantly reduce editing time compared to individual editing.</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Creating Records via Template</h3>
+        <p>
+          The template-based record creation system streamlines the process of creating multiple similar POR records, addressing a major pain point in the previous workflow where users needed to repeatedly enter the same information.
+        </p>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/templatespage.PNG" alt="Templates Page" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">The templates page showing available templates for different POR types</p>
+        </div>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/previewtemplate.gif" alt="Template Preview" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">Interactive template preview showing pre-populated fields and customization options</p>
+        </div>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/createrecordsfromtemplate.gif" alt="Creating Records from Template" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">Creating multiple records efficiently using pre-defined templates</p>
+        </div>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/createfromtemplateError.gif" alt="Template Error Handling" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">Intelligent error handling during template-based record creation</p>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>The template system features clear visual previews, pre-populated fields for common data, the ability to create multiple records simultaneously, and customizable templates that can be saved for future use.</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Creating Records from Scratch</h3>
+        <p>
+          For unique POR entries that don't fit existing templates, the redesigned interface provides a streamlined creation process with logical field grouping and contextual help to guide users through the process.
+        </p>
+        
+        <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '32px'}}>
+          <div class="cs-image-container">
+            <img src="/images/Tailorbirdscreenshots/outcomesection/porreadonly.PNG" alt="POR Form Read-Only View" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+            <p class="cs-caption">Clean, organized POR form in read-only mode showing all field groupings</p>
+          </div>
+          
+          <div class="cs-image-container">
+            <img src="/images/Tailorbirdscreenshots/outcomesection/porcategoryselected.PNG" alt="POR Category Selected" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+            <p class="cs-caption">Dynamic form adaptation based on selected POR category</p>
+          </div>
+        </div>
+        
+        <div class="cs-image-container">
+          <img src="/images/Tailorbirdscreenshots/outcomesection/bulkcreaterecords.gif" alt="Bulk Create Records" style={{borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}} />
+          <p class="cs-caption">Efficient bulk record creation process with real-time validation</p>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>The intelligent form adapts based on the selected category, ensuring users only see and fill out fields relevant to their specific POR type. This dynamic approach prevents confusion and reduces errors by displaying category-specific field configurations, providing inline validation, and requiring only essential fields for completion.</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Central Audit System</h3>
+        <p>
+          For the first time in the history of POR management at Amazon Robotics, users have access to a comprehensive audit trail that tracks all changes made across the platform, providing transparency and accountability.
+        </p>
+        
+        <div class="cs-image-container" style={{background: '#f5f5f5', padding: '60px', textAlign: 'center', borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}}>
+          <div style={{display: 'inline-block', padding: '20px 40px', background: 'white', borderRadius: '4px', border: '2px dashed #ddd'}}>
+            <p style={{margin: 0, color: '#666', fontSize: '1.1rem'}}>Central Audit System - In Development</p>
+          </div>
+          <p class="cs-caption">Comprehensive change tracking across all POR records with advanced filtering and search</p>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>The central audit system records all changes made throughout the platform, featuring comprehensive change history tracking, advanced filtering and search capabilities, detailed user activity logs, and field-level change documentation for compliance and review purposes.</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Individual Record Audit Panel</h3>
+        <p>
+          For granular tracking, each POR record includes a pop-out audit panel that provides detailed history of all changes made to that specific record, enabling users to track modifications at the field level.
+        </p>
+        
+        <div class="cs-image-container" style={{background: '#f5f5f5', padding: '60px', textAlign: 'center', borderRadius: '8px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'}}>
+          <div style={{display: 'inline-block', padding: '20px 40px', background: 'white', borderRadius: '4px', border: '2px dashed #ddd'}}>
+            <p style={{margin: 0, color: '#666', fontSize: '1.1rem'}}>Individual Record Audit Panel - In Development</p>
+          </div>
+          <p class="cs-caption">Pop-out panel showing detailed change history for individual POR records</p>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>The individual audit panel features field-level change tracking with before/after values, complete modification history with timestamps, user attribution for every change, and the ability to restore previous versions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="impact" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="impact">Impact</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          The Tailorbird MVP successfully achieved its primary goal of replacing Clarity PPM before its deprecation while delivering targeted enhancements. Through focused UX improvements, the platform addresses critical user pain points while ensuring business continuity for Amazon Robotics' demand planning operations.
+        </p>
+        
+        <h3 class="cs-subtitle">Key Achievements</h3>
+        
+        <div class="impact-grid">
+          {/* Feature Parity */}
+          <div class="impact-card">
+            <div class="impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </div>
+            <h4 class="impact-title">Feature Parity</h4>
+            <div class="impact-value">Complete</div>
+            <p class="impact-description">All critical Clarity PPM functionality preserved to ensure seamless transition</p>
+          </div>
+          
+          {/* Bulk Editing */}
+          <div class="impact-card">
+            <div class="impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </div>
+            <h4 class="impact-title">Bulk Editing</h4>
+            <div class="impact-value">New</div>
+            <p class="impact-description">Users can now update multiple POR records simultaneously</p>
+          </div>
+          
+          {/* Template System */}
+          <div class="impact-card">
+            <div class="impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <rect x="7" y="7" width="3" height="9"></rect>
+                <rect x="14" y="7" width="3" height="5"></rect>
+              </svg>
+            </div>
+            <h4 class="impact-title">Template System</h4>
+            <div class="impact-value">Enhanced</div>
+            <p class="impact-description">Improved template management and creation system for streamlined workflows</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Voice of the Customer</h3>
+        
+        <div class="highlight-quote" style={{marginTop: '30px'}}>
+          <div class="highlight-quote-highlight"></div>
+          <blockquote>Thank you Tailorbird team! Excellent product and this is a clean transition/welcomed transition away from Clarity. Excited to see where this work continues to go and future integrations.</blockquote>
+          <cite>Program Manager</cite>
+        </div>
+        
+        <h3 class="cs-subtitle">Future Roadmap</h3>
+        
+        <p>Based on user feedback and emerging needs, the Tailorbird roadmap focuses on enhancing user productivity, expanding system capabilities, and deepening integration across the AR ecosystem.</p>
+        
+        <h4 style={{fontSize: '1.1rem', marginTop: '30px', marginBottom: '20px'}}>Version 1.1 (Q3 2025)</h4>
+        
+        <div class="impact-grid impact-grid-two-column">
+          <div class="impact-card">
+            <div class="impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+            </div>
+            <h4 class="impact-title">Saved Views & Preferences</h4>
+            <div class="impact-value">New</div>
+            <p class="impact-description">Personal table configurations, filter sets, and column preferences to reduce repetitive setup</p>
+          </div>
+          
+          <div class="impact-card">
+            <div class="impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h4 class="impact-title">Audit Logging</h4>
+            <div class="impact-value">In Progress</div>
+            <p class="impact-description">Comprehensive change tracking system to record all modifications across POR records</p>
+          </div>
+        </div>
+        
+        <h4 style={{fontSize: '1.1rem', marginTop: '30px', marginBottom: '20px'}}>Future Releases (2025)</h4>
+        
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h4 class="impact-title">AI Assistant</h4>
+            <div class="impact-value">New</div>
+            <p class="impact-description">Intelligent chatbot to help users find information and answer common questions about POR processes</p>
+          </div>
+          
+          <div class="impact-card">
+            <div class="impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+            </div>
+            <h4 class="impact-title">Automated Data Syncing</h4>
+            <div class="impact-value">1+</div>
+            <p class="impact-description">Integrations with internal tools to automatically sync key dates and milestones from equipment install plans</p>
+          </div>
+          
+          <div class="impact-card">
+            <div class="impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+            </div>
+            <h4 class="impact-title">Organizational Expansion</h4>
+            <div class="impact-value">+1</div>
+            <p class="impact-description">Integration of MSP's POR data to begin creating a unified planning system across organizations</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reflections" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="reflections">Reflections</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Design Challenges</h3>
+        
+        <div class="reflection-grid">
+          <div class="reflection-card">
+            <div class="reflection-number">01</div>
+            <h4 class="reflection-title">Accelerated Design Timeline</h4>
+            <p class="reflection-description">
+              The two-week design sprint for creating testable mockups required rapid decision-making and prioritization, forcing me to focus on high-impact UX areas first while ensuring adequate feature coverage.
+            </p>
+          </div>
+          
+          <div class="reflection-card">
+            <div class="reflection-number">02</div>
+            <h4 class="reflection-title">Real-time Technical Iteration</h4>
+            <p class="reflection-description">
+              Due to the compressed timeline, design and development overlapped significantly. I had to closely monitor and iterate with engineers on the fly as we encountered technical obstacles, particularly around database integration and validation logic. POR data is highly sensitive, and enabling automatic validation proved to be a substantial technical challenge that required constant designer-developer collaboration.
+            </p>
+          </div>
+          
+          <div class="reflection-card">
+            <div class="reflection-number">03</div>
+            <h4 class="reflection-title">Balancing Familiarity with Innovation</h4>
+            <p class="reflection-description">
+              Finding the right balance between maintaining familiar patterns from Clarity PPM while introducing meaningful UX improvements required careful consideration of user comfort versus efficiency gains.
+            </p>
+          </div>
+          
+          <div class="reflection-card">
+            <div class="reflection-number">04</div>
+            <h4 class="reflection-title">Competing Stakeholder Priorities</h4>
+            <p class="reflection-description">
+              Different stakeholder groups had competing visions for the interface, requiring diplomatic navigation and data-driven decision making to achieve consensus.
+            </p>
+          </div>
+          
+          <div class="reflection-card">
+            <div class="reflection-number">05</div>
+            <h4 class="reflection-title">Design System Constraints</h4>
+            <p class="reflection-description">
+              Working within the Cloudscape design system provided efficiency benefits but required creative adaptation for specialized POR workflows that didn't fit standard patterns.
+            </p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Key Learnings</h3>
+        
+        <div class="reflection-grid">
+          <div class="reflection-card">
+            <div class="reflection-number">01</div>
+            <h4 class="reflection-title">Data vs. Perception Disconnect</h4>
+            <p class="reflection-description">
+              Users reported higher confidence with interfaces that objectively caused more errors (the confidence paradox), highlighting the critical importance of measuring both performance metrics and user perception.
+            </p>
+          </div>
+          
+          <div class="reflection-card">
+            <div class="reflection-number">02</div>
+            <h4 class="reflection-title">A/B Testing Value</h4>
+            <p class="reflection-description">
+              The focused A/B testing approach provided objective data that aligned stakeholders around user performance results rather than personal preferences, proving invaluable for decision-making under time pressure.
+            </p>
+          </div>
+          
+          <div class="reflection-card">
+            <div class="reflection-number">03</div>
+            <h4 class="reflection-title">Users Embrace Change When It Solves Pain Points</h4>
+            <p class="reflection-description">
+              Despite initial concerns about change management, users readily accepted significant interface changes when they directly addressed their workflow frustrations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

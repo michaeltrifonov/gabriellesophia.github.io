@@ -1,0 +1,532 @@
+---
+title: "Egret: An Operational Planning Application"
+description: "A complete UX redesign of an internal operational planning management tool that captures forecasted headcount and discretionary spend against Amazon Robotics programs in support of Operational Planning and off-cycle intake."
+client: "Amazon Robotics"
+role: "Lead UX Designer"
+duration: "8 weeks"
+year: "2024"
+team: "3 Software Developers, 1 Business Intelligence Engineer, 2 Product Managers"
+technologies: ["Figma", "Figjam", "Chime", "React", "AG-Grid"]
+tags: ["UX Design", "Enterprise Software", "Operational Planning"]
+heroImage: "/images/Egret/laptop.svg"
+heroImageAlt: "Egret Operational Planning Platform hero image"
+featured: true
+order: 1
+problemStatement: "In 2023, Egret was launched as a minimum viable product (MVP) to address pressing pain points that were identified during an operational planning (OP) retrospective. However, feedback revealed serious usability issues, with the tool receiving a 2.5 out of 5 net promoter score."
+outcome: "Through methodical UX testing and iterative design, we achieved a 76% increase in customer satisfaction (from 2.5 to 4.5), a 22% improvement in task completion times, a 70% decrease in misclicks, and a 10-15% development efficiency gain."
+keyMetrics:
+  - metric: "76%"
+    value: "increase in CSAT"
+    description: "from 2.5 to 4.5"
+  - metric: "22%"
+    value: "faster task completion"
+    description: "from 1:49 to 1:25"
+  - metric: "70%"
+    value: "fewer misclicks"
+    description: "from 10.44 to 3.17 avg"
+research: true
+userTesting: true
+visualDesign: true
+implementation: true
+---
+
+import { useState, useEffect } from 'react';
+import CommentingPanel from '../../components/CommentingPanel.tsx';
+import HistoryPanel from '../../components/HistoryPanel.tsx';
+import '../../styles/commenting-panel.css';
+import '../../styles/history-panel.css';
+
+{/* Note: This case study is password protected. The password functionality will be implemented in the layout. */}
+
+<section id="overview" class="cs-section cs-overview">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Overview</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          As part of a larger ecosystem of applications, Egret serves as a source of truth for Program metadata and enables automated planning versus actual program reporting for internal Amazon Robotics users. I led the UX design implementation for Egret, a critical operations planning management platform suffering from poor adoption and user satisfaction. The project focused on addressing three key improvement areas: simplicity, usability, and data traceability, delivering significant efficiency gains and demonstrating the value of UX to organizational leadership.
+        </p>
+        
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">My Role</h3>
+            <p>Lead UX Designer</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Team</h3>
+            <p>3 Software Developers, 1 Business Intelligence Engineer, 2 Product Managers</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Timeline</h3>
+            <p>8 weeks (2024)</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Tools</h3>
+            <p>Figma, Figjam, Chime</p>
+          </div>
+        </div>
+        
+        <div class="cs-note-block">
+          <p><strong>Impact:</strong> Through methodical UX testing and iterative design, we achieved a 76% increase in customer satisfaction (from 2.5 to 4.5), a 22% improvement in task completion times, a 70% decrease in misclicks, and a 10-15% development efficiency gain by reducing iteration cycles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">The Problem</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          In 2023, Egret was launched as a minimum viable product (MVP) to address pressing pain points that were identified during an operational planning (OP) retrospective. Egret was originally developed in a six week timeline in order to meet the 2024 OP2 timeline, however, feedback from surveys and focus groups revealed serious usability issues, with the tool receiving a 2.5 out of 5 net promoter score. Focus groups and surveys revealed that users were struggling with fragmented workflows, leading to low adoption rates and jeopardizing the platform's future.
+        </p>
+        <br />
+        <p>I joined the Egret team after the initial MVP launch, at a point when pressing pain points had already been identified and categorized into themes. With these established problem areas in hand, my focus was on executing a UX redesign for this critical operations planning tool which had been suffering from poor adoption and was at risk of deprecation. The goal was to specifically address the three key improvement areas that had emerged from the initial feedback: simplicity, usability, and data traceability.</p>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>How might we reduce unnecessary complexity, enhance ease of use, and enable better communication within the system?</p>
+          </div>
+        </div>
+        
+        <p><strong>The 2023 launch posed some initial barriers…</strong></p>
+
+        <h3 class="cs-subtitle">Key Challenges</h3>
+        
+        <div class="cs-methods">
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="7" cy="8" r="1" fill="currentColor"/>
+                <circle cx="7" cy="12" r="1" fill="currentColor"/>
+                <circle cx="7" cy="16" r="1" fill="currentColor"/>
+                <line x1="10" y1="8" x2="17" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="10" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="10" y1="16" x2="17" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Form-Based Editing Limitations</h4>
+              <p>Egret initially utilized a form-based data entry system (as opposed to spreadsheet-style) creating significant friction, particularly for managers working across multiple teams and programs as it was difficult to gain visibility into headcount across deliverables and programs.</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 22V5c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H7l-4 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Fragmented Communication</h4>
+              <p>No integrated commenting system, forcing users to rely on external tools like email and Slack, creating communication silos and loss of context.</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Lack of Data Traceability</h4>
+              <p>Users couldn't track what changes were made, when, or by whom, making it difficult to understand data evolution and maintain accountability.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="user-groups" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">User Groups</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Through stakeholder interviews and user research, I identified three distinct user groups, each with unique workflows and requirements that needed to be addressed in the redesign.
+        </p>
+        
+        <div class="cs-personas">
+          <div class="cs-persona">
+            <div class="cs-persona-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4>Group 1: Business Operations Partners</h4>
+            <p><strong>Primary users</strong> who make headcount forecasts against programs using Egret data editor.</p>
+            <ul>
+              <li>Need efficient bulk editing capabilities</li>
+              <li>Require clear visibility across multiple programs</li>
+              <li>Must track changes and maintain data accuracy</li>
+            </ul>
+          </div>
+          
+          <div class="cs-persona">
+            <div class="cs-persona-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 21V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4>Group 2: Senior Leaders & Finance</h4>
+            <p><strong>Secondary users</strong> who primarily consume data through summary views for decision-making.</p>
+            <ul>
+              <li>Need high-level summaries and reports</li>
+              <li>Require data comparisons across quarters</li>
+              <li>Focus on budget and resource allocation</li>
+            </ul>
+          </div>
+          
+          <div class="cs-persona">
+            <div class="cs-persona-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="10 9 9 9 8 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4>Group 3: Program/Product Managers</h4>
+            <p><strong>Tertiary users</strong> who manage operational planning details and program-specific requirements.</p>
+            <ul>
+              <li>Need to update program metadata</li>
+              <li>Require collaboration features</li>
+              <li>Must maintain program documentation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Approach</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          My design approach focused on creating intuitive solutions that addressed the core pain points while maintaining the flexibility required by different user groups. The strategy centered on three main improvements: spreadsheet-style editing, integrated communication, and comprehensive data tracking.
+        </p>
+        
+        <h3 class="cs-subtitle">Design Solutions</h3>
+        
+        <div class="solution-feature">
+          <div class="solution-feature-content">
+            <div class="solution-feature-header">
+              <div class="cs-finding-number">01</div>
+              <h4>Spreadsheet-Style Multi-User Editing</h4>
+            </div>
+            <p>Replaced the form-based editing approach with a more intuitive spreadsheet-style interface that allows direct inline editing, simultaneous collaboration, clear visual indicators of changes, and familiar interaction patterns for spreadsheet users.</p>
+          </div>
+          <div class="solution-feature-media">
+            {/* Interactive component would go here */}
+            <img src="/images/Egret/Headcount editor.png" alt="Spreadsheet-style editing interface" />
+          </div>
+        </div>
+        
+        <div class="solution-feature">
+          <div class="solution-feature-content">
+            <div class="solution-feature-header">
+              <div class="cs-finding-number">02</div>
+              <h4>Context-Rich Communication System</h4>
+            </div>
+            <p>Designed an integrated commenting and notification system that enables direct commenting on cells, automatic team member tagging, smart notifications for changes, and complete communication records within the tool.</p>
+          </div>
+          <div class="solution-feature-media">
+            <img src="/images/Egret/Comments Panel (View only).png" alt="Commenting system interface" />
+            
+            {/* Interactive Commenting Panel Component */}
+            <div style={{ marginTop: '32px' }}>
+              <div id="commenting-panel-demo" style={{ maxWidth: '400px', margin: '0 auto' }}>
+                <CommentingPanel client:visible />
+              </div>
+              <p className="cs-caption">Interactive demo: Try searching for comments, or click "Add Comment" to see the form interface</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="solution-feature">
+          <div class="solution-feature-content">
+            <div class="solution-feature-header">
+              <div class="cs-finding-number">03</div>
+              <h4>Comprehensive Data Traceability</h4>
+            </div>
+            <p>Developed an audit and history tracking system providing cell-level access to changes, easy tracking of all modifications, timestamps with user identification, and powerful filtering and search capabilities.</p>
+          </div>
+          <div class="solution-feature-media">
+            <img src="/images/Egret/History with Truncated text.png" alt="History tracking interface" />
+            
+            {/* Interactive History Panel Component */}
+            <div style={{ marginTop: '32px' }}>
+              <div id="history-panel-demo" style={{ maxWidth: '600px', margin: '0 auto' }}>
+                <HistoryPanel client:visible />
+              </div>
+              <p className="cs-caption">Interactive demo: Click anywhere on the table to see ripple effects and tooltips. Try the filter dropdown.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="user-testing" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Usability Testing</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          To validate the design solutions, I implemented a comprehensive two-phase testing methodology targeting specific workflows and features. This methodical approach allowed us to identify issues early and refine the design before final implementation.
+        </p>
+        
+        <h3 class="cs-subtitle">Testing Methodology</h3>
+        
+        <div class="cs-methods">
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>UAT Session Structure</h4>
+              <p>12 individual 30-minute sessions with key stakeholders and end users across all three user groups</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 11L12 14L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Two-Phase Approach</h4>
+              <p>UAT 1 tested high-fidelity Figma prototypes before development; UAT 2 tested the implemented solution with the same test scenarios</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="12" width="4" height="7" rx="1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="10" y="8" width="4" height="11" rx="1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="17" y="4" width="4" height="15" rx="1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="3" y1="21" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Metrics Collection</h4>
+              <p>Measured task completion time, success rate, misclick count, and heuristic violations to quantify usability improvements</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Key Usability Improvements</h3>
+        
+        <p>Through our comprehensive two-phase testing approach, we achieved significant improvements across all critical usability metrics:</p>
+        
+        <div class="cs-metrics cs-metrics-four">
+          <div class="cs-metric">
+            <div class="cs-metric-value">22%</div>
+            <div class="cs-metric-label">Improvement in Task Efficiency<br /><span>(from 1:49 to 1:25)</span></div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-value">70%</div>
+            <div class="cs-metric-label">Reduction in Misclicks<br /><span>(from 10.44 to 3.17 avg)</span></div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-value">80%</div>
+            <div class="cs-metric-label">Fewer Heuristic Violations<br /><span>(from 36 to 7 instances)</span></div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-value">98.6%</div>
+            <div class="cs-metric-label">Task Success Rate<br /><span>(from 95.3% to 98.6%)</span></div>
+          </div>
+        </div>
+        
+        <p>These improvements validated our design approach and directly addressed the three key areas identified in initial research: simplicity, usability, and data traceability.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="outcome" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Outcome</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          The redesigned Egret platform successfully transformed from a tool at risk of deprecation to an essential component of Amazon Robotics' operational planning ecosystem. The improvements not only solved immediate usability issues but also established a foundation for future enhancements.
+        </p>
+        
+        <h3 class="cs-subtitle">Key Achievements</h3>
+        
+        <div class="cs-outcomes">
+          <div class="cs-outcome">
+            <div class="cs-outcome-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4>Customer Satisfaction</h4>
+            <p>Increased from 2.5 to 4.5 out of 5, representing a 76% improvement in user satisfaction scores</p>
+          </div>
+          
+          <div class="cs-outcome">
+            <div class="cs-outcome-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#0050FF" stroke-width="2"/>
+                <polyline points="12 6 12 12 16 14" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4>Efficiency Gains</h4>
+            <p>22% reduction in task completion time and 10-15% development efficiency improvement</p>
+          </div>
+          
+          <div class="cs-outcome">
+            <div class="cs-outcome-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="9" cy="7" r="4" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4>User Adoption</h4>
+            <p>Platform saved from deprecation with strong user adoption across all three user groups</p>
+          </div>
+          
+          <div class="cs-outcome">
+            <div class="cs-outcome-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 2V8H20" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="16" y1="13" x2="8" y2="13" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="16" y1="17" x2="8" y2="17" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="10 9 9 9 8 9" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4>Organizational Impact</h4>
+            <p>Demonstrated value of UX design, leading to expanded UX team and increased investment</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="impact" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Impact</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Beyond the immediate improvements to the platform, this project had far-reaching impacts on both the organization's approach to product development and the perception of UX design within Amazon Robotics.
+        </p>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 21V19C20 17.9391 19.5786 16.9217 19.0711 16.4142C18.5636 15.9066 17.8565 15.6428 16.1173 15.5523" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 21V19C8 17.9391 8.42143 16.9217 9.17157 16.1716C9.92172 15.4214 10.9391 15 12 15H16C17.0609 15 18.0783 15.4214 18.8284 16.1716C19.5786 16.9217 20 17.9391 20 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p><strong>Presented to Leadership:</strong> The project's success was presented to senior leadership, securing budget approval for expanding the UX team and establishing UX as a critical function within the organization.</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Long-term Benefits</h3>
+        
+        <ul class="cs-list">
+          <li><strong>Cultural Shift:</strong> The project demonstrated the tangible value of user-centered design, shifting organizational perception from "nice to have" to "essential for success"</li>
+          <li><strong>Process Improvement:</strong> Established a framework for incorporating UX testing and iterative design into the product development lifecycle</li>
+          <li><strong>Resource Allocation:</strong> Success metrics justified additional headcount and resources for UX design across other Amazon Robotics products</li>
+          <li><strong>Knowledge Transfer:</strong> Created documentation and processes that enabled consistent UX practices across teams</li>
+        </ul>
+        
+        <div class="cs-note-block">
+          <p>The success of this project fundamentally changed how Amazon Robotics approaches product development, establishing UX design as a critical success factor for internal tools and platforms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reflections" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Reflections</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          This project reinforced the importance of data-driven design decisions and the value of comprehensive usability testing. Working within the constraints of an existing system while delivering significant improvements taught me valuable lessons about pragmatic design solutions.
+        </p>
+        
+        <h3 class="cs-subtitle">Key Learnings</h3>
+        
+        <div class="cs-learnings">
+          <div class="cs-learning">
+            <h4>Quantifying UX Impact</h4>
+            <p>By implementing rigorous metrics collection from the start, I was able to demonstrate clear ROI on UX investment, making it easier to secure buy-in for future projects.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Iterative Testing Value</h4>
+            <p>The two-phase testing approach allowed us to catch and fix issues before development, saving significant time and resources while ensuring a better final product.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Stakeholder Communication</h4>
+            <p>Regular updates with quantifiable progress helped maintain stakeholder confidence even when initial feedback was challenging.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Technical Constraints as Design Drivers</h4>
+            <p>Working within the limitations of the existing technical infrastructure forced creative solutions that often resulted in simpler, more elegant designs.</p>
+          </div>
+        </div>
+        
+        <div class="cs-quote">
+          <blockquote>
+            <p>"The Egret redesign didn't just save a critical tool from deprecation—it demonstrated the transformative power of user-centered design within our organization, paving the way for a broader UX practice at Amazon Robotics."</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

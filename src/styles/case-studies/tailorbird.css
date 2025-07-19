@@ -1,0 +1,1197 @@
+/**
+ * Tailorbird Case Study Specific Styles
+ * POR-related components and unique elements
+ */
+
+/* POR Highlight Box */
+.por-highlight-box {
+  margin: 24px 0;
+  padding: 24px;
+  background-color: rgba(0, 80, 255, 0.05);
+  border-radius: 12px;
+}
+
+.por-highlight-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  color: var(--color-text-primary);
+}
+
+.por-highlight-note {
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+  color: var(--color-text-light);
+}
+
+/* POR Cards */
+.por-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.por-card-grid-two-column {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 768px) {
+  .por-card-grid-two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+.por-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.por-card:hover {
+  transform: translateY(-5px);
+}
+
+.por-card-icon {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 80, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+
+.por-card-text {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* Highlight Block (How might we) */
+.cs-highlight-block {
+    display: flex;
+    gap: 16px;
+    padding: 32px;
+    background-color: rgba(0, 80, 255, 0.05);
+    border-radius: 12px;
+    margin: 32px 0;
+}
+
+.cs-highlight-icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.cs-highlight-content p {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0;
+}
+
+/* Glossary Terms */
+.glossary-terms {
+    border-radius: 16px;
+    padding: 24px 0;
+    margin: 36px 0;
+}
+
+.glossary-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 12px;
+}
+
+.glossary-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: #0050FF;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,80,255,0.15);
+}
+
+.glossary-icon svg {
+    color: white;
+    width: 18px;
+    height: 18px;
+}
+
+.glossary-header h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.glossary-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.glossary-term {
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.glossary-term:hover {
+    transform: translateY(-4px);
+}
+
+.term-bubble {
+    display: inline-block;
+    font-weight: 600;
+    background-color: rgba(0,80,255,0.05);
+    color: rgba(0,80,255,0.8);
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(0,80,255,0.1);
+}
+
+.glossary-term p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 2px;
+}
+
+@media (max-width: 768px) {
+    .glossary-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+/* Task Checklist Animation */
+.scrollable-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.task-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.task-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgba(0, 80, 255, 0.05);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.task-checkbox .checkmark {
+    opacity: 0;
+    stroke-dasharray: 20;
+    stroke-dashoffset: 20;
+    transition: opacity 0.4s ease, stroke-dashoffset 1s ease;
+}
+
+.task-item.checked .checkmark {
+    opacity: 1;
+    stroke-dashoffset: 0;
+}
+
+.task-text {
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+/* Approach Images */
+.approach-image-container {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.approach-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Component Caption */
+.component-caption {
+    color: var(--color-text-light);
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* Utility Classes for Common Patterns */
+.fragmentation-intro {
+    margin-top: 40px;
+    margin-bottom: 24px;
+}
+
+.cs-section-extended {
+    gap: 80px;
+    margin: 0 30px;
+}
+
+/* Tailorbird-specific Finding Blocks - Override default styles */
+.cs-findings {
+    margin: 32px 0;
+}
+
+.cs-finding {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.cs-finding:last-child {
+    margin-bottom: 0;
+}
+
+.cs-finding-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+    opacity: 0.85;
+}
+
+.cs-finding-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-text);
+}
+
+.cs-finding-content p {
+    margin: 0;
+}
+
+/* User Groups - Persona Styles */
+.cs-personas-container {
+    margin: 32px 0;
+}
+
+.cs-persona {
+    margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cs-persona-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.cs-persona-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(0, 80, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 80, 255, 0.15);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cs-persona-icon::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 80, 255, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cs-persona-header:hover .cs-persona-icon {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 80, 255, 0.25);
+}
+
+.cs-persona-header:hover .cs-persona-icon::after {
+    opacity: 1;
+}
+
+.cs-persona-icon svg {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.cs-persona-header:hover .cs-persona-icon svg {
+    transform: translateY(-2px);
+}
+
+.cs-persona-title {
+    flex: 1;
+}
+
+.cs-persona-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: var(--color-text);
+}
+
+.cs-persona-role {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+.cs-persona-sections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+@media (min-width: 992px) {
+    .cs-persona-sections {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.cs-persona-section {
+    background-color: rgba(0, 80, 255, 0.03);
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.05), 
+                0 2px 6px -2px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cs-persona-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px -6px rgba(0, 0, 0, 0.1), 
+                0 4px 12px -2px rgba(0, 0, 0, 0.05);
+}
+
+.cs-persona-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: var(--color-primary);
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.cs-persona-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--color-primary);
+    opacity: 0.7;
+}
+
+.cs-persona-section ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.cs-persona-section li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.cs-persona-section li:last-child {
+    margin-bottom: 0;
+}
+
+/* Override persona section styles to match old design */
+.cs-section-alt .cs-persona-section {
+    padding: 24px !important;
+    margin: 0 !important;
+}
+
+.cs-section-alt .cs-persona-sections {
+    width: 100% !important;
+}
+
+.cs-section-alt .cs-persona-header {
+    margin-bottom: 20px !important;
+}
+
+.cs-section-alt .cs-persona {
+    margin-bottom: 2.5rem !important;
+}
+
+/* Research Methods Styling */
+.cs-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.cs-method {
+    display: flex;
+    gap: 16px;
+    padding: 24px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cs-method:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cs-method-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(0, 80, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+}
+
+.cs-method-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.cs-method-content {
+    flex: 1;
+}
+
+.cs-method-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: var(--color-text);
+}
+
+.cs-method-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    color: var(--color-text-light);
+}
+
+/* Design Process Styles */
+.approach-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 16px;
+    color: var(--color-primary);
+}
+
+.approach-row {
+    display: block;
+    margin-bottom: 60px;
+}
+
+.approach-text {
+    margin-bottom: 30px;
+    max-width: 800px;
+}
+
+.approach-text p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.approach-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 40px 0;
+    margin-top: 20px;
+}
+
+.approach-row:last-child .approach-visual {
+    padding-bottom: 0;
+}
+
+.approach-row:last-child {
+    margin-bottom: 0;
+}
+
+.component-caption {
+    font-style: italic;
+    color: var(--color-text-light);
+    font-size: 14px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.approach-image-container {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.approach-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .approach-visual {
+        padding: 20px;
+    }
+}
+
+/* Card Craft Component Styles */
+.card-craft {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card-craft.horizontal-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-craft-content {
+    flex: 1;
+}
+
+.card-craft-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #1a1a1a;
+}
+
+.card-craft-description {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.card-craft-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.card-preview-btn,
+.card-select-btn {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card-preview-btn:hover,
+.card-select-btn:hover {
+    background: #f5f5f5;
+    border-color: #bbb;
+}
+
+.card-select-btn {
+    background: #0050FF;
+    color: white;
+    border-color: #0050FF;
+}
+
+.card-select-btn:hover {
+    background: #0040CC;
+    border-color: #0040CC;
+}
+
+.card-more-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.card-more-btn:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+/* Template Card Interactive Styles */
+#template-card-interactive {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#template-card-interactive:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.card-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.more-menu {
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.more-menu:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+.card-description {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 20px 0;
+}
+
+.form-preview {
+    display: grid;
+    gap: 12px;
+}
+
+.form-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.form-field:last-child {
+    border-bottom: none;
+}
+
+.form-field span {
+    font-size: 13px;
+    color: #666;
+}
+
+.field-value {
+    background: #f5f5f5;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #999;
+}
+
+.template-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#template-card-interactive:hover .template-card-overlay {
+    opacity: 1;
+}
+
+.preview-button,
+.use-template-button {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.use-template-button {
+    background: #0050FF;
+    color: white;
+    border-color: #0050FF;
+}
+
+.preview-button:hover {
+    background: #f5f5f5;
+    border-color: #bbb;
+}
+
+.use-template-button:hover {
+    background: #0040CC;
+    border-color: #0040CC;
+}
+
+/* UX Evaluation Framework Styles */
+.ux-framework-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+@media (max-width: 768px) {
+    .ux-framework-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+.ux-framework-column {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.ux-framework-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.ux-framework-icon {
+    flex-shrink: 0;
+}
+
+.ux-framework-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-text);
+}
+
+.ux-framework-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ux-metric-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ux-metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.metric-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 80, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.metric-content h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: var(--color-text);
+}
+
+.metric-content p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--color-text-light);
+}
+
+/* Key Testing Results Metrics */
+.cs-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin: 48px 0;
+}
+
+@media (max-width: 768px) {
+    .cs-metrics {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+.cs-metric {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 80, 255, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cs-metric::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0050FF 0%, #4A7FFF 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cs-metric:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 80, 255, 0.12);
+}
+
+.cs-metric:hover::before {
+    opacity: 1;
+}
+
+.cs-metric-value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #0050FF;
+    margin-bottom: 12px;
+    line-height: 1;
+    background: linear-gradient(135deg, #0050FF 0%, #4A7FFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cs-metric-label {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.4;
+}
+
+.cs-metric-label span {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--color-text-light);
+    margin-top: 4px;
+}
+
+/* Case Study Caption Styles */
+.cs-caption {
+    display: block;
+    margin-top: 16px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    text-align: center;
+    font-style: italic;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cs-gallery-item .cs-caption {
+    margin-top: 12px;
+    padding: 0 16px;
+}
+
+/* Image Container Spacing */
+.cs-image-container {
+    margin-bottom: 48px;
+}
+
+.cs-gallery-row .cs-image-container {
+    margin-bottom: 32px;
+}
+
+/* When images are in a grid layout */
+.cs-content > div[style*="grid"] .cs-image-container {
+    margin-bottom: 0; /* Reset margin when in grid */
+}
+
+/* Ensure proper spacing between grid and next element */
+.cs-content > div[style*="grid"] {
+    margin-bottom: 48px;
+}
+
+/* Impact Section Styles */
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 40px 0;
+}
+
+@media (max-width: 768px) {
+    .impact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+.impact-grid-two-column {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 768px) {
+    .impact-grid-two-column {
+        grid-template-columns: 1fr;
+    }
+}
+
+.impact-card {
+    background: linear-gradient(to bottom, rgba(0, 80, 255, 0.03), rgba(0, 80, 255, 0.07));
+    border-radius: 16px;
+    padding: 30px 25px;
+    border: 1px solid rgba(0, 80, 255, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.impact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.impact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background-color: rgba(0, 80, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.impact-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: rgba(0, 80, 255, 0.8);
+}
+
+.impact-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 12px 0;
+}
+
+.impact-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #0050FF 0%, #4A7FFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.impact-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* Quote Styles */
+.highlight-quote {
+    position: relative;
+    padding: 32px 48px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin: 40px 0;
+}
+
+.highlight-quote-highlight {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-primary);
+    border-radius: 12px 0 0 12px;
+}
+
+.highlight-quote blockquote {
+    margin: 0;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    font-style: italic;
+}
+
+.highlight-quote cite {
+    display: block;
+    margin-top: 16px;
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Reflection Section Styles */
+.reflection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 40px 0;
+}
+
+@media (max-width: 768px) {
+    .reflection-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.reflection-card {
+    background-color: var(--color-background, #ffffff);
+    padding: 32px 28px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.reflection-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.reflection-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0050FF, #6633FF);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.reflection-card:hover::before {
+    opacity: 1;
+}
+
+.reflection-number {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(0, 80, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: rgba(0, 80, 255, 0.9);
+}
+
+.reflection-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0 0 16px;
+    text-align: center;
+}
+
+.reflection-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    text-align: center;
+    margin: 0;
+}

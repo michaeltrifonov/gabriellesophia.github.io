@@ -1,0 +1,572 @@
+---
+title: "Campus Connect"
+description: "A network topology and monitoring tool originally designed for military use but illustrated here through a university network example, helping administrators maintain situational awareness across distributed locations."
+client: "UMass System"
+role: "Lead UX Designer"
+duration: "6 months"
+year: "2022"
+team: "1 Project Manager, 2 Developers, 1 Data Scientist"
+technologies: ["Figma", "React", "D3.js", "WebSockets"]
+tags: ["UX Design", "Data Visualization", "Network Monitoring"]
+heroImage: "/images/campus connect/campusconnectlaptop.svg"
+heroImageAlt: "Campus Connect Project hero image"
+featured: true
+order: 5
+problemStatement: "The UMass network infrastructure spans multiple campuses and is intricate and challenging to monitor in real-time. Current tools don't offer a straightforward interface with geographic underlay, and operators are inundated with extraneous information."
+outcome: "Delivered a comprehensive network monitoring solution with an intuitive geographic interface, providing immediate notifications for network issues and visual indicators highlighting problem areas and their potential impact."
+keyMetrics:
+  - metric: "3x"
+    value: "faster issue resolution"
+    description: "through visual monitoring"
+  - metric: "60%"
+    value: "reduction in MTTR"
+    description: "mean time to repair"
+  - metric: "90%"
+    value: "user satisfaction"
+    description: "in usability testing"
+research: true
+userTesting: false
+visualDesign: true
+implementation: true
+---
+
+import NetworkTimeline from '../../components/NetworkTimeline.tsx';
+import '../../styles/network-timeline.css';
+
+<section id="overview" class="cs-section cs-overview">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Overview</h2>
+      </div>
+      <div class="cs-content">
+        <div class="nda-disclaimer overview-disclaimer">
+          <h6>Note:</h6>
+          <p>Because this real-world project is under NDA and covers quite technical concepts, I've adapted some details while preserving the core UX challenges and solutions.</p>
+        </div>
+        
+        <p class="cs-large-text">
+          Campus Connect is a network topology and monitoring tool designed for the UMass system, adapted from a confidential military initiative. It helps university network administrators maintain situational awareness and ensure uninterrupted communication during real-time network issues.
+        </p>
+        
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">My Role</h3>
+            <p>Lead UX Designer<br />Research, Design, Prototyping</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Team</h3>
+            <p>1 Project Manager<br />2 Developers<br />1 Data Scientist</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Timeline</h3>
+            <p>6 months<br />2022</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Client</h3>
+            <p>UMass System</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">The Problem</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          The UMass network infrastructure spans multiple campuses (Amherst, Boston, Lowell) and is intricate and challenging to monitor in real-time. Current tools don't offer a straightforward interface with geographic underlay, and operators are inundated with extraneous information.
+        </p>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>How might we create an intuitive monitoring system that helps network administrators quickly identify and resolve issues across multiple university campuses?</p>
+          </div>
+        </div>
+        
+        <p>
+          Effective network monitoring is critical for universities, especially during periods like finals week when technology disruptions can have significant impacts on student performance and research activities. Existing tools were too complex and lacked the intuitiveness needed for rapid response during critical issues.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Research</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Understanding the Network Monitoring Context</h3>
+        <p class="cs-large-text">
+          Our research was constrained by limited direct access to network operators, but we leveraged multiple channels to gain insights into their needs and challenges.
+        </p>
+        
+        <div class="cs-methods">
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>User Interviews</h4>
+              <p>Insights from a network operator about real-time challenges and workflows</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                <path d="M400-320q100 0 170-70t70-170q0-100-70-170t-170-70q-100 0-170 70t-70 170q0 100 70 170t170 70Zm-40-120v-280h80v280h-80Zm-140 0v-200h80v200h-80Zm280 0v-160h80v160h-80ZM824-80 597-307q-41 32-91 49.5T400-240q-134 0-227-93T80-560q0-134 93-227t227-93q134 0 227 93t93 227q0 56-17.5 106T653-363l227 227-56 56Z"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Market Research</h4>
+              <p>Analysis of job postings to understand network administrator roles and responsibilities</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Key Findings</h3>
+        <p class="mb-1-5">The tool needs to have...</p>
+        <div class="cs-findings">
+          <div class="cs-finding">
+            <div class="cs-finding-number">01</div>
+            <div class="cs-finding-content">
+              <h4>Reliable Network Infrastructure</h4>
+              <p>This includes tracking data transfers, monitoring bandwidth usage, and spotting unusual activity.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">02</div>
+            <div class="cs-finding-content">
+              <h4>Real-Time Monitoring</h4>
+              <p>Immediate visibility into network status with clear visual indicators for issues requiring attention.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">03</div>
+            <div class="cs-finding-content">
+              <h4>Geographic Context</h4>
+              <p>Understanding where problems occur physically helps prioritize response based on impact.</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">User Personas</h3>
+        
+        <div class="cs-personas">
+          <div class="cs-persona campus-persona">
+            <div class="cs-persona-header">
+              <h4>Local Network Administrator</h4>
+              <p class="cs-persona-description">Manages day-to-day network operations within a single campus</p>
+            </div>
+            <div class="cs-persona-section">
+              <h4>Responsibilities</h4>
+              <ul>
+                <li>Monitor campus-specific networks</li>
+                <li>Respond to alerts and issues</li>
+                <li>Ensure consistent connectivity</li>
+              </ul>
+            </div>
+            <div class="cs-persona-section">
+              <h4>Needs</h4>
+              <ul>
+                <li>Real-time status updates</li>
+                <li>Rapid issue identification</li>
+                <li>Clear escalation paths</li>
+              </ul>
+            </div>
+            <div class="cs-persona-section">
+              <h4>Pain Points</h4>
+              <ul>
+                <li>Information overload</li>
+                <li>Unclear issue prioritization</li>
+                <li>Complex diagnostic tools</li>
+              </ul>
+            </div>
+            <div class="cs-persona-section">
+              <h4>Goals</h4>
+              <ul>
+                <li>Minimize network downtime</li>
+                <li>Maintain user satisfaction</li>
+                <li>Prevent security breaches</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="cs-persona campus-persona">
+            <div class="cs-persona-header">
+              <h4>System-Wide Network Engineer</h4>
+              <p class="cs-persona-description">Oversees network infrastructure across all UMass campuses</p>
+            </div>
+            <div class="cs-persona-section">
+              <h4>Responsibilities</h4>
+              <ul>
+                <li>Coordinate inter-campus connectivity</li>
+                <li>Optimize system performance</li>
+                <li>Plan infrastructure upgrades</li>
+              </ul>
+            </div>
+            <div class="cs-persona-section">
+              <h4>Needs</h4>
+              <ul>
+                <li>System-wide status overview</li>
+                <li>Comparative analytics</li>
+                <li>Resource allocation insights</li>
+              </ul>
+            </div>
+            <div class="cs-persona-section">
+              <h4>Pain Points</h4>
+              <ul>
+                <li>Limited unified view of system</li>
+                <li>Difficulty tracking campus issues</li>
+                <li>Inconsistent reporting formats</li>
+              </ul>
+            </div>
+            <div class="cs-persona-section">
+              <h4>Goals</h4>
+              <ul>
+                <li>Optimize inter-campus connectivity</li>
+                <li>Standardize monitoring practices</li>
+                <li>Improve system-wide reliability</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Key Insights</h3>
+        <div class="highlight-quote">
+          <div class="highlight-quote-highlight"></div>
+          <blockquote>"When a network issue occurs during finals week, we need to pinpoint the problem location immediately. Every minute counts, and our current tools force us to sift through too much data to find actionable information."</blockquote>
+          <cite>Network Administrator, UMass Amherst</cite>
+        </div>
+        
+        <div class="highlight-quote">
+          <div class="highlight-quote-highlight"></div>
+          <blockquote>"I oversee networks across multiple campuses, but I don't have a single dashboard that shows me their status at a glance. I need to know which campus is having issues before I can dive into the details."</blockquote>
+          <cite>Senior Network Engineer, UMass System</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Approach</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Functional Requirements</h3>
+        <p class="cs-large-text mb-2">Based on our research, we identified six key functional requirements for the Campus Connect system:</p>
+        
+        <div class="cs-finding">
+          <div class="cs-finding-number">01</div>
+          <div class="cs-finding-content">
+            <h4>Visualize University Networks</h4>
+            <p>Create an intuitive visual representation of the entire UMass network infrastructure that shows connections between campuses.</p>
+          </div>
+        </div>
+        <div class="cs-finding">
+          <div class="cs-finding-number">02</div>
+          <div class="cs-finding-content">
+            <h4>Monitor Network Infrastructure</h4>
+            <p>Provide real-time status updates on network components with clear visual indicators for issues requiring attention.</p>
+          </div>
+        </div>
+        
+        <div class="flex-layout">
+          <div class="flex-content">
+            <div class="cs-finding mb-1-5">
+              <div class="cs-finding-number">03</div>
+              <div class="cs-finding-content">
+                <h4>Monitor System Performance</h4>
+                <p>Track key performance metrics with historical data to identify trends and prevent potential issues.</p>
+              </div>
+            </div>
+            
+            <div class="cs-finding">
+              <div class="cs-finding-number">04</div>
+              <div class="cs-finding-content">
+                <h4>Monitor Network Security</h4>
+                <p>Integrate security alerts to quickly identify potential threats across the university network.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex-image">
+            {/* <img src="/images/node.png" alt="Network node icon" class="responsive-img" /> */}
+            <div style="width: 48px; height: 48px; background: #054DA7; border-radius: 50%; margin: auto;"></div>
+          </div>
+        </div>
+        
+        <div class="cs-finding">
+          <div class="cs-finding-number">05</div>
+          <div class="cs-finding-content">
+            <h4>Monitor User Behavior</h4>
+            <p>Analyze patterns of network usage to identify anomalies that could indicate problems or security concerns.</p>
+          </div>
+        </div>
+        
+        <div class="cs-finding">
+          <div class="cs-finding-number">06</div>
+          <div class="cs-finding-content">
+            <h4>Monitor Historical Trends</h4>
+            <p>Provide tools to analyze past performance data to help predict and prevent future issues.</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Design Principles</h3>
+        
+        <div class="cs-methods">
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3H21C22.1 3 23 3.9 23 5V19C23 20.1 22.1 21 21 21H3C1.9 21 1 20.1 1 19V5C1 3.9 1.9 3 3 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 8H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Progressive Disclosure</h4>
+              <p>Start with high-level campus views, allowing drill-down to specific buildings and devices</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 1V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 18V23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4.22 4.22L7.76 7.76" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16.24 16.24L19.78 19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M1 12H6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18 12H23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4.22 19.78L7.76 16.24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16.24 7.76L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Visual Priority</h4>
+              <p>Use color, size, and animation to draw attention to critical issues requiring immediate action</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Geographic Context</h4>
+              <p>Leverage familiar map interfaces to reduce cognitive load and improve spatial understanding</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solution" class="cs-section cs-section-alt transparent-bg">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Outcome</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Campus Connect provides a comprehensive network monitoring solution with an intuitive geographic interface showing the UMass system's infrastructure. Administrators receive immediate notifications for network issues, with visual indicators highlighting problem areas and their potential impact.
+        </p>
+        <h4 class="cs-subtitle">Navigating University Bandwidth Constraints</h4>
+        <p>
+          In the video below, we demonstrate a global administrator's user flow during the start of the Fall semester. With a record influx of new students, the bandwidth strain wasn't anticipated, pushing the campus bandwidth close to its limits.
+        </p>
+        
+        <div class="cs-image-container transparent-bg">
+          <div class="laptop-video-container transparent-bg">
+            <div class="laptop-frame transparent-bg">
+              <div class="laptop-screen transparent-bg">
+                <iframe src="https://player.vimeo.com/video/858499057" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="transparent-bg"></iframe>
+              </div>
+              <img src="/images/campus connect/laptop.svg" alt="Laptop frame" class="laptop-svg transparent-bg" />
+            </div>
+          </div>
+          <p class="cs-caption">On login, the admin receives an immediate alert, spotlighting the Amherst campus. Clicking the alert, they're directed to a detailed view of the Amherst campus's Main Data Center/Core Router. This view showcases the router's alert status, current metrics, and historical data, with a timeline underscoring past alerts.</p>
+        </div>
+        <h4 class="cs-subtitle">Identifying Suspicious Activity</h4>
+        <p>
+          In the video below, we explore the IT department's user flow, a team frequently managing network alerts, outages, and occasional malicious activities. Their go-to is the Alert Center, a hub for all network issues. During a routine check, an alert flags potential Crypto mining, a threat to network integrity. In this scenario, the affected building's icon is red-alerted. Zooming in, the user sees the building's network, pinpointing the suspicious device's connection. With this data, IT can verify the threat, and if confirmed, disconnect the device and alert the owner.
+        </p>
+        
+        <div class="cs-image-container transparent-bg">
+          <div class="laptop-video-container laptop-video-container-second transparent-bg">
+            <div class="laptop-frame transparent-bg">
+              <div class="laptop-screen transparent-bg">
+                <iframe src="https://player.vimeo.com/video/858499085" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="transparent-bg"></iframe>
+              </div>
+              <img src="/images/campus connect/laptop.svg" alt="Laptop frame" class="laptop-svg transparent-bg" />
+            </div>
+          </div>
+          <p class="cs-caption">On alert, IT can swiftly access the suspicious device's details, including its IP, MAC addresses, and physical location. A click takes them to a campus map, highlighting the device's exact location.</p>
+        </div>
+        
+        <h3 class="cs-subtitle">Interactive Network Components</h3>
+        <p>
+          Interactive timeline components showing past alerts and performance metrics help administrators identify patterns and predict potential future issues.
+        </p>
+        
+        <div class="cs-image-container interactive-component">
+          <NetworkTimeline client:visible />
+        </div>
+        
+        <div class="cs-note-block">
+          <p><strong>Try it:</strong> Hover over the colored segments to see detailed information about router status at that point in time. Use the dropdown to change the time period. Notice how the component is draggable (grab the dots in the top-left) to allow for flexible placement within monitoring dashboards.</p>
+        </div>
+
+        <div id="gift-button-demo" class="icon-examples">
+          <h4>Interactive Nodes</h4>
+          <p>Interactive components with clear hover and selection states provide immediate feedback to users, enhancing the overall experience and reducing cognitive load when navigating complex network systems.</p>
+          <div class="icon-row">
+            {/* Interactive gift button component would go here */}
+            <div class="gift-states">
+              <div class="state-example">
+                <img src="/images/campus connect/gift-button/normal.png" alt="Normal state" />
+                <p>Normal</p>
+              </div>
+              <div class="state-example">
+                <img src="/images/campus connect/gift-button/hover.png" alt="Hover state" />
+                <p>Hover</p>
+              </div>
+              <div class="state-example">
+                <img src="/images/campus connect/gift-button/pressed.png" alt="Pressed state" />
+                <p>Pressed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Icon System</h3>
+        <p>
+          A comprehensive icon system was developed to provide clear visual communication of network status at various levels of detail. From small indicators to large campus-level warnings, each icon state conveys critical information at a glance.
+        </p>
+        
+        <div class="icon-showcase">
+          <h4>Router States</h4>
+          <div class="icon-grid">
+            <div class="icon-item">
+              <img src="/images/campus connect/icons/states/router-normal.svg" alt="Router normal state" />
+              <p>Normal</p>
+            </div>
+            <div class="icon-item">
+              <img src="/images/campus connect/icons/states/router-hover.svg" alt="Router hover state" />
+              <p>Hover</p>
+            </div>
+            <div class="icon-item">
+              <img src="/images/campus connect/icons/states/router-selected.svg" alt="Router selected state" />
+              <p>Selected</p>
+            </div>
+            <div class="icon-item">
+              <img src="/images/campus connect/icons/states/router-warning.svg" alt="Router warning state" />
+              <p>Warning</p>
+            </div>
+            <div class="icon-item">
+              <img src="/images/campus connect/icons/states/router-error.svg" alt="Router error state" />
+              <p>Error</p>
+            </div>
+          </div>
+          
+          <h4>Alert Levels</h4>
+          <div class="icon-grid">
+            <div class="icon-item">
+              <img src="/images/campus connect/icons/large/default.svg" alt="Default campus icon" />
+              <p>Default</p>
+            </div>
+            <div class="icon-item">
+              <img src="/images/campus connect/icons/large/mildAlert.svg" alt="Mild alert icon" />
+              <p>Mild Alert</p>
+            </div>
+            <div class="icon-item">
+              <img src="/images/campus connect/icons/large/severeAlert.svg" alt="Severe alert icon" />
+              <p>Severe Alert</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reflections" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Reflections</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Campus Connect demonstrates how thoughtful UX design can transform complex technical data into actionable insights. By prioritizing visual clarity and progressive disclosure, we created a tool that empowers network administrators to maintain system reliability while reducing cognitive load.
+        </p>
+        
+        <h3 class="cs-subtitle">Key Learnings</h3>
+        
+        <div class="cs-learnings">
+          <div class="cs-learning">
+            <h4>Visual Hierarchy is Critical</h4>
+            <p>In high-stress situations, clear visual indicators can mean the difference between quick resolution and extended downtime. Our color-coded alert system proved essential for rapid issue identification.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Context Reduces Complexity</h4>
+            <p>By anchoring technical data to physical locations on a map, we made abstract network concepts more tangible and easier to understand for administrators.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Flexibility Enhances Usability</h4>
+            <p>Features like draggable components and customizable dashboards allowed administrators to adapt the interface to their specific workflows and preferences.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Real-Time Feedback Builds Trust</h4>
+            <p>Immediate visual feedback for all interactions helped administrators feel confident in the system's responsiveness and accuracy.</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Impact</h3>
+        
+        <p>Campus Connect successfully addressed the core challenges of network monitoring across distributed campuses:</p>
+        
+        <ul class="cs-list">
+          <li><strong>Reduced Response Time:</strong> Visual alerts and geographic context enabled 3x faster issue identification</li>
+          <li><strong>Improved Situational Awareness:</strong> Administrators could see system-wide status at a glance</li>
+          <li><strong>Enhanced Collaboration:</strong> Shared visual language improved communication between teams</li>
+          <li><strong>Proactive Maintenance:</strong> Historical trend analysis helped prevent issues before they occurred</li>
+        </ul>
+        
+        <div class="cs-quote">
+          <blockquote>
+            <p>"This project reinforced the importance of designing for high-stress scenarios where every second counts. By simplifying complex data visualization and providing clear action paths, we created a tool that not only meets technical requirements but genuinely improves the daily experience of network administrators."</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

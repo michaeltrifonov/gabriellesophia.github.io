@@ -1,0 +1,497 @@
+/* 
+ * Gabrielle Sophia UX Portfolio
+ * Typography Stylesheet
+ * 
+ * This file contains all typography-related styles extracted from styles.css
+ * Organized by: Variables, Base Typography, Headings, Body Text, Links, and Utility Classes
+ */
+
+/* ========== TYPOGRAPHY VARIABLES ========== */
+:root {
+    /* Font Families */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Font Sizes */
+    --font-size-base: 16px;         /* Base font size */
+    
+    /* Line Heights */
+    --line-height-base: 1.6;        /* Base line height */
+    
+    /* Text Colors */
+    --color-text: #111111;           /* Near-black for main text - darker for contrast */
+    --color-text-light: #555555;     /* Darker grey for secondary text - increased contrast */
+    --color-text-lighter: #777777;   /* Medium grey for tertiary text */
+    
+    /* Link Colors */
+    --color-primary: #0050FF;        /* Blue accent color for links */
+    --color-primary-dark: #0040CC;   /* Darker blue for hover states */
+}
+
+/* ========== BASE TYPOGRAPHY ========== */
+html {
+    font-size: var(--font-size-base);
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: var(--line-height-base);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+}
+
+/* ========== HEADINGS ========== */
+/* Hero Title - Large display heading */
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--color-text);
+}
+
+/* Section Title - Main section headings */
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+/* Hero Subtitle */
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+/* Hero Description */
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: var(--spacing-md);
+    max-width: 530px;
+}
+
+/* Section Subtitle */
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    margin-bottom: 16px;
+    max-width: 600px;
+}
+
+/* About Section Title */
+.about-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+/* About Subtitle */
+.about-subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Philosophy Title */
+.philosophy-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+/* Timeline Title - moved to about.css for specific styling */
+
+/* Philosophy Item Title */
+.philosophy-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text);
+}
+
+/* Training Item Title */
+.training-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+/* Training Item */
+.training-item {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* Skills Content */
+.skills-content h3 {
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ========== BODY TEXT ========== */
+/* Base Paragraph Styles */
+p {
+    font-family: var(--font-primary);
+    line-height: var(--line-height-base);
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+/* About Section Paragraphs */
+.about-section p {
+    font-family: var(--font-primary);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+    letter-spacing: -0.01rem;
+}
+
+/* Beyond Text Paragraphs */
+.beyond-text p {
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Philosophy Description */
+.philosophy-description {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Timeline Details */
+.timeline-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+}
+
+.timeline-details p {
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/* Project Title */
+.project-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.2;
+}
+
+/* Project Description */
+.project-description {
+    color: #555555;
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+/* Skill List Items */
+.skill-item {
+    position: relative;
+    padding-left: 52px;
+    font-size: 1.15rem;
+    color: var(--color-text);
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: 0.2px;
+}
+
+/* ========== LINKS ========== */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* Navigation Links */
+.nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--color-text);
+    transition: color var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+/* ========== BUTTONS ========== */
+button, .btn {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    border: 2px solid transparent;
+}
+
+.primary-btn {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: var(--color-primary-dark);
+    color: white;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.secondary-btn:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+}
+
+.contact-btn {
+    padding: 0.5rem 1rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+}
+
+.contact-btn:hover {
+    background-color: var(--color-primary-dark);
+    color: white;
+}
+
+/* ========== SPECIAL TEXT ELEMENTS ========== */
+/* Logo Text */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Tag/Badge Styles */
+.tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    border-radius: var(--border-radius-sm);
+    display: inline-block;
+}
+
+/* Timeline Tags with Different Colors */
+.tag-design {
+    color: #1a5fb4;
+    background-color: #dde8fa;
+}
+
+.tag-research {
+    color: #38761d;
+    background-color: #d9ead3;
+}
+
+.tag-psychology {
+    color: #7b5294;
+    background-color: #e6daf0;
+}
+
+.tag-business {
+    color: #b45f06;
+    background-color: #fce5cd;
+}
+
+/* Form Labels */
+.form-label {
+    font-weight: 500;
+    color: var(--color-text-light);
+}
+
+/* ========== TEXT UTILITIES ========== */
+/* Text Alignment */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Font Weights */
+.fw-normal {
+    font-weight: 400;
+}
+
+.fw-medium {
+    font-weight: 500;
+}
+
+.fw-semibold {
+    font-weight: 600;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+/* Text Colors */
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-light {
+    color: var(--color-text-light);
+}
+
+.text-lighter {
+    color: var(--color-text-lighter);
+}
+
+/* ========== RESPONSIVE TYPOGRAPHY ========== */
+@media (max-width: 768px) {
+    /* Headings */
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .philosophy-title {
+        font-size: 1.25rem;
+    }
+    
+    .training-title {
+        font-size: 1.25rem;
+    }
+    
+    /* Body Text */
+    .about-section p {
+        font-size: 1rem;
+        text-align: left;
+    }
+    
+    /* Alignment */
+    .section-title,
+    .section-subtitle {
+        text-align: center;
+    }
+    
+    /* Mobile Timeline - moved to about.css */
+    
+    .timeline-subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further reduce heading sizes on very small screens */
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+}
+
+/* ========== SPECIAL TYPOGRAPHY EFFECTS ========== */
+/* Letter Spacing for Specific Elements */
+.philosophy-item h3 {
+    letter-spacing: -0.01rem;
+}
+
+.skill-item {
+    letter-spacing: 0.2px;
+}
+
+/* Line Height Adjustments */
+.timeline-details p {
+    line-height: 1.6;
+}
+
+.project-description {
+    line-height: 1.5;
+}
+
+/* Text Shadow for White Text on Colored Backgrounds */
+.primary-btn,
+.contact-btn {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Bullet Point Style (Timeline) */
+.timeline-indicator {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    line-height: 0.8;
+}
+
+/* Small Text */
+.small-text {
+    font-size: 0.875rem;
+}
+
+.xs-text {
+    font-size: 0.75rem;
+}
+
+/* Footer Text */
+.footer-text {
+    color: var(--color-text-light);
+    font-weight: 500;
+    text-align: center;
+}
+
+.footer-copyright {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+}
+
+.footer-item a {
+    font-size: 0.875rem;
+    font-weight: 500;
+}

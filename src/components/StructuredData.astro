@@ -1,0 +1,81 @@
+---
+export interface Props {
+  type: 'Person' | 'WebSite' | 'CreativeWork' | 'Article';
+  data: any;
+}
+
+const { type, data } = Astro.props;
+
+const getStructuredData = () => {
+  switch (type) {
+    case 'Person':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Gabrielle Sophia",
+        "jobTitle": "UX Designer",
+        "description": "Product designer specializing in enterprise software and complex systems",
+        "url": "https://gabriellesophia.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/gabrielleloeff",
+          "https://github.com/gabriellesophia"
+        ],
+        "email": "gabby.loeff@gmail.com",
+        "knowsAbout": ["UX Design", "Product Design", "Enterprise Software", "Design Systems"],
+        ...data
+      };
+      
+    case 'WebSite':
+      return {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Gabrielle Sophia Portfolio",
+        "description": "Portfolio of UX Designer Gabrielle Sophia showcasing enterprise software design projects",
+        "url": "https://gabriellesophia.com",
+        "author": {
+          "@type": "Person",
+          "name": "Gabrielle Sophia"
+        },
+        ...data
+      };
+      
+    case 'CreativeWork':
+      return {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "author": {
+          "@type": "Person",
+          "name": "Gabrielle Sophia"
+        },
+        "datePublished": new Date().toISOString(),
+        "inLanguage": "en-US",
+        ...data
+      };
+      
+    case 'Article':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "author": {
+          "@type": "Person",
+          "name": "Gabrielle Sophia"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Gabrielle Sophia"
+        },
+        "datePublished": new Date().toISOString(),
+        "dateModified": new Date().toISOString(),
+        "inLanguage": "en-US",
+        ...data
+      };
+      
+    default:
+      return data;
+  }
+};
+
+const structuredData = getStructuredData();
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

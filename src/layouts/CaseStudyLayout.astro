@@ -1,0 +1,249 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import StructuredData from '../components/StructuredData.astro';
+import CaseStudyNav from '../components/CaseStudyNav';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'case-studies'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { data } = entry;
+
+// Extract tags from the case study for the hero section
+const tags = data.tags || [];
+
+// Get all case studies for navigation
+const allCaseStudies = await getCollection('case-studies');
+const sortedCaseStudies = allCaseStudies.sort((a, b) => {
+  const orderA = a.data.order ?? 999;
+  const orderB = b.data.order ?? 999;
+  return orderA - orderB;
+});
+
+// Find current, previous, and next case studies
+const currentIndex = sortedCaseStudies.findIndex(study => study.slug === entry.slug);
+const prevStudy = currentIndex > 0 ? sortedCaseStudies[currentIndex - 1] : null;
+const nextStudy = currentIndex < sortedCaseStudies.length - 1 ? sortedCaseStudies[currentIndex + 1] : null;
+---
+
+<BaseLayout title={`${data.title} - Gabrielle Escaglia`} currentPath={`/case-studies/${entry.slug}`}>
+  <StructuredData 
+    type="Article" 
+    data={{
+      headline: data.title,
+      description: data.description,
+      image: data.heroImage,
+      keywords: tags.join(', ')
+    }} 
+  />
+  
+  <main class="case-study-main">
+    <!-- Hero Section -->
+    <section class="cs-hero">
+      <div class="cs-hero-content">
+        <!-- Hero Meta (Tags & Timeline) -->
+        <div class="cs-hero-meta">
+          <div class="cs-tags">
+            {tags.map(tag => (
+              <span class="cs-tag">{tag}</span>
+            ))}
+          </div>
+          <div class="cs-timeline">
+            <span class="cs-year">{data.year}</span>
+            <span class="cs-duration">{data.duration}</span>
+          </div>
+        </div>
+        
+        <!-- Title & Introduction -->
+        <h1 class="cs-title">{data.title}</h1>
+        <p class="cs-intro">{data.description}</p>
+        
+        <!-- Hero Image -->
+        <div class="cs-hero-image">
+          <img src={data.heroImage} alt={data.heroImageAlt} loading="eager" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky Sidebar Navigation -->
+    <nav class="cs-sticky-sidebar" data-nav-container>
+      <ul class="cs-nav">
+        <!-- Navigation will be populated dynamically by JavaScript -->
+      </ul>
+    </nav>
+
+    <!-- Case Study Content -->
+    <div class="cs-content-wrapper">
+      <!-- Main Content -->
+      <div class="cs-main-content">
+        <!-- MDX Content renders all sections -->
+        <Content />
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="cs-bottom-nav">
+      <div class="cs-nav-container">
+        <CaseStudyNav
+          prevStudy={prevStudy ? { title: prevStudy.data.title, slug: prevStudy.slug } : undefined}
+          nextStudy={nextStudy ? { title: nextStudy.data.title, slug: nextStudy.slug } : undefined}
+          client:load
+        />
+      </div>
+    </nav>
+  </main>
+
+  <script>
+    // Smooth scroll and active navigation
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section[id]');
+      const stickyNav = document.querySelector('.cs-sticky-sidebar');
+      const navList = document.querySelector('.cs-nav');
+      const overviewSection = document.getElementById('overview');
+      
+      // Build navigation dynamically based on sections
+      if (navList && sections.length > 0) {
+        sections.forEach(section => {
+          const sectionId = section.getAttribute('id');
+          const sectionTitle = section.querySelector('.cs-sidebar-title');
+          
+          if (sectionId) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = `#${sectionId}`;
+            a.className = 'cs-nav-link';
+            
+            // Format the section name if no title found
+            if (sectionTitle) {
+              a.textContent = sectionTitle.textContent;
+            } else {
+              // Fallback: format the ID as a title
+              a.textContent = sectionId.split('-').map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+              ).join(' ');
+            }
+            
+            // Don't set any initial active state - will be set by scroll
+            
+            li.appendChild(a);
+            navList.appendChild(li);
+          }
+        });
+      }
+      
+      const navLinks = document.querySelectorAll('.cs-nav-link');
+      
+      // Smooth scroll on click
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href')?.slice(1);
+          const targetSection = document.getElementById(targetId || '');
+          
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // Update active link on scroll and handle nav visibility
+      const updateActiveLink = () => {
+        const scrollPosition = window.scrollY;
+        const bottomNav = document.querySelector('.cs-bottom-nav');
+        
+        // Show/hide navigation based on overview section and bottom nav
+        if (overviewSection && stickyNav) {
+          const overviewTop = overviewSection.getBoundingClientRect().top + window.scrollY;
+          const triggerPoint = overviewTop - window.innerHeight / 2; // Show when overview is halfway up the screen
+          
+          let shouldShow = scrollPosition >= triggerPoint;
+          
+          // Hide when bottom nav is in view
+          if (bottomNav) {
+            const bottomNavRect = bottomNav.getBoundingClientRect();
+            if (bottomNavRect.top < window.innerHeight) {
+              shouldShow = false;
+            }
+          }
+          
+          if (shouldShow) {
+            stickyNav.classList.add('visible');
+          } else {
+            stickyNav.classList.remove('visible');
+          }
+        }
+        
+        // Only update active states if sidebar is visible
+        if (stickyNav && stickyNav.classList.contains('visible')) {
+          let currentSection = null;
+          const viewportMiddle = scrollPosition + window.innerHeight / 2;
+          
+          // Find which section we're in based on viewport middle position
+          sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top + scrollPosition;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (viewportMiddle >= sectionTop && viewportMiddle < sectionBottom) {
+              currentSection = section.getAttribute('id');
+            }
+          });
+          
+          // If no section found by middle, check which section is most visible
+          if (!currentSection) {
+            sections.forEach(section => {
+              const rect = section.getBoundingClientRect();
+              const sectionTop = rect.top;
+              const sectionBottom = rect.bottom;
+              const viewportHeight = window.innerHeight;
+              
+              // Check if section is in viewport
+              if (sectionTop < viewportHeight && sectionBottom > 0) {
+                const visibleHeight = Math.min(sectionBottom, viewportHeight) - Math.max(sectionTop, 0);
+                const visiblePercent = visibleHeight / rect.height;
+                
+                if (visiblePercent > 0.5) {
+                  currentSection = section.getAttribute('id');
+                }
+              }
+            });
+          }
+          
+          // Update active states
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (currentSection && link.getAttribute('href') === `#${currentSection}`) {
+              link.classList.add('active');
+            }
+          });
+          
+          // Update sidebar titles
+          document.querySelectorAll('.cs-sidebar-title').forEach(title => {
+            title.classList.remove('active');
+            if (currentSection && title.getAttribute('data-section-id') === currentSection) {
+              title.classList.add('active');
+            }
+          });
+        } else {
+          // Remove all active states when sidebar is hidden
+          navLinks.forEach(link => link.classList.remove('active'));
+          document.querySelectorAll('.cs-sidebar-title').forEach(title => title.classList.remove('active'));
+        }
+      };
+      
+      // Ensure nav is hidden on initial load
+      if (stickyNav) {
+        stickyNav.classList.remove('visible');
+      }
+      
+      window.addEventListener('scroll', updateActiveLink);
+      // Small delay to ensure DOM is ready and prevent flash
+      setTimeout(() => {
+        updateActiveLink();
+      }, 100);
+    });
+  </script>
+</BaseLayout>

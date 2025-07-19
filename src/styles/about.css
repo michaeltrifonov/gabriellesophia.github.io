@@ -1,0 +1,595 @@
+/**
+ * About Page Styles
+ * Specific styles for the about page sections
+ */
+
+/* ========================================================================== */
+/* ABOUT HERO SECTION                                                         */
+/* ========================================================================== */
+
+.about-hero {
+    padding: var(--spacing-xl) 0;
+    background-color: white;
+}
+
+.about-hero-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+}
+
+.about-hero-content {
+    max-width: 600px;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+.about-section p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-image-container {
+    position: relative;
+}
+
+.about-image {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.profile-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================================================================== */
+/* BEYOND DESIGN SECTION                                                      */
+/* ========================================================================== */
+
+.beyond-design-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--color-background);
+}
+
+.beyond-design-section .section-title {
+    margin-bottom: 10px;
+}
+
+.beyond-design-section .section-subtitle {
+    margin-bottom: 40px;
+}
+
+.beyond-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    position: relative;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    align-items: center;
+}
+
+.beyond-text p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Artwork Gallery */
+.artwork-gallery {
+    position: relative;
+    height: 520px;
+    width: 100%;
+    max-width: 500px;
+    justify-self: center;
+}
+
+.artwork-frame {
+    position: absolute;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.5s cubic-bezier(0.2, 0.85, 0.4, 1.4);
+    cursor: pointer;
+}
+
+.artwork-frame:hover {
+    transform: translateY(-10px) rotate(0deg) !important;
+    z-index: 10 !important;
+}
+
+/* No hover indicator dot needed */
+
+.artwork-frame.frame-1 {
+    width: 340px;
+    height: 460px;
+    top: -20px;
+    left: 80px;
+    transform: rotate(-2deg);
+    z-index: 3;
+}
+
+.artwork-frame.frame-2 {
+    width: 340px;
+    height: 340px;
+    top: 60px;
+    right: 10px;
+    transform: rotate(3deg);
+    z-index: 1;
+}
+
+.artwork-frame.frame-3 {
+    width: 320px;
+    height: 380px;
+    bottom: 0;
+    left: 60px;
+    transform: rotate(-5deg);
+    z-index: 2;
+}
+
+.artwork-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Special handling for triptych */
+.frame-3 img {
+    object-position: center;
+    transform: scale(1.05);
+}
+
+/* Artwork modal styles are in components.css */
+
+/* ========================================================================== */
+/* CAREER TIMELINE SECTION                                                    */
+/* ========================================================================== */
+
+.career-timeline-section {
+    background-color: white;
+}
+
+.resume-header {
+    margin-bottom: 60px;
+}
+
+.resume-header-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.secondary-btn:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+}
+
+
+.timeline-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+    margin-left: -45px; /* Align with timeline visual elements */
+}
+
+.timeline-entries {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    position: relative;
+}
+
+/* Timeline vertical line */
+.timeline-entries::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px; /* Adjusted to align with circle centers (8px + 10px radius) */
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-primary);
+    opacity: 0.3;
+    transform: translateX(-31px); /* Moved 1px left to align with circle centers */
+}
+
+.timeline-entry {
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+}
+
+/* Timeline dots */
+.timeline-entry::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    transform: translateX(-40px);
+    z-index: 1;
+}
+
+.timeline-entry:last-child {
+    border-bottom: none;
+}
+
+.timeline-entry-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-sm);
+}
+
+.timeline-left {
+    flex: 0 0 auto;
+    position: relative;
+    margin-right: var(--spacing-md);
+}
+
+.timeline-right {
+    flex: 1;
+    position: relative;
+    text-align: right;
+}
+
+.timeline-period {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.3;
+}
+
+.timeline-role {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+}
+
+.timeline-company {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.3;
+}
+
+.timeline-industry {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1a5fb4;
+    background-color: #dde8fa;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+/* Industry-specific colors */
+.timeline-industry[data-industry="Technology"] {
+    color: #1a5fb4;
+    background-color: #dde8fa;
+}
+
+.timeline-industry[data-industry="Defense & Technology"] {
+    color: #38761d;
+    background-color: #d9ead3;
+}
+
+.timeline-industry[data-industry="Digital Marketing"] {
+    color: #7b5294;
+    background-color: #e6daf0;
+}
+
+.timeline-industry[data-industry="Business & Fine Art"] {
+    color: #b45f06;
+    background-color: #fce5cd;
+}
+
+.timeline-industry:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 80, 255, 0.2);
+}
+
+.timeline-details {
+    margin-top: var(--spacing-sm);
+}
+
+.job-responsibilities {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+}
+
+.job-responsibilities li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+    padding-top: 0.15rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-text-light);
+}
+
+.job-responsibilities li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0.05rem; /* Fine-tuned for perfect vertical centering */
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.6; /* Match the li line-height for proper vertical alignment */
+}
+
+.education-details {
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Resume Extra Grid */
+.resume-extra-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 1px solid #eee;
+}
+
+.resume-block-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+}
+
+.training-list {
+    list-style: none;
+    padding: 0;
+}
+
+.training-list li {
+    background-color: var(--color-gray-100);
+    border-left: 3px solid var(--color-primary);
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.training-list li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 80, 255, 0.1);
+}
+
+.training-item {
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+}
+
+.training-provider {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.animated-skills {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Connect section removed - not needed */
+
+
+/* ========================================================================== */
+/* RESPONSIVE DESIGN                                                          */
+/* ========================================================================== */
+
+@media (max-width: 1210px) {
+    .about-hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    /* Move image after content on mobile */
+    .about-hero-content {
+        order: 1;
+        max-width: 100%; /* Fill available space */
+    }
+    
+    .about-image-container {
+        order: 2;
+        margin-top: var(--spacing-lg);
+    }
+    
+    /* Make image 40% width on tablets and below */
+    .about-image {
+        width: 40%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    
+    .beyond-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .beyond-text {
+        order: 1;
+    }
+    
+    .artwork-gallery {
+        order: 2;
+        height: 600px;
+        margin: 20px auto 0;
+        max-width: 340px;
+    }
+    
+    .artwork-frame.frame-1 {
+        width: 280px;
+        height: 380px;
+        left: 20px;
+        top: -20px;
+        transform: rotate(-5deg);
+    }
+    
+    .artwork-frame.frame-2 {
+        width: 300px;
+        height: 220px;
+        right: 0;
+        top: 200px;
+        left: auto;
+    }
+    
+    .artwork-frame.frame-3 {
+        width: 260px;
+        height: 340px;
+        left: 50px;
+        bottom: 10px;
+        transform: rotate(6deg);
+    }
+    
+    .timeline-title {
+        margin-left: -26px; /* Adjust for responsive layout */
+    }
+    
+    .timeline-entries {
+        margin-left: 20px;
+    }
+    
+    .timeline-entries::before {
+        left: -26px; /* Align with left edge of circles */
+    }
+    
+    .timeline-entry::before {
+        left: -26px;
+    }
+    
+    .timeline-entry-content {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .timeline-right {
+        text-align: left;
+    }
+    
+    .timeline-details {
+        margin-left: 0;
+    }
+    
+    .resume-extra-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2.25rem;
+    }
+    
+    /* Make image 40% width on mobile */
+    .about-image {
+        width: 40%;
+        max-width: none;
+    }
+    
+    .resume-header-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+    
+    .timeline-period,
+    .timeline-company {
+        font-size: 1.25rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .about-hero {
+        padding: 80px 0 40px;
+    }
+    
+    .beyond-design-section {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .page-title {
+        font-size: 1.875rem;
+    }
+    
+    /* Keep image container centered */
+    .about-image-container {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .timeline-entries {
+        margin-left: 0;
+    }
+    
+    .timeline-entries::before {
+        display: none;
+    }
+    
+    .timeline-entry::before {
+        display: none;
+    }
+}

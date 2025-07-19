@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard';
+import Hero from '../components/Hero';
+import PhilosophyCard from '../components/PhilosophyCard';
+import StructuredData from '../components/StructuredData.astro';
+import { getFeaturedProjects } from '../data/projects';
+import '../styles/homepage.css';
+
+const featuredProjects = getFeaturedProjects();
+
+const philosophyItems = [
+  {
+    title: "Human-Centered",
+    description: "I believe that great design starts with deep empathy. Every decision I make is informed by user needs, behaviors, and contexts to create experiences that truly resonate.",
+    iconName: "human-centered" as const
+  },
+  {
+    title: "Systems-Minded",
+    description: "I approach design as a system of interconnected elements. By creating coherent systems rather than isolated screens, I deliver experiences that are intuitive and scalable.",
+    iconName: "systems-minded" as const
+  },
+  {
+    title: "Vision-Driven",
+    description: "Great design aligns with a clear vision. I believe in establishing strong design principles and a compelling direction that inspires both users and development teams.",
+    iconName: "vision-driven" as const
+  },
+  {
+    title: "Collaboration-Focused",
+    description: "Great products emerge from diverse perspectives. I thrive in cross-functional teams and believe that including stakeholders, developers, and users leads to better outcomes.",
+    iconName: "collaboration-focused" as const
+  },
+  {
+    title: "Curiosity-Led",
+    description: "I approach design challenges with genuine curiosity. By asking thoughtful questions and constantly exploring new possibilities, I uncover innovative solutions to complex problems.",
+    iconName: "curiosity-led" as const
+  },
+  {
+    title: "Solution Scrappy",
+    description: "I believe in finding practical solutions with the resources at hand. By embracing resourcefulness and adaptability, I create effective designs that solve real problems efficiently.",
+    iconName: "solution-scrappy" as const
+  }
+];
+---
+
+<BaseLayout title="Home" currentPath="/">
+  <StructuredData type="WebSite" data={{}} />
+  <StructuredData type="Person" data={{}} />
+  
+  <!-- Hero Section -->
+  <Hero 
+    title="Hi, I'm Gabrielle"
+    subtitle="Living for the moment complexity clicks into\u00A0clarity."
+    description="Designer who moves quickly from 'what if' to 'what works'—without losing sight of the why."
+    showDecorativeElements={true}
+    client:load
+  />
+
+  <!-- Design Philosophy Section -->
+  <section class="philosophy-section">
+    <div class="container">
+      <h2 class="section-title">Design Philosophy</h2>
+      <p class="section-subtitle">My approach to creating meaningful user experiences</p>
+      
+      <div class="philosophy-grid">
+        {philosophyItems.map((item) => (
+          <PhilosophyCard 
+            iconName={item.iconName}
+            title={item.title}
+            description={item.description}
+            client:visible
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Work Section -->
+  <section id="work" class="work-section">
+    <div class="container">
+      <h2 class="section-title">Featured Work</h2>
+      <p class="section-subtitle">Recent UX design projects that showcase my process and impact</p>
+      
+      <div class="projects-grid">
+        {featuredProjects.map((project, index) => (
+          <ProjectCard 
+            title={project.title}
+            description={project.description}
+            thumbnail={project.thumbnail}
+            thumbnailAlt={project.thumbnailAlt}
+            tags={project.tags}
+            caseStudyUrl={project.caseStudyUrl}
+            isTransparent={true}
+            isLast={index === featuredProjects.length - 1}
+            index={index}
+            client:visible
+          />
+        ))}
+      </div>
+      
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Philosophy Section Styles */
+  .philosophy-section {
+    padding-top: 60px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 20;
+    background-color: white;
+  }
+
+  
+  
+</style>

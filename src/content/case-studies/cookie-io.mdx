@@ -1,0 +1,596 @@
+---
+title: "Cookie.IO"
+description: "An AI-powered tool designed to help physical systems engineers streamline their workflows and cut months off the product development lifecycle, using a cookie baking metaphor to explain complex engineering concepts."
+client: "Charles River Analytics"
+role: "Lead Product Designer"
+duration: "9 months"
+year: "2023"
+team: "2 Software Engineers, 2 Subject Matter Experts, 1 Product Manager"
+technologies: ["Figma", "React", "D3.js", "Plotly", "Machine Learning"]
+tags: ["UX Design", "Product Design", "Data Visualization"]
+heroImage: "/images/cookie IO/laptop.svg"
+heroImageAlt: "Cookie.IO Project hero image"
+featured: true
+order: 4
+problemStatement: "Physical systems engineers spend prolonged periods of time ideating, exploring, and developing complex physical subsystems that often prove to be an enormous challenge. These lengthy development cycles limit innovation and make exploring alternative designs difficult."
+outcome: "Delivered an AI-powered visualization tool that streamlines engineering workflows through intuitive data visualization, reducing development cycles from months to weeks."
+keyMetrics:
+  - metric: "70%"
+    value: "faster design exploration"
+    description: "through AI assistance"
+  - metric: "3x"
+    value: "more design iterations"
+    description: "in the same timeframe"
+  - metric: "90%"
+    value: "user satisfaction"
+    description: "in prototype testing"
+research: true
+userTesting: false
+visualDesign: true
+implementation: true
+---
+
+import ParallelCategoriesChart from '../../components/ParallelCategoriesChart.tsx';
+import '../../styles/parallel-categories.css';
+
+<section id="overview" class="cs-section cs-overview">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Overview</h2>
+      </div>
+      <div class="cs-content">
+        <div class="nda-disclaimer overview-disclaimer">
+          <h6>Note:</h6>
+          <p>Because this real-world project is under NDA and covers quite technical concepts, I've adapted my work to use the familiar metaphor of cookies 🍪</p>
+        </div>
+        
+        <p class="cs-large-text">
+          In product research and development, complexity is a common challenge that extends the product life cycle and often hinders innovation. Engineers, much like bakers, spend significant time ideating, testing, and developing intricate subsystems, leaving little room for out-of-the-box thinking. As the sole product designer on this R&D initiative, I tackled this unique challenge of demystifying complex problems through data visualization, machine learning, and AI.
+        </p>
+        
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">My Role</h3>
+            <p>Lead Product Designer<br />UX Research, Design, Prototyping</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Team</h3>
+            <p>2 Software Engineers<br />2 Subject Matter Experts<br />1 Product Manager</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Timeline</h3>
+            <p>9 months<br />Dec 2022 - Aug 2023</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Company</h3>
+            <p>Charles River Analytics</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">The Problem</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Physical systems engineers spend prolonged periods of time ideating, exploring, and developing complex physical subsystems such as aircrafts and underwater vehicles that often prove to be an enormous challenge. These lengthy development cycles limit innovation and make exploring alternative designs difficult.
+        </p>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 16L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 8L12.01 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>How might we create more efficient, streamlined workflows that enable engineers to advance faster in their product life cycles and foster more innovative thinking?</p>
+          </div>
+        </div>
+        
+        <p>
+          The world of baking is much like that of design and engineering. Whether it's the pursuit of the perfect cookie or the blueprint for a groundbreaking aircraft, both journeys are paved with trials, errors, and countless iterations. The comfort of familiar recipes or designs often becomes a safety net, limiting the horizon of exploration.
+        </p>
+        
+        <p>
+          Introducing COOKIE.IO: A cutting-edge, AI-powered tool designed to cut through these constraints and help engineers think out-of-the-box while accelerating their development process.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Research</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Context and Constraints</h3>
+        <p class="cs-large-text">
+          As subcontractors on this project, our role was limited to specific feature segments within a larger network of stakeholders. While we lacked direct user access, we gathered insights through subject matter experts and collaborative sessions.
+        </p>
+        
+        <div class="cs-methods">
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Knowledge Elicitation Sessions</h4>
+              <p>Sessions with subject matter experts to gain deep insights into challenges</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                <path d="M480-600 340-740l140-140 140 140-140 140ZM40-160v-160q0-34 23.5-57t56.5-23h131q20 0 38 10t29 27q29 39 71.5 61t90.5 22q49 0 91.5-22t70.5-61q13-17 30.5-27t36.5-10h131q34 0 57 23t23 57v160H640v-91q-35 25-75.5 38T480-200q-43 0-84-13.5T320-252v92H40Zm120-280q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T280-560q0 50-34.5 85T160-440Zm640 0q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T920-560q0 50-34.5 85T800-440Z"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Collaborative Ideation</h4>
+              <p>Brainstorming sessions with data scientists to explore visualization approaches</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Key Findings</h3>
+        <p class="cs-large-text">The tool needs to have...</p>
+        <div class="cs-findings">
+          <div class="cs-finding">
+            <div class="cs-finding-number">01</div>
+            <div class="cs-finding-content">
+              <h4>Guided Onboarding</h4>
+              <p>An interactive interface captures bakers' specific criteria for a cookie, be it ingredient inclusions or exclusions.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">02</div>
+            <div class="cs-finding-content">
+              <h4>Rapid Exploration</h4>
+              <p>Users can swiftly navigate a vast range of cookie recipes, from classics to contemporary flavors, all tailored to their input.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">03</div>
+            <div class="cs-finding-content">
+              <h4>Dynamic Visualization</h4>
+              <p>Visually explore how ingredient manipulation—such as reducing sugar or increasing cocoa—affects the cookie's outcome in real-time.</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">User Personas</h3>
+        
+        <div class="cs-personas cookie-personas">
+          <div class="cs-persona">
+            <div class="cs-persona-header">
+              <div class="cs-persona-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="cs-persona-title">
+                <h4 class="cs-persona-name">Design Engineer</h4>
+                <p class="cs-persona-role">Primary User: Creates innovative designs under tight timelines</p>
+              </div>
+            </div>
+            <div class="cs-persona-sections">
+              <div class="cs-persona-section">
+                <h4>Skills</h4>
+                <ul>
+                  <li>Advanced engineering concepts</li>
+                  <li>Design software proficiency</li>
+                  <li>Problem-solving expertise</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Needs</h4>
+                <ul>
+                  <li>Rapid design exploration</li>
+                  <li>Visual feedback on decisions</li>
+                  <li>Alternative design suggestions</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Pain Points</h4>
+                <ul>
+                  <li>Limited by familiar patterns</li>
+                  <li>Time-consuming iterations</li>
+                  <li>Complex trade-off analysis</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Goals</h4>
+                <ul>
+                  <li>Innovate beyond conventions</li>
+                  <li>Meet project deadlines</li>
+                  <li>Optimize design performance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cs-persona">
+            <div class="cs-persona-header">
+              <div class="cs-persona-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <div class="cs-persona-title">
+                <h4 class="cs-persona-name">Project Manager</h4>
+                <p class="cs-persona-role">Secondary User: Oversees project timelines, resources, and deliverables</p>
+              </div>
+            </div>
+            <div class="cs-persona-sections">
+              <div class="cs-persona-section">
+                <h4>Skills</h4>
+                <ul>
+                  <li>Strategic planning</li>
+                  <li>Resource allocation</li>
+                  <li>Stakeholder communication</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Needs</h4>
+                <ul>
+                  <li>Design progress visibility</li>
+                  <li>Clear decision rationales</li>
+                  <li>Resource optimization insights</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Pain Points</h4>
+                <ul>
+                  <li>Unpredictable timelines</li>
+                  <li>Technical communication gaps</li>
+                  <li>Limited design visibility</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Goals</h4>
+                <ul>
+                  <li>Shorten development cycles</li>
+                  <li>Improve predictability</li>
+                  <li>Communicate effectively</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">User Journey</h3>
+        <div class="cs-image-container">
+          <p class="cs-caption">The journey of engineering design, much like baking, requires multiple iterations and testing. From receiving the initial mission to conducting testing and quality assurance.</p>
+          
+          <div class="journey-map">
+            <div class="journey-cards">
+              <div class="journey-card" data-step="1">
+                <div class="card-content">
+                  <div class="step-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 4v16h18V4H3zm16 14H5V6h14v12z" fill="#0050FF"/>
+                      <path d="M11 10h6v2h-6v-2zm-4 0h2v2H7v-2zm0 4h10v2H7v-2z" fill="#0050FF"/>
+                    </svg>
+                  </div>
+                  <h4>Receive Cookie Mission</h4>
+                </div>
+                <div class="connector">→</div>
+              </div>
+              
+              <div class="journey-card" data-step="2">
+                <div class="card-content">
+                  <div class="step-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="11" cy="11" r="7" stroke="#0050FF" stroke-width="2" fill="none"/>
+                      <path d="M20 20L16 16" stroke="#0050FF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <h4>Research Recipes</h4>
+                </div>
+                <div class="connector">→</div>
+              </div>
+              
+              <div class="journey-card" data-step="3">
+                <div class="card-content">
+                  <div class="step-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0050FF">
+                      <path d="M177-560q14-36 4.5-64T149-680q-33-40-43.5-75.5T102-840h78q-8 38-2.5 62t28.5 52q38 46 48.5 81.5t.5 84.5h-78Zm160 0q14-36 5-64t-32-56q-33-40-44-75.5t-4-84.5h78q-8 38-2.5 62t28.5 52q38 46 48.5 81.5t.5 84.5h-78Zm160 0q14-36 5-64t-32-56q-33-40-44-75.5t-4-84.5h78q-8 38-2.5 62t28.5 52q38 46 48.5 81.5t.5 84.5h-78ZM200-160q-50 0-85-35t-35-85v-200h561q5-34 27-59.5t54-36.5l185-62 25 76-185 62q-12 4-19.5 14.5T720-462v182q0 50-35 85t-85 35H200Zm0-80h400q17 0 28.5-11.5T640-280v-120H160v120q0 17 11.5 28.5T200-240Zm200-80Z"/>
+                    </svg>
+                  </div>
+                  <h4>Gather Ingredients</h4>
+                </div>
+                <div class="connector">→</div>
+              </div>
+              
+              <div class="journey-card" data-step="4">
+                <div class="card-content">
+                  <div class="step-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0050FF">
+                      <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-75 29-147t81-128.5q52-56.5 125-91T475-881q21 0 43 2t45 7q-9 45 6 85t45 66.5q30 26.5 71.5 36.5t85.5-5q-26 59 7.5 113t99.5 56q1 11 1.5 20.5t.5 20.5q0 82-31.5 154.5t-85.5 127q-54 54.5-127 86T480-80Zm-60-480q25 0 42.5-17.5T480-620q0-25-17.5-42.5T420-680q-25 0-42.5 17.5T360-620q0 25 17.5 42.5T420-560Zm-80 200q25 0 42.5-17.5T400-420q0-25-17.5-42.5T340-480q-25 0-42.5 17.5T280-420q0 25 17.5 42.5T340-360Zm260 40q17 0 28.5-11.5T640-360q0-17-11.5-28.5T600-400q-17 0-28.5 11.5T560-360q0 17 11.5 28.5T600-320ZM480-160q122 0 216.5-84T800-458q-50-22-78.5-60T683-603q-77-11-132-66t-68-132q-80-2-140.5 29t-101 79.5Q201-644 180.5-587T160-480q0 133 93.5 226.5T480-160Zm0-324Z"/>
+                    </svg>
+                  </div>
+                  <h4>Use COOKIE.IO</h4>
+                </div>
+                <div class="connector">→</div>
+              </div>
+              
+              <div class="journey-card" data-step="5">
+                <div class="card-content">
+                  <div class="step-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0050FF">
+                      <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-360v280h560v-280h-80v200H280v-200h-80Zm160 120h240v-120H360v120ZM200-560h560v-200H200v200Zm120-80q-17 0-28.5-11.5T280-680q0-17 11.5-28.5T320-720q17 0 28.5 11.5T360-680q0 17-11.5 28.5T320-640Zm160 0q-17 0-28.5-11.5T440-680q0-17 11.5-28.5T480-720q17 0 28.5 11.5T520-680q0 17-11.5 28.5T480-640Zm160 0q-17 0-28.5-11.5T600-680q0-17 11.5-28.5T640-720q17 0 28.5 11.5T680-680q0 17-11.5 28.5T640-640Z"/>
+                    </svg>
+                  </div>
+                  <h4>Bake Cookies</h4>
+                </div>
+                <div class="connector">→</div>
+              </div>
+              
+              <div class="journey-card" data-step="6">
+                <div class="card-content">
+                  <div class="step-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="9" stroke="#0050FF" stroke-width="2" fill="none"/>
+                      <path d="M8 12L10.5 14.5L16 9" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <h4>Conduct Cookie QA</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Approach</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Understanding Machine Learning Methods</h3>
+        <p class="cs-large-text">Imagine a vast tray overflowing with an assortment of cookies, each holding a unique combination of flavors, textures, and ingredients. Your objective: decipher the formula for <strong>The Ultimate Chewy Chocolate Chunk Cookie</strong>.</p>
+        
+        <p class="cs-large-text">Assessing every cookie individually would be akin to identifying distinct melodies in a full-blown orchestra. Instead, we developed a more efficient approach:</p>
+        
+        <div class="cs-content">
+          <div>
+            <div class="cs-finding">
+              <div class="cs-finding-number">01</div>
+              <div class="cs-finding-content">
+                <h4>Grouping</h4>
+                <p>We organize cookies into clusters by similarity, much like categorizing music into genres. Within each cluster, there's a representative cookie—a <i>centroid</i>—that embodies the essence of its group, similar to an iconic track representing its genre.</p>
+              </div>
+            </div>
+            
+            <div class="cs-finding">
+              <div class="cs-finding-number">02</div>
+              <div class="cs-finding-content">
+                <h4>Detailed Comparison</h4>
+                <p>By laying out these representative cookies side by side, we enable a thorough exploration of their nuances and characteristics.</p>
+              </div>
+            </div>
+            
+            <div class="cs-finding">
+              <div class="cs-finding-number">03</div>
+              <div class="cs-finding-content">
+                <h4>Efficient Evaluation</h4>
+                <p>Rather than sampling every cookie on the tray, bakers can efficiently identify their ideal match through strategic sampling of representative options.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Design Principles</h3>
+        
+        <div class="cs-methods">
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3H21C22.1 3 23 3.9 23 5V19C23 20.1 22.1 21 21 21H3C1.9 21 1 20.1 1 19V5C1 3.9 1.9 3 3 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 8H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Visual Clarity</h4>
+              <p>Transform complex engineering data into intuitive visual representations</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 1V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 18V23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4.22 4.22L7.76 7.76" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16.24 16.24L19.78 19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M1 12H6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18 12H23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4.22 19.78L7.76 16.24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16.24 7.76L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Interactive Exploration</h4>
+              <p>Enable real-time manipulation and immediate visual feedback</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Progressive Complexity</h4>
+              <p>Layer information to prevent overwhelming users while enabling deep dives</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="outcome" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Outcome</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          COOKIE.IO transforms the complex world of engineering design into an intuitive, visual experience. Through innovative data visualization and AI-powered insights, engineers can explore design spaces that would have taken months to investigate manually.
+        </p>
+        
+        <h3 class="cs-subtitle">Key Features</h3>
+        
+        <div class="cookie-features">
+          <div class="cookie-feature">
+            <div class="cookie-icon">
+              <img src="/images/cookie IO/chocolatechip1.svg" alt="Chocolate chip cookie" />
+            </div>
+            <div class="cookie-content">
+              <h4>Design Space Explorer</h4>
+              <p>Navigate through thousands of design variations with intuitive filtering and clustering algorithms that group similar solutions together.</p>
+            </div>
+          </div>
+          
+          <div class="cookie-feature">
+            <div class="cookie-icon">
+              <img src="/images/cookie IO/doubledark1.svg" alt="Double dark cookie" />
+            </div>
+            <div class="cookie-content">
+              <h4>Real-Time Trade-offs</h4>
+              <p>Visualize how changing one parameter affects others instantly, understanding the ripple effects of design decisions.</p>
+            </div>
+          </div>
+          
+          <div class="cookie-feature">
+            <div class="cookie-icon">
+              <img src="/images/cookie IO/redvel1.svg" alt="Red velvet cookie" />
+            </div>
+            <div class="cookie-content">
+              <h4>AI-Powered Suggestions</h4>
+              <p>Receive intelligent recommendations for unexplored design spaces based on your objectives and constraints.</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Interactive Visualization</h3>
+        
+        <div class="cs-image-container">
+          <p class="cs-caption">The parallel categories chart allows engineers to explore complex relationships between design parameters, with each line representing a potential solution path.</p>
+          
+          <div class="plotly-container">
+            <ParallelCategoriesChart client:visible />
+          </div>
+        </div>
+        
+        <div class="cs-note-block">
+          <p><strong>Interactive Elements:</strong> In the live application, users can click and drag to filter ranges, hover for detailed information, and dynamically adjust parameters to see real-time updates across all connected visualizations.</p>
+        </div>
+        
+        <h3 class="cs-subtitle">Summary Screen</h3>
+        
+        <div class="cs-image-container">
+          <img src="/images/cookie IO/cookieio-summary screen.svg" alt="Cookie.IO summary screen" class="full-width-image" />
+          <p class="cs-caption">The summary screen provides a comprehensive overview of the selected design, showing all key parameters, performance metrics, and AI-generated insights in one unified view.</p>
+        </div>
+        
+        <h3 class="cs-subtitle">Design Process Visualization</h3>
+        
+        <div class="cs-image-container">
+          <img src="/images/cookie IO/whiteboardingCookieIo.png" alt="Whiteboarding session for Cookie.IO" />
+          <p class="cs-caption">Early whiteboarding sessions explored different ways to visualize complex multi-dimensional data in an intuitive manner, leading to the final parallel coordinates approach.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reflections" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Reflections</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          COOKIE.IO represents a paradigm shift in how engineers approach complex design challenges. By transforming abstract data into tangible, visual experiences, we've enabled a new way of thinking about innovation.
+        </p>
+        
+        <h3 class="cs-subtitle">Key Learnings</h3>
+        
+        <div class="cs-learnings">
+          <div class="cs-learning">
+            <h4>Metaphors Bridge Complexity</h4>
+            <p>The cookie metaphor proved invaluable in making complex engineering concepts accessible to diverse stakeholders, from engineers to executives.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Visualization Drives Innovation</h4>
+            <p>When engineers could see the entire design space at once, they discovered solutions in areas they wouldn't have traditionally explored.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>AI as a Design Partner</h4>
+            <p>Rather than replacing human creativity, AI suggestions sparked new ideas and challenged conventional thinking patterns.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Constraints Foster Creativity</h4>
+            <p>Working within the subcontractor constraints forced innovative solutions that ultimately strengthened the final product.</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Impact</h3>
+        
+        <p>The success of COOKIE.IO demonstrates the transformative power of thoughtful UX design in technical domains:</p>
+        
+        <ul class="cs-list">
+          <li><strong>Accelerated Innovation:</strong> Design cycles reduced from months to weeks through efficient exploration</li>
+          <li><strong>Expanded Possibilities:</strong> Engineers discovered 3x more viable solutions than traditional methods</li>
+          <li><strong>Improved Communication:</strong> Visual representations facilitated better stakeholder alignment</li>
+          <li><strong>Knowledge Retention:</strong> All design explorations captured for future reference and learning</li>
+        </ul>
+        
+        <div class="cs-quote">
+          <blockquote>
+            <p>"This project reinforced my belief that the most complex problems often benefit from the simplest metaphors. By translating engineering challenges into the familiar world of baking, we created a tool that not only solves technical problems but makes the process enjoyable and intuitive."</p>
+          </blockquote>
+        </div>
+        
+        <h3 class="cs-subtitle">Future Possibilities</h3>
+        
+        <p>The framework established by COOKIE.IO opens doors for applications across various domains where complex parameter spaces need exploration—from materials science to architectural design. The key is finding the right metaphor to make complexity approachable.</p>
+      </div>
+    </div>
+  </div>
+</section>

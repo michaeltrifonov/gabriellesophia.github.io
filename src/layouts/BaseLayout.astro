@@ -1,0 +1,78 @@
+---
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+export interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+}
+
+const { title, description = 'Designer who moves quickly from "what if" to "what works"—without losing sight of the why.', currentPath = '/' } = Astro.props;
+
+const siteUrl = 'https://gabriellesophia.com';
+const fullUrl = `${siteUrl}${currentPath}`;
+const ogImage = `${siteUrl}/og-image.jpg`;
+---
+
+<!DOCTYPE html>
+<html lang="en" style="overflow-x: hidden; height: 100%; width: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title} | Gabrielle Sophia | UX Designer</title>
+    <meta name="description" content={description}>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={fullUrl}>
+    <meta property="og:title" content={`${title} | Gabrielle Sophia | UX Designer`}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content={ogImage}>
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content={fullUrl}>
+    <meta property="twitter:title" content={`${title} | Gabrielle Sophia | UX Designer`}>
+    <meta property="twitter:description" content={description}>
+    <meta property="twitter:image" content={ogImage}>
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href={fullUrl}>
+    <meta name="author" content="Gabrielle Sophia">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display">
+    
+    <!-- Styles are imported via CSS modules below -->
+</head>
+<body>
+    <div id="overflow-wrapper" style="overflow: visible; width: 100%; position: relative; max-width: none;">
+        <Header currentPath={currentPath} client:load />
+        
+        <main id="main-content">
+            <slot />
+        </main>
+        
+        <Footer />
+    </div>
+    
+    <script src="/src/scripts/scroll-animations.js"></script>
+</body>
+</html>
+
+<style is:global>
+  /* Import all the modular CSS files */
+  @import '/src/styles/theme.css';
+  @import '/src/styles/utilities.css';
+  @import '/src/styles/typography.css';
+  @import '/src/styles/layout.css';
+  @import '/src/styles/components.css';
+  @import '/src/styles/animations.css';
+  @import '/src/styles/case-study.css';
+  
+</style>

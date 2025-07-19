@@ -1,0 +1,583 @@
+---
+title: "Egret 2.0: From Workflows to Entities"
+description: "A fundamental redesign of Amazon Robotics' operational planning tool, shifting from a task-based architecture to an entity-based system that aligns with how planners actually think about their work."
+client: "Amazon Robotics"
+role: "Lead UX Designer"
+duration: "In Progress"
+year: "2024"
+team: "System Architecture Redesign Focus"
+technologies: ["Figma", "Figjam", "Systems Thinking"]
+tags: ["UX Redesign", "Information Architecture", "Enterprise Software"]
+heroImage: "/images/Egret2.0/hceditor2.svg"
+heroImageAlt: "Egret 2.0 Entity-Based Redesign hero image"
+featured: true
+order: 3
+problemStatement: "Six months after launching Egret's initial redesign, user feedback revealed we'd only solved half the problem. While the workflow improvements were appreciated, the fundamental architecture wasn't scaling with enterprise needs."
+outcome: "Designed a new entity-based architecture that aligns with planners' mental models, reducing screen jumps from 12+ to 2-3 and improving overall satisfaction scores from 2.3/5 to projected 4.5/5."
+keyMetrics:
+  - metric: "87%"
+    value: "reduction in fragmentation"
+    description: "through entity-based design"
+  - metric: "12→3"
+    value: "screen jumps reduced"
+    description: "for program reviews"
+  - metric: "4.5/5"
+    value: "projected satisfaction"
+    description: "based on prototype testing"
+research: true
+userTesting: true
+visualDesign: true
+implementation: false
+---
+
+<section id="overview" class="cs-section cs-overview">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Overview</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Six months after launching Egret's initial redesign (<a href="/case-studies/egret" style="color: #054DA7; text-decoration: underline;">see the original case study here</a>), user feedback revealed we'd only solved half the problem. While the workflow improvements were appreciated, the fundamental architecture wasn't scaling with enterprise needs.
+        </p>
+        
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">My Role</h3>
+            <p>Lead UX Designer</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Focus</h3>
+            <p>System Architecture Redesign</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Status</h3>
+            <p>In Progress</p>
+          </div>
+          <div class="cs-meta-item">
+            <h3 class="cs-meta-title">Timeline</h3>
+            <p>4 weeks (Audit + Design)</p>
+          </div>
+        </div>
+        
+        <div class="cs-highlight-block" style="background-color: rgba(5, 77, 167, 0.05); border-left: 4px solid #054DA7; padding: 24px; border-radius: 0 8px 8px 0; margin: 32px 0;">
+          <p style="font-weight: 600; margin-bottom: 8px;">Design Vision Project</p>
+          <p>Based on 2024 OP feedback, I led the design vision for Egret's next evolution. While implementation is planned for future release, this case study showcases the strategic thinking and design process behind the entity-based redesign.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="evolution" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">The Evolution</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">What happened after launch</h3>
+        <p class="cs-large-text">
+          The initial Egret redesign successfully launched for the 2024 OP cycle. Users appreciated the streamlined workflows and improved commenting system. Task completion times dropped by 40%, and the tool saw increased adoption across teams.
+        </p>
+        
+        <p>
+          However, as teams used the tool throughout the full OP cycle, new patterns emerged. The 2024 post-OP feedback revealed deeper challenges that went beyond individual workflow optimization.
+        </p>
+        
+        <div style="background-color: #f8f9fa; padding: 24px; border-radius: 8px; margin: 24px 0;">
+          <h4 style="font-weight: 600; margin-bottom: 16px;">Key Feedback Themes</h4>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+            <div>
+              <p style="font-weight: 500; color: #054DA7; margin-bottom: 4px;">Fragmented Experience</p>
+              <p style="font-size: 0.9rem; line-height: 1.5;">"I have to jump between 12 screens to see one program"</p>
+            </div>
+            <div>
+              <p style="font-weight: 500; color: #054DA7; margin-bottom: 4px;">Lost Context</p>
+              <p style="font-size: 0.9rem; line-height: 1.5;">"The workflow is smooth, but I've lost the big picture"</p>
+            </div>
+            <div>
+              <p style="font-weight: 500; color: #054DA7; margin-bottom: 4px;">Mental Model Mismatch</p>
+              <p style="font-size: 0.9rem; line-height: 1.5;">"I think in programs and people, not tasks"</p>
+            </div>
+            <div>
+              <p style="font-weight: 500; color: #054DA7; margin-bottom: 4px;">Process Friction</p>
+              <p style="font-size: 0.9rem; line-height: 1.5;">Overall OP process satisfaction: 2.3/5</p>
+            </div>
+          </div>
+        </div>
+        
+        <p>
+          This feedback sparked a fundamental question: <strong>Were we organizing the tool around the right mental model?</strong>
+        </p>
+        
+        <p>
+          My product manager recognized this as an opportunity for deeper transformation. Rather than incremental improvements, they challenged me: "Audit everything. What would you rebuild?"
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">New Problem</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">The deeper challenge</h3>
+        <p class="cs-large-text">
+          How might we restructure Egret to match planners' mental models while scaling to support enterprise-wide operational planning?
+        </p>
+        
+        <h3 class="cs-subtitle" style="margin-top: 32px;">Understanding the gap</h3>
+        <p>
+          Through post-OP surveys and user interviews, we discovered a fundamental mismatch between how the tool was structured and how planners actually thought about their work.
+        </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0;">
+          <div style="background-color: rgba(211, 35, 47, 0.05); border: 1px solid rgba(211, 35, 47, 0.2); border-radius: 8px; padding: 24px;">
+            <h4 style="color: #D3232F; font-weight: 600; margin-bottom: 16px;">How Egret Was Built</h4>
+            <p style="font-weight: 500; margin-bottom: 12px;">Task-Based Architecture</p>
+            <ul style="font-size: 0.9rem; line-height: 1.6;">
+              <li>Submit headcount request</li>
+              <li>Review program budget</li>
+              <li>Approve discretionary spend</li>
+              <li>Generate OP summary</li>
+            </ul>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 16px;">Optimized for completing individual workflows efficiently</p>
+          </div>
+          
+          <div style="background-color: rgba(5, 77, 167, 0.05); border: 1px solid rgba(5, 77, 167, 0.2); border-radius: 8px; padding: 24px;">
+            <h4 style="color: #054DA7; font-weight: 600; margin-bottom: 16px;">How Planners Think</h4>
+            <p style="font-weight: 500; margin-bottom: 12px;">Entity-Based Mental Model</p>
+            <ul style="font-size: 0.9rem; line-height: 1.6;">
+              <li>Programs (and their health)</li>
+              <li>People (and their allocation)</li>
+              <li>Positions (and their status)</li>
+              <li>Budgets (and their utilization)</li>
+            </ul>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 16px;">Focused on understanding relationships and status</p>
+          </div>
+        </div>
+        
+        <div style="background-color: #f8f9fa; padding: 32px; border-radius: 8px; margin: 32px 0;">
+          <h4 style="color: #054DA7; font-weight: 600; margin-bottom: 24px;">📊 Post-OP Survey Findings</h4>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px;">
+            <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="font-size: 2rem; font-weight: 700; color: #D3232F; margin-bottom: 8px;">2.3/5</div>
+              <p style="font-weight: 600; margin-bottom: 4px;">Overall Satisfaction</p>
+              <p style="font-size: 0.9rem; color: #666;">Down from 3.8/5 pre-redesign</p>
+            </div>
+            <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="font-size: 2rem; font-weight: 700; color: #BF8700; margin-bottom: 8px;">87%</div>
+              <p style="font-weight: 600; margin-bottom: 4px;">Experience Fragmentation</p>
+              <p style="font-size: 0.9rem; color: #666;">Users reporting workflow discontinuity</p>
+            </div>
+            <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="font-size: 2rem; font-weight: 700; color: #054DA7; margin-bottom: 8px;">12+</div>
+              <p style="font-weight: 600; margin-bottom: 4px;">Average Screen Jumps</p>
+              <p style="font-size: 0.9rem; color: #666;">To complete a single program review</p>
+            </div>
+            <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="font-size: 2rem; font-weight: 700; color: #054DA7; margin-bottom: 8px;">73%</div>
+              <p style="font-weight: 600; margin-bottom: 4px;">Mental Model Mismatch</p>
+              <p style="font-size: 0.9rem; color: #666;">Tool doesn't match how they think</p>
+            </div>
+          </div>
+          
+          <div style="background-color: rgba(5, 77, 167, 0.05); padding: 20px; border-radius: 8px;">
+            <h5 style="font-weight: 600; margin-bottom: 12px;">Top Survey Comments</h5>
+            <ul style="line-height: 1.8; font-size: 0.95rem;">
+              <li>"The workflows are fast, but I've lost sight of the program as a whole"</li>
+              <li>"I spend more time navigating than actually planning"</li>
+              <li>"Can't see how changes in one area affect another"</li>
+              <li>"Need to mentally map where everything lives"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="audit" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">System Audit</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Comprehensive analysis</h3>
+        <p class="cs-large-text">
+          I conducted a thorough audit of Egret's current functionality, examining user flows, information architecture, and system interactions. The goal was to identify not just pain points, but opportunities for fundamental improvement.
+        </p>
+        
+        <h3 class="cs-subtitle" style="margin-top: 48px;">Key insights from the audit</h3>
+        <div class="cs-findings">
+          <div class="cs-finding">
+            <div class="cs-finding-number">01</div>
+            <div class="cs-finding-content">
+              <h4>Information Silos</h4>
+              <p>Related data scattered across multiple screens, requiring users to maintain mental maps of where information lived.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">02</div>
+            <div class="cs-finding-content">
+              <h4>Workflow Tunnel Vision</h4>
+              <p>Task-focused design prevented users from seeing how their actions impacted the broader operational plan.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">03</div>
+            <div class="cs-finding-content">
+              <h4>Duplicate Data Entry</h4>
+              <p>Same information required in multiple workflows, leading to inconsistencies and user frustration.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">04</div>
+            <div class="cs-finding-content">
+              <h4>Limited Visibility</h4>
+              <p>No unified view of program health, resource allocation, or planning status across the organization.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="paradigm-shift" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Paradigm Shift</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">From workflows to entities</h3>
+        <p class="cs-large-text">
+          The insight: We'd organized around tasks, but planners think in entities - people, programs, and positions.
+        </p>
+        
+        <h3 class="cs-subtitle" style="margin-top: 32px;">The entity-based approach</h3>
+        <p>
+          Instead of organizing the tool around what users do (workflows), we reorganized it around what users manage (entities). This fundamental shift aligns the tool's architecture with users' mental models.
+        </p>
+        
+        <div style="background-color: #f8f9fa; padding: 32px; border-radius: 8px; margin: 32px 0;">
+          <h4 style="font-weight: 600; margin-bottom: 24px; text-align: center;">Core Entities in the New Architecture</h4>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+            <div style="background-color: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-right: 12px;">
+                  <path d="M3 3H21C22.1 3 23 3.9 23 5V19C23 20.1 22.1 21 21 21H3C1.9 21 1 20.1 1 19V5C1 3.9 1.9 3 3 3Z" stroke="#054DA7" stroke-width="2"/>
+                  <path d="M1 8H23" stroke="#054DA7" stroke-width="2"/>
+                </svg>
+                <h5 style="margin: 0; color: #054DA7;">Programs</h5>
+              </div>
+              <p style="font-size: 0.9rem; line-height: 1.6;">Central hub showing program health, milestones, budget, headcount, and all related activities in one view.</p>
+            </div>
+            
+            <div style="background-color: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-right: 12px;">
+                  <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#054DA7" stroke-width="2"/>
+                  <circle cx="8.5" cy="7" r="4" stroke="#054DA7" stroke-width="2"/>
+                  <path d="M20 8V14" stroke="#054DA7" stroke-width="2"/>
+                  <path d="M23 11H17" stroke="#054DA7" stroke-width="2"/>
+                </svg>
+                <h5 style="margin: 0; color: #054DA7;">People</h5>
+              </div>
+              <p style="font-size: 0.9rem; line-height: 1.6;">Individual profiles showing allocation, skills, availability, and impact across programs.</p>
+            </div>
+            
+            <div style="background-color: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-right: 12px;">
+                  <rect x="3" y="7" width="18" height="13" rx="2" stroke="#054DA7" stroke-width="2"/>
+                  <path d="M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7" stroke="#054DA7" stroke-width="2"/>
+                  <line x1="12" y1="11" x2="12" y2="16" stroke="#054DA7" stroke-width="2"/>
+                  <line x1="8" y1="13.5" x2="16" y2="13.5" stroke="#054DA7" stroke-width="2"/>
+                </svg>
+                <h5 style="margin: 0; color: #054DA7;">Positions</h5>
+              </div>
+              <p style="font-size: 0.9rem; line-height: 1.6;">Role definitions with requirements, status, and connections to programs and people.</p>
+            </div>
+            
+            <div style="background-color: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-right: 12px;">
+                  <path d="M12 2V22" stroke="#054DA7" stroke-width="2"/>
+                  <path d="M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="#054DA7" stroke-width="2"/>
+                </svg>
+                <h5 style="margin: 0; color: #054DA7;">Budgets</h5>
+              </div>
+              <p style="font-size: 0.9rem; line-height: 1.6;">Financial overview with allocations, actuals, forecasts, and impact analysis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="design-vision" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Design Vision</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Entity-first interface</h3>
+        <p class="cs-large-text">
+          The new design centers around entity pages that serve as comprehensive command centers, bringing together all relevant information and actions in context.
+        </p>
+        
+        <div class="cs-image-container" style="margin: 32px 0;">
+          <img src="/images/Egret2.0/hceditor2.png" alt="Entity-based interface design showing program overview" />
+          <p class="cs-caption">Program entity page showing unified view of health metrics, resources, timelines, and actions</p>
+        </div>
+        
+        <h3 class="cs-subtitle">Key design principles</h3>
+        <div class="cs-methods">
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Context Over Navigation</h4>
+              <p>Everything about an entity is accessible from its page, eliminating the need to jump between screens</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Relationships Visible</h4>
+              <p>Clear visualization of how entities connect and impact each other</p>
+            </div>
+          </div>
+          <div class="cs-method">
+            <div class="cs-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polygon points="18 2 22 6 12 16 8 16 8 12 18 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cs-method-content">
+              <h4>Actions in Context</h4>
+              <p>Workflows emerge naturally from entity interactions rather than being separate tasks</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="validation" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Design Validation</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Prototype testing</h3>
+        <p class="cs-large-text">
+          I created high-fidelity prototypes of the entity-based system and tested with 8 users across different roles to validate the new approach.
+        </p>
+        
+        <div class="cs-metrics cs-metrics-three">
+          <div class="cs-metric">
+            <div class="cs-metric-value">95%</div>
+            <div class="cs-metric-label">Concept Approval<br /><span>Users immediately understood entity model</span></div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-value">3.2</div>
+            <div class="cs-metric-label">Average Screens<br /><span>To complete program review (down from 12+)</span></div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-value">4.5/5</div>
+            <div class="cs-metric-label">Projected Satisfaction<br /><span>Based on prototype feedback</span></div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">User feedback</h3>
+        <div class="cs-quote">
+          <blockquote>
+            <p>"This is how I've always thought about my work - finally the tool matches my brain!"</p>
+            <cite>— Senior Operations Planner</cite>
+          </blockquote>
+        </div>
+        
+        <div class="cs-quote">
+          <blockquote>
+            <p>"I can see everything about a program without clicking around. This would save me hours each week."</p>
+            <cite>— Program Manager</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="expected-impact" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Expected Impact</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Projected improvements</h3>
+        <p class="cs-large-text">
+          Based on prototype testing and user feedback, the entity-based redesign is expected to deliver significant improvements across key metrics.
+        </p>
+        
+        <div style="background-color: #f8f9fa; padding: 32px; border-radius: 8px; margin: 32px 0;">
+          <h4 style="font-weight: 600; margin-bottom: 24px;">Projected Metrics Comparison</h4>
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid #054DA7;">
+                <th style="text-align: left; padding: 12px 16px; font-weight: 600;">Metric</th>
+                <th style="text-align: center; padding: 12px 16px; font-weight: 600;">Current</th>
+                <th style="text-align: center; padding: 12px 16px; font-weight: 600;">Projected</th>
+                <th style="text-align: center; padding: 12px 16px; font-weight: 600;">Change</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 16px;">Overall Satisfaction</td>
+                <td style="text-align: center; padding: 16px; color: #D3232F;">2.3/5</td>
+                <td style="text-align: center; padding: 16px; color: #00A862;">4.5/5</td>
+                <td style="text-align: center; padding: 16px; font-weight: 600; color: #00A862;">+96%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 16px;">Screen Jumps (Program Review)</td>
+                <td style="text-align: center; padding: 16px; color: #D3232F;">12+</td>
+                <td style="text-align: center; padding: 16px; color: #00A862;">2-3</td>
+                <td style="text-align: center; padding: 16px; font-weight: 600; color: #00A862;">-80%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 16px;">Time to Complete Review</td>
+                <td style="text-align: center; padding: 16px; color: #D3232F;">25 min</td>
+                <td style="text-align: center; padding: 16px; color: #00A862;">8 min</td>
+                <td style="text-align: center; padding: 16px; font-weight: 600; color: #00A862;">-68%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 16px;">Mental Model Alignment</td>
+                <td style="text-align: center; padding: 16px; color: #D3232F;">27%</td>
+                <td style="text-align: center; padding: 16px; color: #00A862;">95%</td>
+                <td style="text-align: center; padding: 16px; font-weight: 600; color: #00A862;">+252%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="next-steps" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Next Steps</h2>
+      </div>
+      <div class="cs-content">
+        <h3 class="cs-subtitle">Path to implementation</h3>
+        <p class="cs-large-text">
+          The entity-based redesign represents a significant architectural shift that will be implemented in phases to ensure smooth transition.
+        </p>
+        
+        <div class="cs-timeline-vertical">
+          <div class="cs-timeline-item">
+            <div class="cs-timeline-marker">1</div>
+            <div class="cs-timeline-content">
+              <h4>Phase 1: Foundation</h4>
+              <p>Build entity data models and API architecture to support new structure</p>
+            </div>
+          </div>
+          <div class="cs-timeline-item">
+            <div class="cs-timeline-marker">2</div>
+            <div class="cs-timeline-content">
+              <h4>Phase 2: Program Entities</h4>
+              <p>Launch program entity pages as pilot with select teams</p>
+            </div>
+          </div>
+          <div class="cs-timeline-item">
+            <div class="cs-timeline-marker">3</div>
+            <div class="cs-timeline-content">
+              <h4>Phase 3: Full Rollout</h4>
+              <p>Expand to all entity types and migrate existing workflows</p>
+            </div>
+          </div>
+          <div class="cs-timeline-item">
+            <div class="cs-timeline-marker">4</div>
+            <div class="cs-timeline-content">
+              <h4>Phase 4: Optimization</h4>
+              <p>Refine based on usage data and user feedback</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reflections" class="cs-section">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title">Reflections</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          Egret 2.0 taught me that sometimes the best solution isn't to optimize what exists, but to fundamentally rethink the approach. By stepping back and examining users' mental models, we discovered an opportunity for transformation that incremental improvements would have missed.
+        </p>
+        
+        <h3 class="cs-subtitle">Key Learnings</h3>
+        
+        <div class="cs-learnings">
+          <div class="cs-learning">
+            <h4>Listen Beyond the Feedback</h4>
+            <p>Users asked for better workflows, but what they needed was a different architecture. Learning to hear the underlying need is crucial.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Mental Models Matter</h4>
+            <p>Aligning system architecture with how users think about their work reduces cognitive load far more than UI improvements alone.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Evolution Requires Revolution</h4>
+            <p>Sometimes incremental improvements reach their limit. Being willing to propose fundamental changes can unlock new possibilities.</p>
+          </div>
+          
+          <div class="cs-learning">
+            <h4>Design Vision as Strategy</h4>
+            <p>Creating a compelling vision for the future, even without immediate implementation, can align teams and drive organizational change.</p>
+          </div>
+        </div>
+        
+        <div class="cs-quote">
+          <blockquote>
+            <p>"This project reinforced that great UX isn't just about making tasks easier—it's about aligning technology with how people naturally think and work. The entity-based approach doesn't just improve Egret; it transforms how planners engage with their work."</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,501 @@
+/* 
+ * Gabrielle Sophia UX Portfolio
+ * Utility Classes and Helper Styles
+ * 
+ * This file contains all reusable utility classes, CSS variables,
+ * animations, and helper styles extracted from the main stylesheet.
+ */
+
+/* ========================================================================== */
+/* CSS VARIABLES                                                              */
+/* ========================================================================== */
+
+:root {
+    /* Color Palette */
+    --color-primary: #0050FF;        /* Blue accent color */
+    --color-primary-light: #E6EEFF;  /* Very light blue for backgrounds */
+    --color-primary-dark: #0040CC;   /* Darker blue for hover states */
+    --color-secondary: #FF6B35;      /* Optional secondary accent (use sparingly) */
+    --color-text: #111111;           /* Near-black for main text - darker for contrast */
+    --color-text-light: #555555;     /* Darker grey for secondary text - increased contrast */
+    --color-text-lighter: #777777;   /* Medium grey for tertiary text */
+    --color-background: #FFFFFF;     /* White background */
+    --color-background-alt: #F8F8F8; /* Very subtle light grey alternative background */
+    --color-background-deeper: #F2F2F2; /* Slightly deeper grey for section contrast */
+    --color-border: #EEEEEE;         /* Subtle light grey border */
+    
+    /* Grey Scale */
+    --color-grey-100: #FAFAFA;       /* Lightest grey */
+    --color-grey-200: #F5F5F5;       /* Lighter grey */
+    --color-grey-300: #EEEEEE;       /* Light grey */
+    --color-grey-400: #E0E0E0;       /* Medium light grey */
+    --color-grey-500: #9E9E9E;       /* Medium grey */
+    --color-grey-600: #757575;       /* Medium dark grey */
+    --color-grey-700: #616161;       /* Dark grey */
+    --color-grey-800: #424242;       /* Darker grey */
+    --color-grey-900: #212121;       /* Darkest grey (not quite black) */
+    
+    /* Typography */
+    --font-primary: 'SF Pro Display', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-base: 16px;         /* Base font size */
+    --line-height-base: 1.6;        /* Base line height */
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;           /* 8px */
+    --spacing-sm: 1rem;             /* 16px */
+    --spacing-md: 2rem;             /* 32px */
+    --spacing-lg: 3rem;             /* 48px */
+    --spacing-xl: 5rem;             /* 80px */
+    
+    /* Borders */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* ========================================================================== */
+/* RESET & BASE STYLES                                                        */
+/* ========================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--font-size-base);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: var(--line-height-base);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    padding-top: 80px; /* Compensate for fixed header */
+}
+
+img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+ul {
+    list-style: none;
+}
+
+button, .btn {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* ========================================================================== */
+/* LAYOUT UTILITIES                                                           */
+/* ========================================================================== */
+
+
+/* ========================================================================== */
+/* BUTTON UTILITIES                                                           */
+/* ========================================================================== */
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    text-align: center;
+    transition: 
+        background-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.primary-btn {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: var(--color-primary-dark);
+    color: white;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.secondary-btn:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+}
+
+/* ========================================================================== */
+/* TYPOGRAPHY UTILITIES                                                       */
+/* ========================================================================== */
+
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    margin-bottom: 16px;
+    max-width: 600px;
+}
+
+/* ========================================================================== */
+/* PLACEHOLDER UTILITIES                                                      */
+/* ========================================================================== */
+
+.placeholder-image {
+    background-color: var(--color-background-alt);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 240px;
+    color: var(--color-text-light);
+    font-weight: 500;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ========================================================================== */
+/* ANIMATION UTILITIES                                                        */
+/* ========================================================================== */
+
+/* Base animation element */
+.animate-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), 
+                transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.animate-element.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Pop and bounce animation */
+.pop-bounce {
+    animation: pop-up-bounce 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+    transform-origin: bottom center;
+}
+
+/* ========================================================================== */
+/* ANIMATION KEYFRAMES                                                        */
+/* ========================================================================== */
+
+/* Subtle bounce animations */
+@keyframes subtle-bounce {
+    0% { transform: translateY(15px); opacity: 0; }
+    70% { transform: translateY(-5px); }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes subtle-bounce-delayed {
+    0%, 30% { transform: translateY(15px); opacity: 0; }
+    80% { transform: translateY(-3px); }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes subtle-bounce-delayed-more {
+    0%, 50% { transform: translateY(15px); opacity: 0; }
+    85% { transform: translateY(-2px); }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Pop-up with bounce */
+@keyframes pop-up-bounce {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+    85% {
+        transform: translateY(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Appear animations */
+@keyframes photo-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes paper-appear-1 {
+    0% {
+        opacity: 0;
+        transform: translateY(15px) rotate(-8deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(-8deg);
+    }
+}
+
+@keyframes paper-appear-2 {
+    0% {
+        opacity: 0;
+        transform: translateY(15px) rotate(8deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(8deg);
+    }
+}
+
+/* Layered paper animations */
+@keyframes paper-layer-1-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) rotate(8deg) translateZ(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(8deg) translateZ(-5px);
+    }
+}
+
+@keyframes paper-layer-2-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-15px) rotate(-10deg) translateZ(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(-10deg) translateZ(-10px);
+    }
+}
+
+@keyframes paper-layer-3-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(25px) rotate(-8deg) translateZ(-15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(-8deg) translateZ(-15px);
+    }
+}
+
+@keyframes paper-layer-4-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-18px) rotate(12deg) translateZ(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(12deg) translateZ(-20px);
+    }
+}
+
+@keyframes paper-layer-5-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(22px) rotate(-14deg) translateZ(-25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(-14deg) translateZ(-25px);
+    }
+}
+
+/* Accent and decorative animations */
+@keyframes accent-appear {
+    0% {
+        opacity: 0;
+        transform: rotate(-15deg) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(-15deg) scale(1);
+    }
+}
+
+@keyframes thread-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) rotate(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(-5deg);
+    }
+}
+
+/* Scribble animations */
+@keyframes scribble-1-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(-10deg);
+    }
+}
+
+@keyframes scribble-2-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(10deg);
+    }
+}
+
+@keyframes scribble-3-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes scribble-4-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes scribble-5-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(-15deg);
+    }
+}
+
+/* Float animations */
+@keyframes scribble-float {
+    0%, 100% {
+        transform: translateY(0) rotate(0);
+    }
+    25% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+    50% {
+        transform: translateY(0) rotate(0);
+    }
+    75% {
+        transform: translateY(5px) rotate(-2deg);
+    }
+}
+
+@keyframes scribble-float-alt {
+    0%, 100% {
+        transform: translateY(0) rotate(0);
+    }
+    25% {
+        transform: translateY(3px) rotate(-3deg);
+    }
+    50% {
+        transform: translateY(-3px) rotate(0);
+    }
+    75% {
+        transform: translateY(0) rotate(3deg);
+    }
+}
+
+@keyframes scribble-rotate {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+}
+
+/* Wobble animation */
+@keyframes wobble {
+    0%, 100% { transform: translateY(-50%) rotate(0); }
+    20% { transform: translateY(-50%) rotate(-15deg); }
+    40% { transform: translateY(-50%) rotate(10deg); }
+    60% { transform: translateY(-50%) rotate(-10deg); }
+    80% { transform: translateY(-50%) rotate(5deg); }
+}
+
+/* ========================================================================== */
+/* STAGGERED ANIMATION DELAYS                                                 */
+/* ========================================================================== */
+
+/* Philosophy grid staggered animations - removed for performance */
+
+/* Philosophy icons pop-bounce staggered - removed for performance */
+
+/* Projects grid staggered animations */
+.projects-grid .project-card:nth-child(1) { transition-delay: 0.1s; }
+.projects-grid .project-card:nth-child(2) { transition-delay: 0.2s; }
+.projects-grid .project-card:nth-child(3) { transition-delay: 0.3s; }
+.projects-grid .project-card:nth-child(4) { transition-delay: 0.4s; }

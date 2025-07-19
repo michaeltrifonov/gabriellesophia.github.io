@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .heading { font: bold 20px 'SF Pro Display', Arial, sans-serif; }
+    .subheading { font: bold 16px 'SF Pro Display', Arial, sans-serif; }
+    .item { font: 14px 'SF Pro Display', Arial, sans-serif; }
+    .card { filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1)); }
+  </style>
+  
+  <rect width="900" height="600" fill="white"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" class="heading" text-anchor="middle" fill="#333">User Persona Comparison</text>
+  
+  <!-- Resource Manager Card -->
+  <g class="card">
+    <rect x="50" y="70" width="250" height="340" rx="8" fill="#4982c2" opacity="0.9"/>
+    <text x="175" y="100" class="heading" text-anchor="middle" fill="white">Resource Manager</text>
+    
+    <rect x="70" y="120" width="210" height="270" rx="6" fill="white" opacity="0.9"/>
+    
+    <text x="80" y="150" class="subheading" fill="#333">Key Needs:</text>
+    <text x="90" y="180" class="item" fill="#333">
+      <tspan x="90" dy="0">• Resource allocation expertise</tspan>
+      <tspan x="90" dy="24">• Cross-functional coordination</tspan>
+      <tspan x="90" dy="24">• Streamlined resource editing</tspan>
+      <tspan x="90" dy="24">• Org-wide visibility into allocations</tspan>
+      <tspan x="90" dy="24">• Optimize resource distribution</tspan>
+    </text>
+    
+    <text x="80" y="320" class="subheading" fill="#333">Pain Points:</text>
+    <text x="90" y="350" class="item" fill="#333">
+      <tspan x="90" dy="0">• Complex form-based editing</tspan>
+      <tspan x="90" dy="24">• Disconnected workflows</tspan>
+      <tspan x="90" dy="24">• Limited cross-team visibility</tspan>
+    </text>
+  </g>
+  
+  <!-- Program Manager Card -->
+  <g class="card">
+    <rect x="325" y="70" width="250" height="340" rx="8" fill="#7146b5" opacity="0.9"/>
+    <text x="450" y="100" class="heading" text-anchor="middle" fill="white">Program Manager</text>
+    
+    <rect x="345" y="120" width="210" height="270" rx="6" fill="white" opacity="0.9"/>
+    
+    <text x="355" y="150" class="subheading" fill="#333">Key Needs:</text>
+    <text x="365" y="180" class="item" fill="#333">
+      <tspan x="365" dy="0">• Program-specific planning</tspan>
+      <tspan x="365" dy="24">• Stakeholder communication</tspan>
+      <tspan x="365" dy="24">• Detailed program views</tspan>
+      <tspan x="365" dy="24">• Resource request mechanisms</tspan>
+      <tspan x="365" dy="24">• Secure adequate resources</tspan>
+    </text>
+    
+    <text x="355" y="320" class="subheading" fill="#333">Pain Points:</text>
+    <text x="365" y="350" class="item" fill="#333">
+      <tspan x="365" dy="0">• Fragmented communication</tspan>
+      <tspan x="365" dy="24">• Lack of change visibility</tspan>
+      <tspan x="365" dy="24">• Manual data aggregation</tspan>
+    </text>
+  </g>
+  
+  <!-- Leadership Team Card -->
+  <g class="card">
+    <rect x="600" y="70" width="250" height="340" rx="8" fill="#f5893c" opacity="0.9"/>
+    <text x="725" y="100" class="heading" text-anchor="middle" fill="white">Leadership Team</text>
+    
+    <rect x="620" y="120" width="210" height="270" rx="6" fill="white" opacity="0.9"/>
+    
+    <text x="630" y="150" class="subheading" fill="#333">Key Needs:</text>
+    <text x="640" y="180" class="item" fill="#333">
+      <tspan x="640" dy="0">• Strategic planning</tspan>
+      <tspan x="640" dy="24">• Organizational oversight</tspan>
+      <tspan x="640" dy="24">• High-level summary views</tspan>
+      <tspan x="640" dy="24">• Resource distribution </tspan>
+      <tspan x="640" dy="24">  visualization</tspan>
+      <tspan x="640" dy="24">• Data-driven decisions</tspan>
+    </text>
+    
+    <text x="630" y="320" class="subheading" fill="#333">Pain Points:</text>
+    <text x="640" y="350" class="item" fill="#333">
+      <tspan x="640" dy="0">• Limited data accessibility</tspan>
+      <tspan x="640" dy="24">• Inconsistent reporting formats</tspan>
+      <tspan x="640" dy="24">• Difficulty identifying trends</tspan>
+    </text>
+  </g>
+  
+  <!-- Shared Needs Card -->
+  <g class="card">
+    <rect x="187.5" y="440" width="525" height="140" rx="8" fill="#333333" opacity="0.9"/>
+    <text x="450" y="470" class="heading" text-anchor="middle" fill="white">Shared Needs Across All Personas</text>
+    
+    <rect x="207.5" y="490" width="485" height="70" rx="6" fill="white" opacity="0.9"/>
+    
+    <text x="225" y="523" class="item" fill="#333">
+      <tspan x="225" dy="0">• Efficient communication tools</tspan>
+      <tspan x="225" dy="24">• Change history tracking</tspan>
+    </text>
+    
+    <text x="450" y="523" class="item" fill="#333">
+      <tspan x="450" dy="0">• Data traceability</tspan>
+      <tspan x="450" dy="24">• Visual planning capabilities</tspan>
+    </text>
+    
+    <text x="675" y="523" class="item" fill="#333">
+      <tspan x="675" dy="0">• Cross-team visibility</tspan>
+      <tspan x="675" dy="24">• Intuitive editing interface</tspan>
+    </text>
+  </g>
+</svg>

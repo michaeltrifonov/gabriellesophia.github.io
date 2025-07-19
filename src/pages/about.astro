@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TimelineEntry from '../components/TimelineEntry.jsx';
+import SkillItem from '../components/SkillItem.jsx';
+import ArtworkGallery from '../components/ArtworkGallery.jsx';
+import TrainingList from '../components/TrainingList.jsx';
+import '../styles/about.css';
+
+const careerTimeline = [
+  {
+    period: "May 2024 - Present",
+    role: "UX Designer (Contract)",
+    company: "Amazon - Fulfillment Technologies & Robotics",
+    industry: "Technology",
+    responsibilities: [
+      "Lead UX Designer within Global Robotics Delivery, creating digital solutions for supply chain, manufacturing, and engineering customers",
+      "Responsible for leading end-to-end design processes including user research, process mapping, rapid prototyping, and development of low and high-fidelity mockups",
+      "Drove significant improvement in customer satisfaction, with one key project seeing a 76% increase from baseline",
+      "Boosted developer efficiency by 15% through streamlined design delivery and documentation"
+    ]
+  },
+  {
+    period: "Aug 2022 - March 2024",
+    role: "Digital Product Designer",
+    company: "Charles River Analytics",
+    industry: "Defense & Technology",
+    responsibilities: [
+      "Lead UX Designer for a government contractor specializing in defense and warfighter technology",
+      "Responsible for user research, rapid prototyping, and development of low and high-fidelity mockups across multiple contracts",
+      "Designed AI-based physical systems prototype evaluation tools, real-time network topology interfaces, and VR collaboration spaces",
+      "Close collaboration with scientists on SBIR and DARPA based contracts"
+    ]
+  },
+  {
+    period: "Sep 2021 - May 2022",
+    role: "UX Designer",
+    company: "Curaytor",
+    industry: "Digital Marketing",
+    responsibilities: [
+      "Sole UX designer on a web content management system specialized for real-estate brokerage marketing",
+      "Led large-scale product overhaul driven by a shift in business strategy",
+      "Responsible for user interviews, conducting usability tests, feature ideation, A/B testing, and the development of low and high-fidelity mockups",
+      "Collaborated with a cross-functional team to implement intuitive interfaces for managing marketing campaigns and website content"
+    ]
+  }
+];
+
+const skills = [
+  { name: "User Experience Design", icon: "user-experience" },
+  { name: "User Research", icon: "user-research" },
+  { name: "Rapid Prototyping", icon: "prototyping" },
+  { name: "Wireframing", icon: "wireframing" },
+  { name: "Visual Design", icon: "visual-design" },
+  { name: "Project Management", icon: "project-management" }
+];
+
+const artworks = [
+  { src: "/images/IMG_5393.JPG", alt: "Original artwork - abstract painting", frameClass: "frame-1" },
+  { src: "/images/IMG_6795.jpeg", alt: "Original artwork - abstract painting", frameClass: "frame-2" },
+  { src: "/images/tryptich.png", alt: "Original artwork - triptych painting", frameClass: "frame-3" }
+];
+
+const trainingItems = [
+  { title: "User Experience Design Certificate", provider: "Cornell University" },
+  { title: "Drawing & Rendering for Design Thinking, Intro to Industrial Design", provider: "Rhode Island School of Design" }
+];
+---
+
+<BaseLayout title="About" currentPath="/about">
+  <!-- About Hero -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-hero-grid">
+        <div class="about-hero-content">
+          <h1 class="page-title">Hey there 👋🏻</h1>
+          <div class="about-section">
+            <p>
+              I'm Gabby, a self-taught designer and storyteller with a passion for creativity and a desire to make a real difference in people's lives.
+              I'm all about connecting with people through shared problems, creating small changes that pack a big punch, and leaving a lasting impact. 
+              I enjoy solving complex problems with empathy, creative gusto, and I'm always looking for new and innovative ways to bring that vision to life.
+            </p>
+            <p>
+              My journey has taken me from digital marketing to defense systems to Amazon Robotics, where I've crafted digital solutions at the intersection of technology, business, and human needs. 
+              I've helped Boston startups define their visual identity from the ground up and collaborated with scientists on SBIR and DARPA contracts—translating complex technical concepts into real-world products that deliver measurable impact.
+              
+              These diverse experiences have shaped my approach to design and strengthened my ability to 
+              collaborate effectively with stakeholders across disciplines.
+            </p>
+          </div>
+        </div>
+        <div class="about-image-container">
+          <div class="about-image">
+            <img src="/images/headshot.jpeg" alt="Gabrielle Sophia - UX Designer" class="profile-photo" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beyond Design Section -->
+  <section class="beyond-design-section">
+    <div class="container no-spacing">
+      <h2 class="section-title">Beyond Design</h2>
+      <p class="section-subtitle tight-spacing">When I'm not designing digital experiences</p>
+      <div class="beyond-content">
+        <div class="beyond-text">
+          <p>
+            When I'm not designing, you can usually find me hitting the gym cooking up a storm, or making art. I'm a firm believer that creativity isn't just a job - it's a way of life - and I strive to bring that same sense of passion and enthusiasm to everything I do.
+          </p>
+          <p>
+            I'm passionate about combining traditional artistic techniques with digital design, and I strive to 
+            incorporate these cross-disciplinary approaches into my UX practice whenever possible.
+          </p>
+        </div>
+        
+        <ArtworkGallery artworks={artworks} client:visible />
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Timeline Section -->
+  <section id="resume" class="career-timeline-section">
+    <div class="container">
+      <div class="resume-header">
+        <div class="resume-header-title">
+          <h2 class="section-title">Career Timeline</h2>
+          <a href="/Gabrielle Loeff Resume.pdf" target="_blank" class="btn secondary-btn">Download Resume</a>
+        </div>
+      </div>
+      
+      <div class="career-timeline">
+        <h3 class="timeline-title">Past and present</h3>
+        
+        <div class="timeline-entries">
+          {careerTimeline.map((entry) => (
+            <TimelineEntry
+              period={entry.period}
+              role={entry.role}
+              company={entry.company}
+              industry={entry.industry}
+              responsibilities={entry.responsibilities}
+              client:visible
+            />
+          ))}
+
+          <!-- Education Entry -->
+          <TimelineEntry
+            period="Graduated"
+            role="Bachelor of Arts, Double Major"
+            company="Brandeis University"
+            industry="Business & Fine Art"
+            isEducation={true}
+            educationDetails="Notable achievements:"
+            responsibilities={[
+              "Dean's List",
+              "Remis Grant Recipient",
+              "Grant Recipient (Brandeis Festival of the Arts)"
+            ]}
+            client:visible
+          />
+        </div>
+      </div>
+      
+      <!-- Two-column layout for Additional Training and Skills -->
+      <div class="resume-extra-grid">
+        <!-- Additional Training -->
+        <div class="resume-block">
+          <h3 class="resume-block-title">Additional Training & Certificates</h3>
+          <TrainingList items={trainingItems} client:visible />
+        </div>
+        
+        <!-- Skills Section -->
+        <div class="resume-block">
+          <h3 class="resume-block-title">Professional Skills</h3>
+          <div class="skills-grid">
+            <div class="skills-column">
+              <ul class="animated-skills">
+                {skills.slice(0, 3).map((skill) => (
+                  <SkillItem skill={skill.name} icon={skill.icon} client:visible />
+                ))}
+              </ul>
+            </div>
+            <div class="skills-column">
+              <ul class="animated-skills">
+                {skills.slice(3).map((skill) => (
+                  <SkillItem skill={skill.name} icon={skill.icon} client:visible />
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

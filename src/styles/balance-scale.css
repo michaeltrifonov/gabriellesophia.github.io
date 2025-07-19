@@ -1,0 +1,320 @@
+/**
+ * Balance Scale Component Styles
+ * Interactive balance visualization for MVP vs Future Vision
+ */
+
+/* Container */
+.balance-scale-container {
+    padding: 40px 20px;
+    background: linear-gradient(to bottom, #f8f9fa 0%, #fff 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Scale Structure */
+.balance-scale {
+    position: relative;
+    height: 300px;
+    margin: 0 auto 40px;
+    max-width: 600px;
+}
+
+/* Central Pillar */
+.scale-pillar {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 4px;
+    height: 200px;
+    background: linear-gradient(to bottom, #374151, #1f2937);
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.scale-pillar::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+    background: #1f2937;
+    border-radius: 4px;
+}
+
+/* Beam */
+.scale-beam {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    width: 500px;
+    height: 4px;
+    background: linear-gradient(to right, #374151, #1f2937, #374151);
+    transform-origin: center;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Scale Sides */
+.scale-side {
+    position: absolute;
+    top: 4px;
+    width: 200px;
+}
+
+.scale-left {
+    left: 50px;
+}
+
+.scale-right {
+    right: 50px;
+}
+
+/* Chains */
+.scale-chain {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 30px;
+    background: #6b7280;
+    transform: translateX(-50%);
+}
+
+.scale-chain::before,
+.scale-chain::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #6b7280;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scale-chain::before {
+    top: -5px;
+}
+
+.scale-chain::after {
+    bottom: -5px;
+}
+
+/* Scale Plates */
+.scale-plate {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-out;
+}
+
+.scale-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    text-align: center;
+}
+
+.scale-left .scale-title {
+    color: #054DA7;
+}
+
+.scale-right .scale-title {
+    color: #D3232F;
+}
+
+/* Scale Items */
+.scale-items {
+    margin-bottom: 16px;
+}
+
+.scale-item {
+    font-size: 0.813rem;
+    color: #4b5563;
+    padding: 4px 8px;
+    margin-bottom: 4px;
+    background: #f9fafb;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Weight Display */
+.scale-weight {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 8px;
+    border-radius: 4px;
+    background: #f3f4f6;
+}
+
+.scale-left .scale-weight {
+    color: #054DA7;
+}
+
+.scale-right .scale-weight {
+    color: #D3232F;
+}
+
+/* Controls */
+.scale-controls {
+    text-align: center;
+}
+
+.scale-slider-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.slider-label-left,
+.slider-label-right {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+/* Slider Styling */
+.scale-slider {
+    width: 300px;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e5e7eb;
+    border-radius: 3px;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.scale-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #054DA7;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(5, 77, 167, 0.3);
+    transition: all 0.2s ease;
+}
+
+.scale-slider::-webkit-slider-thumb:hover {
+    background: #043a7f;
+    transform: scale(1.1);
+}
+
+.scale-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: #054DA7;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(5, 77, 167, 0.3);
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.scale-slider::-moz-range-thumb:hover {
+    background: #043a7f;
+    transform: scale(1.1);
+}
+
+.scale-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .balance-scale {
+        height: 250px;
+    }
+    
+    .scale-beam {
+        width: 400px;
+    }
+    
+    .scale-side {
+        width: 160px;
+    }
+    
+    .scale-left {
+        left: 40px;
+    }
+    
+    .scale-right {
+        right: 40px;
+    }
+    
+    .scale-slider {
+        width: 250px;
+    }
+    
+    .scale-slider-label {
+        font-size: 0.813rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .balance-scale-container {
+        padding: 30px 15px;
+    }
+    
+    .balance-scale {
+        height: 220px;
+    }
+    
+    .scale-beam {
+        width: 320px;
+    }
+    
+    .scale-side {
+        width: 130px;
+    }
+    
+    .scale-left {
+        left: 30px;
+    }
+    
+    .scale-right {
+        right: 30px;
+    }
+    
+    .scale-plate {
+        padding: 15px;
+    }
+    
+    .scale-title {
+        font-size: 0.875rem;
+    }
+    
+    .scale-item {
+        font-size: 0.75rem;
+        padding: 2px 6px;
+    }
+    
+    .scale-weight {
+        font-size: 1.25rem;
+    }
+    
+    .scale-slider {
+        width: 200px;
+    }
+    
+    .slider-label-left,
+    .slider-label-right {
+        font-size: 0.75rem;
+    }
+}
