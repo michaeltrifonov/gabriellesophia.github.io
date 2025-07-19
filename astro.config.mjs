@@ -6,8 +6,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://gloeff.github.io',
-  base: '/portfolio',
+  site: 'https://michaeltrifonov.github.io',
   integrations: [react(), mdx()],
   build: {
     // Inline small CSS to reduce requests
