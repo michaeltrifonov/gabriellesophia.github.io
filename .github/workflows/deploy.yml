@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUILD_PATH: "portfolio_structure/astro-portfolio" # working directory path
+  BUILD_PATH: "." # working directory path
 
 jobs:
   build:
