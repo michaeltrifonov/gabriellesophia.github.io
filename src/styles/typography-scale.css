@@ -1,0 +1,242 @@
+/* 
+ * Typography Scale Override
+ * Scales all typography down to 90% of original size
+ * To adjust scale, change the --global-scale value
+ */
+
+:root {
+  --global-scale: 0.9; /* Change to 0.8 for 80% scale */
+}
+
+/* ========== BASE TYPOGRAPHY OVERRIDES ========== */
+html {
+  font-size: calc(16px * var(--global-scale)) !important;
+}
+
+/* ========== MAIN TYPOGRAPHY OVERRIDES ========== */
+.hero-title {
+  font-size: calc(2.5rem * var(--global-scale)) !important;
+}
+
+.section-title {
+  font-size: calc(2.25rem * var(--global-scale)) !important;
+}
+
+.hero-subtitle {
+  font-size: calc(1.5rem * var(--global-scale)) !important;
+}
+
+.hero-description {
+  font-size: calc(1.1rem * var(--global-scale)) !important;
+}
+
+.section-subtitle {
+  font-size: calc(1.125rem * var(--global-scale)) !important;
+}
+
+.about-title {
+  font-size: calc(3rem * var(--global-scale)) !important;
+}
+
+.about-subtitle {
+  font-size: calc(1.5rem * var(--global-scale)) !important;
+}
+
+.philosophy-title {
+  font-size: calc(1.75rem * var(--global-scale)) !important;
+}
+
+.philosophy-item h3 {
+  font-size: calc(1.25rem * var(--global-scale)) !important;
+}
+
+.training-title {
+  font-size: calc(1.75rem * var(--global-scale)) !important;
+}
+
+.training-item {
+  font-size: calc(1.2rem * var(--global-scale)) !important;
+}
+
+.about-section p {
+  font-size: calc(1.125rem * var(--global-scale)) !important;
+}
+
+.beyond-text p {
+  font-size: calc(1.1rem * var(--global-scale)) !important;
+}
+
+.philosophy-description {
+  font-size: calc(0.9rem * var(--global-scale)) !important;
+}
+
+.timeline-subtitle {
+  font-size: calc(1.125rem * var(--global-scale)) !important;
+}
+
+.project-title {
+  font-size: calc(2.25rem * var(--global-scale)) !important;
+}
+
+.project-description {
+  font-size: calc(1.125rem * var(--global-scale)) !important;
+}
+
+.skill-item {
+  font-size: calc(1.15rem * var(--global-scale)) !important;
+}
+
+/* ========== CASE STUDY TYPOGRAPHY OVERRIDES ========== */
+.cs-tag {
+  font-size: calc(13px * var(--global-scale)) !important;
+  padding: calc(6px * var(--global-scale)) calc(12px * var(--global-scale)) !important;
+}
+
+.cs-timeline {
+  font-size: calc(15px * var(--global-scale)) !important;
+  gap: calc(24px * var(--global-scale)) !important;
+}
+
+.cs-title {
+  font-size: calc(4rem * var(--global-scale)) !important;
+}
+
+.cs-intro,
+.cs-large-text {
+  font-size: calc(1.25rem * var(--global-scale)) !important;
+}
+
+.cs-sidebar-title {
+  font-size: calc(1.6rem * var(--global-scale)) !important;
+}
+
+.cs-section-header h2 {
+  font-size: calc(2rem * var(--global-scale)) !important;
+}
+
+.cs-subsection-title {
+  font-size: calc(1.4rem * var(--global-scale)) !important;
+}
+
+.cs-body-text {
+  font-size: calc(1.125rem * var(--global-scale)) !important;
+}
+
+.cs-note {
+  font-size: calc(1.125rem * var(--global-scale)) !important;
+}
+
+.cs-impact-number {
+  font-size: calc(2rem * var(--global-scale)) !important;
+}
+
+.cs-quote-text {
+  font-size: calc(3rem * var(--global-scale)) !important;
+}
+
+.cs-quote-author {
+  font-size: calc(1rem * var(--global-scale)) !important;
+}
+
+.cs-quote-role {
+  font-size: calc(0.875rem * var(--global-scale)) !important;
+}
+
+.cs-sticky-sidebar {
+  font-size: calc(18px * var(--global-scale)) !important;
+}
+
+.cs-nav-link {
+  font-size: calc(14px * var(--global-scale)) !important;
+}
+
+/* Special large number displays */
+.cs-impact-display .cs-impact-number {
+  font-size: calc(80px * var(--global-scale)) !important;
+}
+
+/* ========== NAVIGATION & UI ELEMENTS ========== */
+.nav-link {
+  font-size: calc(16px * var(--global-scale)) !important;
+}
+
+.logo {
+  font-size: calc(1.5rem * var(--global-scale)) !important;
+}
+
+.tag {
+  font-size: calc(0.75rem * var(--global-scale)) !important;
+  padding: calc(0.25rem * var(--global-scale)) calc(0.5rem * var(--global-scale)) !important;
+}
+
+.btn {
+  padding: calc(0.75rem * var(--global-scale)) calc(1.5rem * var(--global-scale)) !important;
+  font-size: calc(1rem * var(--global-scale)) !important;
+}
+
+.contact-btn {
+  padding: calc(0.5rem * var(--global-scale)) calc(1rem * var(--global-scale)) !important;
+}
+
+/* ========== SPACING ADJUSTMENTS ========== */
+/* Scale spacing proportionally */
+.hero {
+  padding: calc(120px * var(--global-scale)) 0 calc(80px * var(--global-scale)) !important;
+}
+
+.section {
+  padding: calc(80px * var(--global-scale)) 0 !important;
+}
+
+.cs-hero {
+  padding: calc(100px * var(--global-scale)) 0 calc(40px * var(--global-scale)) !important;
+}
+
+.cs-section {
+  padding: calc(100px * var(--global-scale)) 0 !important;
+}
+
+/* Container padding adjustments */
+.cs-hero-content,
+.cs-nav-container,
+.cs-content-wrapper {
+  padding-left: calc(100px * var(--global-scale)) !important;
+  padding-right: calc(80px * var(--global-scale)) !important;
+}
+
+/* ========== RESPONSIVE OVERRIDES ========== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: calc(2.2rem * var(--global-scale)) !important;
+  }
+  
+  .hero-subtitle {
+    font-size: calc(1.3rem * var(--global-scale)) !important;
+  }
+  
+  .section-title {
+    font-size: calc(1.75rem * var(--global-scale)) !important;
+  }
+  
+  .about-section p {
+    font-size: calc(1rem * var(--global-scale)) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: calc(1.8rem * var(--global-scale)) !important;
+  }
+  
+  .hero-subtitle {
+    font-size: calc(1.1rem * var(--global-scale)) !important;
+  }
+  
+  .hero-description {
+    font-size: calc(1rem * var(--global-scale)) !important;
+  }
+  
+  .cs-tag {
+    font-size: calc(11px * var(--global-scale)) !important;
+  }
+}
