@@ -31,6 +31,7 @@ implementation: true
 ---
 
 import NetworkTimeline from '../../components/NetworkTimeline.tsx';
+import MDXImage from '../../components/MDXImage.tsx';
 import '../../styles/network-timeline.css';
 
 <section id="overview" class="cs-section cs-overview">
@@ -407,7 +408,7 @@ import '../../styles/network-timeline.css';
               <div class="laptop-screen transparent-bg">
                 <iframe src="https://player.vimeo.com/video/858499057" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="transparent-bg"></iframe>
               </div>
-              <img src="/images/campus connect/laptop.svg" alt="Laptop frame" class="laptop-svg transparent-bg" />
+              <MDXImage src="/images/campus connect/laptop.svg" alt="Laptop frame" class="laptop-svg transparent-bg" />
             </div>
           </div>
           <p class="cs-caption">On login, the admin receives an immediate alert, spotlighting the Amherst campus. Clicking the alert, they're directed to a detailed view of the Amherst campus's Main Data Center/Core Router. This view showcases the router's alert status, current metrics, and historical data, with a timeline underscoring past alerts.</p>
@@ -423,7 +424,7 @@ import '../../styles/network-timeline.css';
               <div class="laptop-screen transparent-bg">
                 <iframe src="https://player.vimeo.com/video/858499085" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="transparent-bg"></iframe>
               </div>
-              <img src="/images/campus connect/laptop.svg" alt="Laptop frame" class="laptop-svg transparent-bg" />
+              <MDXImage src="/images/campus connect/laptop.svg" alt="Laptop frame" class="laptop-svg transparent-bg" />
             </div>
           </div>
           <p class="cs-caption">On alert, IT can swiftly access the suspicious device's details, including its IP, MAC addresses, and physical location. A click takes them to a campus map, highlighting the device's exact location.</p>
@@ -449,15 +450,15 @@ import '../../styles/network-timeline.css';
             {/* Interactive gift button component would go here */}
             <div class="gift-states">
               <div class="state-example">
-                <img src="/images/campus connect/gift-button/normal.png" alt="Normal state" />
+                <MDXImage src="/images/campus connect/gift-button/normal.png" alt="Normal state" />
                 <p>Normal</p>
               </div>
               <div class="state-example">
-                <img src="/images/campus connect/gift-button/hover.png" alt="Hover state" />
+                <MDXImage src="/images/campus connect/gift-button/hover.png" alt="Hover state" />
                 <p>Hover</p>
               </div>
               <div class="state-example">
-                <img src="/images/campus connect/gift-button/pressed.png" alt="Pressed state" />
+                <MDXImage src="/images/campus connect/gift-button/pressed.png" alt="Pressed state" />
                 <p>Pressed</p>
               </div>
             </div>
@@ -473,23 +474,23 @@ import '../../styles/network-timeline.css';
           <h4>Router States</h4>
           <div class="icon-grid">
             <div class="icon-item">
-              <img src="/images/campus connect/icons/states/router-normal.svg" alt="Router normal state" />
+              <MDXImage src="/images/campus connect/icons/states/router-normal.svg" alt="Router normal state" />
               <p>Normal</p>
             </div>
             <div class="icon-item">
-              <img src="/images/campus connect/icons/states/router-hover.svg" alt="Router hover state" />
+              <MDXImage src="/images/campus connect/icons/states/router-hover.svg" alt="Router hover state" />
               <p>Hover</p>
             </div>
             <div class="icon-item">
-              <img src="/images/campus connect/icons/states/router-selected.svg" alt="Router selected state" />
+              <MDXImage src="/images/campus connect/icons/states/router-selected.svg" alt="Router selected state" />
               <p>Selected</p>
             </div>
             <div class="icon-item">
-              <img src="/images/campus connect/icons/states/router-warning.svg" alt="Router warning state" />
+              <MDXImage src="/images/campus connect/icons/states/router-warning.svg" alt="Router warning state" />
               <p>Warning</p>
             </div>
             <div class="icon-item">
-              <img src="/images/campus connect/icons/states/router-error.svg" alt="Router error state" />
+              <MDXImage src="/images/campus connect/icons/states/router-error.svg" alt="Router error state" />
               <p>Error</p>
             </div>
           </div>
@@ -497,15 +498,15 @@ import '../../styles/network-timeline.css';
           <h4>Alert Levels</h4>
           <div class="icon-grid">
             <div class="icon-item">
-              <img src="/images/campus connect/icons/large/default.svg" alt="Default campus icon" />
+              <MDXImage src="/images/campus connect/icons/large/default.svg" alt="Default campus icon" />
               <p>Default</p>
             </div>
             <div class="icon-item">
-              <img src="/images/campus connect/icons/large/mildAlert.svg" alt="Mild alert icon" />
+              <MDXImage src="/images/campus connect/icons/large/mildAlert.svg" alt="Mild alert icon" />
               <p>Mild Alert</p>
             </div>
             <div class="icon-item">
-              <img src="/images/campus connect/icons/large/severeAlert.svg" alt="Severe alert icon" />
+              <MDXImage src="/images/campus connect/icons/large/severeAlert.svg" alt="Severe alert icon" />
               <p>Severe Alert</p>
             </div>
           </div>

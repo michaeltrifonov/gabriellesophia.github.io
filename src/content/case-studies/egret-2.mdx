@@ -30,6 +30,8 @@ visualDesign: true
 implementation: false
 ---
 
+import MDXImage from '../../components/MDXImage.tsx';
+
 <section id="overview" class="cs-section cs-overview">
   <div class="container">
     <div class="cs-section-grid">
@@ -38,7 +40,7 @@ implementation: false
       </div>
       <div class="cs-content">
         <p class="cs-large-text">
-          Six months after launching Egret's initial redesign (<a href="/case-studies/egret" style="color: #054DA7; text-decoration: underline;">see the original case study here</a>), user feedback revealed we'd only solved half the problem. While the workflow improvements were appreciated, the fundamental architecture wasn't scaling with enterprise needs.
+          Six months after launching Egret's initial redesign (<a href={`${import.meta.env.BASE_URL}case-studies/egret`} style="color: #054DA7; text-decoration: underline;">see the original case study here</a>), user feedback revealed we'd only solved half the problem. While the workflow improvements were appreciated, the fundamental architecture wasn't scaling with enterprise needs.
         </p>
         
         <div class="cs-meta-grid">
@@ -340,7 +342,7 @@ implementation: false
         </p>
         
         <div class="cs-image-container" style="margin: 32px 0;">
-          <img src="/images/Egret2.0/hceditor2.png" alt="Entity-based interface design showing program overview" />
+          <MDXImage src="/images/Egret2.0/hceditor2.png" alt="Entity-based interface design showing program overview" />
           <p class="cs-caption">Program entity page showing unified view of health metrics, resources, timelines, and actions</p>
         </div>
         

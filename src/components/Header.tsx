@@ -8,9 +8,9 @@ const Header: React.FC<HeaderProps> = ({ currentPath = '/' }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '/', label: 'Work', isActive: currentPath === '/' },
-    { href: '/about', label: 'About', isActive: currentPath === '/about' },
-    { href: '/Gabrielle Loeff Resume.pdf', label: 'Resume', target: '_blank', download: true },
+    { href: `${import.meta.env.BASE_URL}`, label: 'Work', isActive: currentPath === '/' },
+    { href: `${import.meta.env.BASE_URL}about`, label: 'About', isActive: currentPath === '/about' },
+    { href: `${import.meta.env.BASE_URL}Gabrielle Loeff Resume.pdf`, label: 'Resume', target: '_blank', download: true },
     { href: 'mailto:gabby.loeff@gmail.com', label: 'Get in Touch', className: 'contact-btn' },
   ];
 
@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ currentPath = '/' }) => {
     <header className="header">
       <div className="container">
         <nav className="nav">
-          <a href="/" className="logo">GSL</a>
+          <a href={`${import.meta.env.BASE_URL}`} className="logo">GSL</a>
           
           <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
             {navLinks.map((link, index) => (

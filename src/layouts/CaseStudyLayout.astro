@@ -36,7 +36,7 @@ const nextStudy = currentIndex < sortedCaseStudies.length - 1 ? sortedCaseStudie
     data={{
       headline: data.title,
       description: data.description,
-      image: data.heroImage,
+      image: data.heroImage.startsWith('/images/') ? `${import.meta.env.BASE_URL}${data.heroImage.slice(1)}` : data.heroImage,
       keywords: tags.join(', ')
     }} 
   />
@@ -64,7 +64,7 @@ const nextStudy = currentIndex < sortedCaseStudies.length - 1 ? sortedCaseStudie
         
         <!-- Hero Image -->
         <div class="cs-hero-image">
-          <img src={data.heroImage} alt={data.heroImageAlt} loading="eager" />
+          <img src={data.heroImage.startsWith('/images/') ? `${import.meta.env.BASE_URL}${data.heroImage.slice(1)}` : data.heroImage} alt={data.heroImageAlt} loading="eager" />
         </div>
       </div>
     </section>

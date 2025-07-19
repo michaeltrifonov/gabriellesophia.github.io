@@ -6,6 +6,8 @@ import ArtworkGallery from '../components/ArtworkGallery.jsx';
 import TrainingList from '../components/TrainingList.jsx';
 import '../styles/about.css';
 
+const base = import.meta.env.BASE_URL;
+
 const careerTimeline = [
   {
     period: "May 2024 - Present",
@@ -55,9 +57,9 @@ const skills = [
 ];
 
 const artworks = [
-  { src: "/images/IMG_5393.JPG", alt: "Original artwork - abstract painting", frameClass: "frame-1" },
-  { src: "/images/IMG_6795.jpeg", alt: "Original artwork - abstract painting", frameClass: "frame-2" },
-  { src: "/images/tryptich.png", alt: "Original artwork - triptych painting", frameClass: "frame-3" }
+  { src: `${import.meta.env.BASE_URL}images/IMG_5393.JPG`, alt: "Original artwork - abstract painting", frameClass: "frame-1" },
+  { src: `${import.meta.env.BASE_URL}images/IMG_6795.jpeg`, alt: "Original artwork - abstract painting", frameClass: "frame-2" },
+  { src: `${import.meta.env.BASE_URL}images/tryptich.png`, alt: "Original artwork - triptych painting", frameClass: "frame-3" }
 ];
 
 const trainingItems = [
@@ -90,7 +92,7 @@ const trainingItems = [
         </div>
         <div class="about-image-container">
           <div class="about-image">
-            <img src="/images/headshot.jpeg" alt="Gabrielle Sophia - UX Designer" class="profile-photo" />
+            <img src={`${base}images/headshot.jpeg`} alt="Gabrielle Sophia - UX Designer" class="profile-photo" />
           </div>
         </div>
       </div>
@@ -124,7 +126,7 @@ const trainingItems = [
       <div class="resume-header">
         <div class="resume-header-title">
           <h2 class="section-title">Career Timeline</h2>
-          <a href="/Gabrielle Loeff Resume.pdf" target="_blank" class="btn secondary-btn">Download Resume</a>
+          <a href={`${import.meta.env.BASE_URL}Gabrielle Loeff Resume.pdf`} target="_blank" class="btn secondary-btn">Download Resume</a>
         </div>
       </div>
       

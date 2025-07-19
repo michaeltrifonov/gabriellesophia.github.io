@@ -88,7 +88,7 @@ const HistoryPanel: React.FC = () => {
       {/* History Table Image */}
       <div className="history-image-container">
         <img 
-          src="/images/Egret/history-table.svg" 
+          src={`${import.meta.env.BASE_URL}images/Egret/history-table.svg`} 
           alt="History tracking interface showing cell-level changes" 
           className="history-image"
           onClick={handleImageClick}
