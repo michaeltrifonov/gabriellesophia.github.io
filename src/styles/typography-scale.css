@@ -221,23 +221,42 @@ html {
   padding-right: calc(80px * var(--global-scale)) !important;
 }
 
-/* Remove left padding when sidebar is hidden */
+/* Adjust padding when sidebar is hidden but maintain container integrity */
 @media (max-width: 1439px) {
   .cs-content-wrapper {
     padding-left: calc(60px * var(--global-scale)) !important;
     padding-right: calc(60px * var(--global-scale)) !important;
   }
+  
+  /* Ensure container maintains padding */
+  .cs-section .container {
+    padding-left: calc(2rem * var(--global-scale));
+    padding-right: calc(2rem * var(--global-scale));
+  }
 }
 
 @media (max-width: 1024px) {
-  .cs-content-wrapper {
+  .cs-content-wrapper,
+  .cs-hero-content,
+  .cs-nav-container {
     padding-left: calc(2rem * var(--global-scale)) !important;
     padding-right: calc(2rem * var(--global-scale)) !important;
   }
 }
 
+@media (max-width: 768px) {
+  .cs-content-wrapper,
+  .cs-hero-content,
+  .cs-nav-container {
+    padding-left: calc(1.5rem * var(--global-scale)) !important;
+    padding-right: calc(1.5rem * var(--global-scale)) !important;
+  }
+}
+
 @media (max-width: 480px) {
-  .cs-content-wrapper {
+  .cs-content-wrapper,
+  .cs-hero-content,
+  .cs-nav-container {
     padding-left: calc(1rem * var(--global-scale)) !important;
     padding-right: calc(1rem * var(--global-scale)) !important;
   }
