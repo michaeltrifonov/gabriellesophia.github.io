@@ -187,7 +187,7 @@ html {
 /* Prevent section titles from extending too far left */
 /* Match the Approach section's alignment which has margin: 0 30px */
 .cs-section-grid {
-  margin-left: 30px !important;
+  margin-left: 50px !important;  /* Increased from 30px to move titles further right */
   margin-right: 30px !important;
 }
 
