@@ -1,133 +1,208 @@
-import React, { useState, useRef } from 'react';
-import { getAssetPath } from '../utils/assets';
+import React, { useState, useMemo } from 'react';
+import '../styles/history-panel.css';
 
-interface RippleEffect {
+interface HistoryItem {
   id: number;
-  x: number;
-  y: number;
-}
-
-interface Tooltip {
-  id: number;
-  x: number;
-  y: number;
-  text: string;
+  group: string;
+  program: string;
+  deliverable: string;
+  headcountType: 'FF' | 'CT';
+  starling: boolean;
+  username: string;
+  userRole: string;
+  date: string;
+  previous: string;
+  current: string;
 }
 
 const HistoryPanel: React.FC = () => {
-  const [selectedFilter, setSelectedFilter] = useState('All Users');
-  const [notification, setNotification] = useState<string | null>(null);
-  const [ripples, setRipples] = useState<RippleEffect[]>([]);
-  const [tooltips, setTooltips] = useState<Tooltip[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const nextId = useRef(0);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const handleFilterApply = () => {
-    setNotification(`Filter applied: ${selectedFilter}`);
+  // Mock data matching the original
+  const historyItems: HistoryItem[] = [
+    {
+      id: 1,
+      group: 'SOLARIS',
+      program: 'Helios Matrix',
+      deliverable: 'Robot Performance characteriza...',
+      headcountType: 'FF',
+      starling: true,
+      username: '@AlexChen',
+      userRole: 'STL',
+      date: '08/01/2024 00:00',
+      previous: '0.50',
+      current: '2.00'
+    },
+    {
+      id: 2,
+      group: 'SOLARIS',
+      program: 'Photon Analysis',
+      deliverable: 'Spectrum Engine',
+      headcountType: 'FF',
+      starling: true,
+      username: '@MariaSanchez',
+      userRole: 'Resource Manager',
+      date: '07/30/2024 14:22',
+      previous: '0.50',
+      current: '2.00'
+    },
+    {
+      id: 3,
+      group: 'PRISM',
+      program: 'Refraction System',
+      deliverable: 'Light Pattern Framework',
+      headcountType: 'CT',
+      starling: false,
+      username: '@JaneDoe',
+      userRole: 'Admin',
+      date: '07/29/2024 14:30',
+      previous: '1.25',
+      current: '3.00'
+    },
+    {
+      id: 4,
+      group: 'NEXUS',
+      program: 'Central Core',
+      deliverable: 'Network Implementation',
+      headcountType: 'CT',
+      starling: true,
+      username: '@JohnSmith',
+      userRole: 'Resource Manager',
+      date: '07/25/2024 09:15',
+      previous: '0.75',
+      current: '1.50'
+    },
+    {
+      id: 5,
+      group: 'AURORA',
+      program: 'Borealis Project',
+      deliverable: 'Light System',
+      headcountType: 'FF',
+      starling: false,
+      username: '@SarahJohnson',
+      userRole: 'STL',
+      date: '07/23/2024 16:45',
+      previous: '1.00',
+      current: '1.75'
+    }
+  ];
+
+  // Filter items based on search
+  const filteredItems = useMemo(() => {
+    if (!searchQuery) return historyItems;
     
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-      setNotification(null);
-    }, 3000);
+    const query = searchQuery.toLowerCase();
+    return historyItems.filter(item => 
+      item.group.toLowerCase().includes(query) ||
+      item.program.toLowerCase().includes(query) ||
+      item.deliverable.toLowerCase().includes(query) ||
+      item.username.toLowerCase().includes(query) ||
+      item.userRole.toLowerCase().includes(query)
+    );
+  }, [searchQuery]);
+
+  const getRoleBadgeClass = (role: string) => {
+    switch(role) {
+      case 'STL':
+        return 'role-badge-stl';
+      case 'Admin':
+        return 'role-badge-admin';
+      case 'Resource Manager':
+        return 'role-badge-rm';
+      default:
+        return 'role-badge-default';
+    }
   };
 
-  const handleImageClick = (e: React.MouseEvent<HTMLImageElement>) => {
-    if (!containerRef.current) return;
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const id = nextId.current++;
-    
-    // Add ripple effect
-    setRipples(prev => [...prev, { id, x, y }]);
-    
-    // Add tooltip
-    setTooltips(prev => [...prev, { id, x, y, text: 'View change details' }]);
-    
-    // Remove ripple after animation
-    setTimeout(() => {
-      setRipples(prev => prev.filter(r => r.id !== id));
-    }, 1200);
-    
-    // Remove tooltip after 1.5 seconds
-    setTimeout(() => {
-      setTooltips(prev => prev.filter(t => t.id !== id));
-    }, 1500);
+  const getAvatarChar = (username: string) => {
+    return username.charAt(1).toUpperCase();
   };
 
   return (
-    <div className="history-panel" ref={containerRef}>
+    <div className="history-panel-container">
       {/* Header */}
-      <div className="history-header">
-        <h3 className="history-title">History Tracking</h3>
-        <p className="history-description">
-          Click on any cell in the table below to see its complete change history
-        </p>
-      </div>
-      
-      {/* Filter Controls */}
-      <div className="history-filters">
-        <select 
-          className="history-filter-select"
-          value={selectedFilter}
-          onChange={(e) => setSelectedFilter(e.target.value)}
-        >
-          <option value="All Users">All Users</option>
-          <option value="My Changes">My Changes</option>
-          <option value="Team Changes">Team Changes</option>
-          <option value="System Changes">System Changes</option>
-        </select>
-        <button 
-          className="history-apply-btn"
-          onClick={handleFilterApply}
-        >
-          Apply Filter
-        </button>
-      </div>
-      
-      {/* History Table Image */}
-      <div className="history-image-container">
-        <img 
-          src={getAssetPath('/images/Egret/history-table.svg')} 
-          alt="History tracking interface showing cell-level changes" 
-          className="history-image"
-          onClick={handleImageClick}
-        />
-        
-        {/* Ripple Effects */}
-        {ripples.map(ripple => (
-          <div
-            key={ripple.id}
-            className="ripple-effect"
-            style={{
-              left: `${ripple.x}px`,
-              top: `${ripple.y}px`,
-            }}
-          />
-        ))}
-        
-        {/* Tooltips */}
-        {tooltips.map(tooltip => (
-          <div
-            key={tooltip.id}
-            className="history-tooltip"
-            style={{
-              left: `${tooltip.x}px`,
-              top: `${tooltip.y - 30}px`,
-            }}
-          >
-            {tooltip.text}
-          </div>
-        ))}
-      </div>
-      
-      {/* Notification */}
-      {notification && (
-        <div className="history-notification">
-          {notification}
+      <div className="history-panel-header">
+        <h2>History</h2>
+        <div className="history-panel-actions">
+          <button className="history-action-btn" title="Export History">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </button>
+          <button className="history-action-btn" title="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
-      )}
+      </div>
+
+      {/* Search Bar */}
+      <div className="history-search-container">
+        <div className="history-search-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" className="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search History..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="history-search-input"
+          />
+        </div>
+      </div>
+
+      {/* History Items */}
+      <div className="history-items-container">
+        {filteredItems.length === 0 ? (
+          <div className="history-empty">No history items found.</div>
+        ) : (
+          filteredItems.map(item => (
+            <div key={item.id} className="history-item">
+              {/* Tags Section */}
+              <div className="history-item-tags">
+                <div className="tag-row">
+                  <span className="tag tag-group">{item.group}</span>
+                  <span className="tag tag-deliverable" title={item.deliverable}>
+                    {item.deliverable}
+                  </span>
+                </div>
+                <div className="tag-row">
+                  {item.starling && <span className="tag tag-starling">Starling</span>}
+                  <span className={`tag ${item.headcountType === 'FF' ? 'tag-ff' : 'tag-ct'}`}>
+                    {item.headcountType}
+                  </span>
+                  <span className={`tag ${getRoleBadgeClass(item.userRole)}`}>
+                    {item.userRole}
+                  </span>
+                </div>
+              </div>
+
+              {/* User Info */}
+              <div className="history-user-section">
+                <div className="history-user-info">
+                  <div className="user-avatar-small">{getAvatarChar(item.username)}</div>
+                  <span className="user-name">{item.username}</span>
+                </div>
+                <span className="change-date">{item.date}</span>
+              </div>
+
+              {/* Previous/Current Values */}
+              <div className="history-values-grid">
+                <div className="value-section">
+                  <div className="value-label">Previous</div>
+                  <div className="value-amount">{item.previous}</div>
+                </div>
+                <div className="value-section value-section-right">
+                  <div className="value-label">Current</div>
+                  <div className="value-amount">{item.current}</div>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };

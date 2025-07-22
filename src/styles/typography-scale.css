@@ -186,9 +186,19 @@ html {
 
 /* Prevent section titles from extending too far left */
 /* Match the Approach section's alignment which has margin: 0 30px */
-.cs-section-grid {
-  margin-left: 50px !important;  /* Increased from 30px to move titles further right */
-  margin-right: 30px !important;
+@media (min-width: 1025px) {
+  .cs-section-grid {
+    margin-left: 50px !important;  /* Desktop: move titles further right */
+    margin-right: 30px !important;
+  }
+}
+
+/* Remove these margins at smaller viewports */
+@media (max-width: 1024px) {
+  .cs-section-grid {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
 
 .cs-sidebar-title {
@@ -213,6 +223,11 @@ html {
   padding: calc(100px * var(--global-scale)) 0 !important;
 }
 
+/* Remove bottom padding from last section */
+.cs-section:last-of-type {
+  padding-bottom: 0 !important;
+}
+
 /* Container padding adjustments */
 .cs-hero-content,
 .cs-nav-container,
@@ -221,17 +236,11 @@ html {
   padding-right: calc(80px * var(--global-scale)) !important;
 }
 
-/* Adjust padding when sidebar is hidden but maintain container integrity */
+/* Responsive padding adjustments */
 @media (max-width: 1439px) {
   .cs-content-wrapper {
     padding-left: calc(60px * var(--global-scale)) !important;
     padding-right: calc(60px * var(--global-scale)) !important;
-  }
-  
-  /* Ensure container maintains padding */
-  .cs-section .container {
-    padding-left: calc(2rem * var(--global-scale));
-    padding-right: calc(2rem * var(--global-scale));
   }
 }
 

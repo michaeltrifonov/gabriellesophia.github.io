@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import '../styles/commenting-panel.css';
 
 interface Comment {
   id: number;

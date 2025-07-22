@@ -1,0 +1,227 @@
+/* Unfoldable Table Component CSS */
+.unfoldable-table-container {
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  width: 100%;
+  background-color: #fff;
+  margin: 2rem 0;
+  max-height: 500px; /* Set a max height for vertical scrolling if needed */
+  scrollbar-width: thin; /* For Firefox */
+}
+
+.unfoldable-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.9rem;
+  min-width: 800px; /* Ensures horizontal scrolling on smaller screens */
+}
+
+.unfoldable-table thead {
+  background-color: #f6f8fd;
+}
+
+.unfoldable-table th {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #1e293b;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.unfoldable-table .group-header {
+  background-color: #eef2ff;
+  text-align: center;
+  border-left: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+}
+
+.unfoldable-table td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+.unfoldable-table .program-row {
+  background-color: #f8fafc;
+}
+
+.unfoldable-table .deliverable-row {
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.unfoldable-table .deliverable-row.hidden {
+  display: none;
+}
+
+.unfoldable-table .program-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.unfoldable-table .deliverable-name {
+  padding-left: 2.5rem;
+  position: relative;
+}
+
+/* Filter button styling */
+.filter-btn {
+  background: none;
+  border: none;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #94a3b8;
+  border-radius: 3px;
+  margin-left: 5px;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.expander-cell {
+  width: 40px;
+  text-align: center;
+}
+
+.expander-btn {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.expander-btn:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.expander-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.expander-btn[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.priority-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.priority-low {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: rgb(6, 95, 70);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.priority-high {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: rgb(153, 27, 27);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* Deliverables column styling */
+.deliverables-list {
+  max-width: 250px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+/* Custom scrollbar styling */
+.unfoldable-table-container::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.unfoldable-table-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.unfoldable-table-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.unfoldable-table-container::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .unfoldable-table {
+    font-size: 0.8rem;
+  }
+  
+  .unfoldable-table th,
+  .unfoldable-table td {
+    padding: 0.6rem 0.5rem;
+  }
+  
+  .unfoldable-table .deliverable-name {
+    padding-left: 1.8rem;
+  }
+  
+  .unfoldable-table .deliverable-name::before {
+    left: 0.6rem;
+  }
+}
+
+/* Filter indicator tooltip */
+.filter-indicator {
+  position: fixed;
+  background-color: #334155;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  z-index: 10000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  white-space: nowrap;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.filter-indicator::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 110px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #334155;
+}
+
+/* Animation for row expansion and filter indicator */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.unfoldable-table .deliverable-row:not(.hidden) {
+  animation: fadeIn 0.3s ease-in-out;
+}

@@ -33,9 +33,9 @@ implementation: true
 import { useState, useEffect } from 'react';
 import CommentingPanel from '../../components/CommentingPanel.tsx';
 import HistoryPanel from '../../components/HistoryPanel.tsx';
+import UnfoldableTable from '../../components/UnfoldableTable.tsx';
 import MDXImage from '../../components/MDXImage.tsx';
-import '../../styles/commenting-panel.css';
-import '../../styles/history-panel.css';
+import '../../styles/case-studies/egret.css';
 
 {/* Note: This case study is password protected. The password functionality will be implemented in the layout. */}
 
@@ -43,7 +43,7 @@ import '../../styles/history-panel.css';
   <div class="container">
     <div class="cs-section-grid">
       <div class="cs-sidebar">
-        <h2 class="cs-sidebar-title">Overview</h2>
+        <h2 class="cs-sidebar-title" data-section-id="overview">Overview</h2>
       </div>
       <div class="cs-content">
         <p class="cs-large-text">
@@ -81,7 +81,7 @@ import '../../styles/history-panel.css';
   <div class="container">
     <div class="cs-section-grid">
       <div class="cs-sidebar">
-        <h2 class="cs-sidebar-title">The Problem</h2>
+        <h2 class="cs-sidebar-title" data-section-id="problem">The Problem</h2>
       </div>
       <div class="cs-content">
         <p class="cs-large-text">
@@ -129,23 +129,26 @@ import '../../styles/history-panel.css';
             <div class="cs-method-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 22V5c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H7l-4 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 9h10M7 13h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <div class="cs-method-content">
-              <h4>Fragmented Communication</h4>
-              <p>No integrated commenting system, forcing users to rely on external tools like email and Slack, creating communication silos and loss of context.</p>
+              <h4>Collaboration Barriers</h4>
+              <p>Users lacked effective in-tool communication features, forcing them to rely on external channels (Slack, email) and creating disconnected workflows and knowledge silos</p>
             </div>
           </div>
           <div class="cs-method">
             <div class="cs-method-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 12c0 1.2-4 6-9 6s-9-4.8-9-6c0-1.2 4-6 9-6s9 4.8 9 6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="3" y1="3" x2="7" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="17" y1="17" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <div class="cs-method-content">
-              <h4>Lack of Data Traceability</h4>
-              <p>Users couldn't track what changes were made, when, or by whom, making it difficult to understand data evolution and maintain accountability.</p>
+              <h4>Data Traceability Issues</h4>
+              <p>Users struggled to understand how and why data changed over time, with no effective tracking method in place as well as limited audit capabilities.</p>
             </div>
           </div>
         </div>
@@ -158,65 +161,189 @@ import '../../styles/history-panel.css';
   <div class="container">
     <div class="cs-section-grid">
       <div class="cs-sidebar">
-        <h2 class="cs-sidebar-title">User Groups</h2>
+        <h2 class="cs-sidebar-title" data-section-id="user-groups">User Groups</h2>
       </div>
       <div class="cs-content">
         <p class="cs-large-text">
-          Through stakeholder interviews and user research, I identified three distinct user groups, each with unique workflows and requirements that needed to be addressed in the redesign.
+          Egret stakeholders sit across all of Amazon Robotics and within different organizations. Customers and users are separate and both have different daily work streams, however user roles can overlap.
         </p>
         
+        <h3 class="cs-subtitle">Stakeholder Ecosystem</h3>
+        
+        <div class="cs-stakeholder-boxes">
+          <div class="cs-stakeholder-box cs-stakeholder-strategy">
+            <h4>Strategy Teams (Stakeholders)</h4>
+            <p>Fulfillment, Technology, and Central Strategy Teams, Pillar Strategy Teams, and AR Directors who align organizational strategies, reduce cost, increase speed, and need to track progress across multiple teams.</p>
+          </div>
+          
+          <div class="cs-stakeholder-box cs-stakeholder-leadership">
+            <h4>Leadership Teams (Consumers)</h4>
+            <p>Central Strategy Teams, Senior Managers, and AR Senior Leadership who efficiently prioritize staff programs, execute strategic plans, and provide leadership data to underpin business decisions.</p>
+          </div>
+          
+          <div class="cs-stakeholder-box cs-stakeholder-product">
+            <h4>Product & Resource Teams (Business)</h4>
+            <p>Egret Product Suite, Resource Owners, and Development Teams responsible for optimizing AR resources, reducing cost-to-serve, and solving customers' highest priority problems.</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">User Personas</h3>
+        
+        <p>Egret Users are broken down into distinct categories, each with specific responsibilities and needs:</p>
+        
         <div class="cs-personas">
+          {/* Program Managers/STL Persona */}
           <div class="cs-persona">
-            <div class="cs-persona-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+            <div class="cs-persona-header">
+              <div class="cs-persona-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="5" r="3" />
+                  <circle cx="5" cy="19" r="3" />
+                  <circle cx="12" cy="19" r="3" />
+                  <circle cx="19" cy="19" r="3" />
+                  <line x1="12" y1="8" x2="5" y2="16" />
+                  <line x1="12" y1="8" x2="12" y2="16" />
+                  <line x1="12" y1="8" x2="19" y2="16" />
+                </svg>
+              </div>
+              <div class="cs-persona-title">
+                <h4 class="cs-persona-name">Program Managers/STL</h4>
+                <p class="cs-persona-role">Primary User: Tracks resource allocation for specific programs and communicates resource needs</p>
+              </div>
             </div>
-            <h4>Group 1: Business Operations Partners</h4>
-            <p><strong>Primary users</strong> who make headcount forecasts against programs using Egret data editor.</p>
-            <ul>
-              <li>Need efficient bulk editing capabilities</li>
-              <li>Require clear visibility across multiple programs</li>
-              <li>Must track changes and maintain data accuracy</li>
-            </ul>
+            <div class="cs-persona-sections">
+              <div class="cs-persona-section">
+                <h4>Responsibilities</h4>
+                <ul>
+                  <li>Provide program and deliverable scoping</li>
+                  <li>Communicate with resource managers</li>
+                  <li>Negotiate headcount for program deliverables</li>
+                  <li>Tracks program and deliverable changes</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Needs</h4>
+                <ul>
+                  <li>Enhanced audit capabilities to track changes</li>
+                  <li>Integrated communication tools</li>
+                  <li>Better organization of scoped programs and deliverables</li>
+                  <li>Visibility into contributions to their program</li>
+                </ul>
+              </div>
+            </div>
           </div>
           
+          {/* Resource Managers Persona */}
           <div class="cs-persona">
-            <div class="cs-persona-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16 21V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+            <div class="cs-persona-header">
+              <div class="cs-persona-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <path d="M16 2v4" />
+                  <path d="M8 2v4" />
+                  <path d="M3 10h18" />
+                  <path d="M9 16l2 2 4-4" />
+                </svg>
+              </div>
+              <div class="cs-persona-title">
+                <h4 class="cs-persona-name">Resource Managers</h4>
+                <p class="cs-persona-role">Primary User: Responsible for planning and distributing headcount across multiple teams and programs</p>
+              </div>
             </div>
-            <h4>Group 2: Senior Leaders & Finance</h4>
-            <p><strong>Secondary users</strong> who primarily consume data through summary views for decision-making.</p>
-            <ul>
-              <li>Need high-level summaries and reports</li>
-              <li>Require data comparisons across quarters</li>
-              <li>Focus on budget and resource allocation</li>
-            </ul>
+            <div class="cs-persona-sections">
+              <div class="cs-persona-section">
+                <h4>Responsibilities</h4>
+                <ul>
+                  <li>Understand deliverable scope for involved programs</li>
+                  <li>Plan and distribute headcount across their teams for programs and deliverables</li>
+                  <li>Provide headcount estimates to Program managers</li>
+                  <li>Collaborate on resource allocation and monitor staffing availability</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Needs</h4>
+                <ul>
+                  <li>Collaborative headcount estimation tools</li>
+                  <li>Integration with existing operations systems</li>
+                  <li>Visibility into higher-level scoping</li>
+                  <li>User management capabilities</li>
+                  <li>Visibility into staffing availability</li>
+                </ul>
+              </div>
+            </div>
           </div>
           
+          {/* OP Managers/Admin Persona */}
           <div class="cs-persona">
-            <div class="cs-persona-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="10 9 9 9 8 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+            <div class="cs-persona-header">
+              <div class="cs-persona-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <div class="cs-persona-title">
+                <h4 class="cs-persona-name">OP Managers/Admin</h4>
+                <p class="cs-persona-role">Secondary User: Oversees program governance structures and administrative functions</p>
+              </div>
             </div>
-            <h4>Group 3: Program/Product Managers</h4>
-            <p><strong>Tertiary users</strong> who manage operational planning details and program-specific requirements.</p>
-            <ul>
-              <li>Need to update program metadata</li>
-              <li>Require collaboration features</li>
-              <li>Must maintain program documentation</li>
-            </ul>
+            <div class="cs-persona-sections">
+              <div class="cs-persona-section">
+                <h4>Responsibilities</h4>
+                <ul>
+                  <li>Set headcount targets at organization/program levels</li>
+                  <li>Manage program revisions and change control</li>
+                  <li>Categorize programs (ATL/BTL)</li>
+                  <li>Manage organizational structure</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Needs</h4>
+                <ul>
+                  <li>Strategic planning and insight into bottoms-up headcount</li>
+                  <li>System administration without developer support</li>
+                  <li>Program status and metadata controls</li>
+                  <li>Program classification capabilities</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          {/* Leadership Team Persona */}
+          <div class="cs-persona">
+            <div class="cs-persona-header">
+              <div class="cs-persona-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              </div>
+              <div class="cs-persona-title">
+                <h4 class="cs-persona-name">Leadership Team</h4>
+                <p class="cs-persona-role">Customer: Makes strategic decisions based on resource allocation across the organization</p>
+              </div>
+            </div>
+            <div class="cs-persona-sections">
+              <div class="cs-persona-section">
+                <h4>Responsibilities</h4>
+                <ul>
+                  <li>Set strategic direction and priorities</li>
+                  <li>Approve headcount targets and program allocations</li>
+                  <li>Make trade-off decisions between priorities</li>
+                  <li>Ensure alignment between resources and outcomes</li>
+                  <li>Maintain accountability for results</li>
+                  <li>Enforce governance policies</li>
+                </ul>
+              </div>
+              <div class="cs-persona-section">
+                <h4>Needs</h4>
+                <ul>
+                  <li>Holistic resource allocation view</li>
+                  <li>Planned vs. actual usage comparisons</li>
+                  <li>Resource constraint identification</li>
+                  <li>Forecasting capabilities for future needs</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -228,68 +355,103 @@ import '../../styles/history-panel.css';
   <div class="container">
     <div class="cs-section-grid">
       <div class="cs-sidebar">
-        <h2 class="cs-sidebar-title">Approach</h2>
+        <h2 class="cs-sidebar-title" data-section-id="approach">Approach</h2>
       </div>
       <div class="cs-content">
         <p class="cs-large-text">
-          My design approach focused on creating intuitive solutions that addressed the core pain points while maintaining the flexibility required by different user groups. The strategy centered on three main improvements: spreadsheet-style editing, integrated communication, and comprehensive data tracking.
+          My role in Egret began after requirements had been outlined and initial feedback had been received. In order to meet the 2025 OP timeline, I had eight weeks to onboard to the project, design, test, and iterate before development kicked off. I was tasked with designing and implementing an experience that addressed the main themes identified in prior research.
         </p>
         
-        <h3 class="cs-subtitle">Design Solutions</h3>
+        <p>To transform the Egret platform, I implemented a structured design process that focused on translating complex workflows into intuitive interfaces:</p>
+        
+        <div class="cs-findings-grid">
+          <div class="cs-finding">
+            <div class="cs-finding-number">01</div>
+            <div class="cs-finding-content">
+              <h4>Deep Dive Into Existing Research</h4>
+              <p>Analyzed survey results, focus group feedback, and the existing platform to understand pain points in detail.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">02</div>
+            <div class="cs-finding-content">
+              <h4>Design Solutions Development</h4>
+              <p>Created high-fidelity Figma prototypes addressing the key improvement areas: simplicity, usability, and data traceability.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">03</div>
+            <div class="cs-finding-content">
+              <h4>Two-Phase Testing Methodology</h4>
+              <p>Implemented a two-round usability testing approach using high-fidelity Figma prototypes first, then the live application.</p>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">04</div>
+            <div class="cs-finding-content">
+              <h4>Iterative Refinement</h4>
+              <p>Based on testing results, refined the designs to address specific usability issues before the final implementation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="design-process" class="cs-section cs-section-alt">
+  <div class="container">
+    <div class="cs-section-grid">
+      <div class="cs-sidebar">
+        <h2 class="cs-sidebar-title" data-section-id="design-process">Design Process</h2>
+      </div>
+      <div class="cs-content">
+        <p class="cs-large-text">
+          With the approach established, I proceeded to implement specific design solutions for each key user need. I focused on a methodical design process that would effectively address each challenge while maintaining a cohesive experience across the platform.
+        </p>
+        
+        <h3 class="cs-subtitle">Key Design Focus Areas</h3>
+        <p style={{ marginBottom: '3rem' }}>Based on my analysis of the existing platform and prior research, I developed targeted design solutions for three critical areas:</p>
         
         <div class="solution-feature">
           <div class="solution-feature-content">
-            <div class="solution-feature-header">
+            <div class="solution-feature-header" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
               <div class="cs-finding-number">01</div>
-              <h4>Spreadsheet-Style Multi-User Editing</h4>
+              <h4 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700 }}>Spreadsheet-Style Multi-User Editing</h4>
             </div>
             <p>Replaced the form-based editing approach with a more intuitive spreadsheet-style interface that allows direct inline editing, simultaneous collaboration, clear visual indicators of changes, and familiar interaction patterns for spreadsheet users.</p>
           </div>
           <div class="solution-feature-media">
-            {/* Interactive component would go here */}
-            <MDXImage src="/images/Egret/Headcount editor.png" alt="Spreadsheet-style editing interface" />
+            <UnfoldableTable client:load />
           </div>
         </div>
         
         <div class="solution-feature">
           <div class="solution-feature-content">
-            <div class="solution-feature-header">
+            <div class="solution-feature-header" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
               <div class="cs-finding-number">02</div>
-              <h4>Context-Rich Communication System</h4>
+              <h4 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700 }}>Context-Rich Communication System</h4>
             </div>
             <p>Designed an integrated commenting and notification system that enables direct commenting on cells, automatic team member tagging, smart notifications for changes, and complete communication records within the tool.</p>
           </div>
           <div class="solution-feature-media">
-            <MDXImage src="/images/Egret/Comments Panel (View only).png" alt="Commenting system interface" />
-            
-            {/* Interactive Commenting Panel Component */}
-            <div style={{ marginTop: '32px' }}>
-              <div id="commenting-panel-demo" style={{ maxWidth: '400px', margin: '0 auto' }}>
-                <CommentingPanel client:visible />
-              </div>
-              <p className="cs-caption">Interactive demo: Try searching for comments, or click "Add Comment" to see the form interface</p>
-            </div>
+            <CommentingPanel client:load />
           </div>
         </div>
         
         <div class="solution-feature">
           <div class="solution-feature-content">
-            <div class="solution-feature-header">
+            <div class="solution-feature-header" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
               <div class="cs-finding-number">03</div>
-              <h4>Comprehensive Data Traceability</h4>
+              <h4 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700 }}>Comprehensive Data Traceability</h4>
             </div>
             <p>Developed an audit and history tracking system providing cell-level access to changes, easy tracking of all modifications, timestamps with user identification, and powerful filtering and search capabilities.</p>
           </div>
           <div class="solution-feature-media">
-            <MDXImage src="/images/Egret/History with Truncated text.png" alt="History tracking interface" />
-            
-            {/* Interactive History Panel Component */}
-            <div style={{ marginTop: '32px' }}>
-              <div id="history-panel-demo" style={{ maxWidth: '600px', margin: '0 auto' }}>
-                <HistoryPanel client:visible />
-              </div>
-              <p className="cs-caption">Interactive demo: Click anywhere on the table to see ripple effects and tooltips. Try the filter dropdown.</p>
-            </div>
+            <HistoryPanel client:load />
           </div>
         </div>
       </div>
@@ -301,7 +463,7 @@ import '../../styles/history-panel.css';
   <div class="container">
     <div class="cs-section-grid">
       <div class="cs-sidebar">
-        <h2 class="cs-sidebar-title">Usability Testing</h2>
+        <h2 class="cs-sidebar-title" data-section-id="testing">Usability Testing</h2>
       </div>
       <div class="cs-content">
         <p class="cs-large-text">
@@ -368,12 +530,496 @@ import '../../styles/history-panel.css';
             <div class="cs-metric-label">Fewer Heuristic Violations<br /><span>(from 36 to 7 instances)</span></div>
           </div>
           <div class="cs-metric">
-            <div class="cs-metric-value">98.6%</div>
+            <div class="cs-metric-value">99%</div>
             <div class="cs-metric-label">Task Success Rate<br /><span>(from 95.3% to 98.6%)</span></div>
           </div>
         </div>
         
         <p>These improvements validated our design approach and directly addressed the three key areas identified in initial research: simplicity, usability, and data traceability.</p>
+        
+        <h3 class="cs-subtitle">Prototype Testing</h3>
+        <p>The first round of testing used high-fidelity Figma prototypes with participants across different user roles. Participants completed a series of key tasks to evaluate the initial design solutions.</p>
+        
+        <h4 class="cs-subheading">Initial User Feedback (UAT 1)</h4>
+        <p>After the first round of usability testing with Figma prototypes, participants provided feedback that showed promising initial reception:</p>
+        
+        <div class="cs-uat-metrics">
+          <div class="cs-uat-metric">
+            <div class="cs-uat-metric-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+              </svg>
+            </div>
+            <h4>Recommendation Likelihood</h4>
+            <div class="cs-uat-metric-value">3.9</div>
+            <div class="cs-uat-metric-label">out of 5</div>
+            <div class="cs-uat-metric-subtext">56% increase from baseline</div>
+          </div>
+          
+          <div class="cs-uat-metric">
+            <div class="cs-uat-metric-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h4>Design Approval Rate</h4>
+            <div class="cs-uat-metric-value">92%</div>
+            <div class="cs-uat-metric-label">approved to proceed</div>
+            <div class="cs-uat-metric-subtext">11 of 12 participants</div>
+          </div>
+        </div>
+        
+        <div class="cs-testing-focus">
+          <h4>Testing Tasks Focus</h4>
+          
+          <div class="cs-testing-section">
+            <h5>Multi-user Editable Table Tasks:</h5>
+            <div class="cs-testing-tasks">
+              <div class="cs-testing-task">
+                <div class="cs-task-number">1-2</div>
+                <div>Navigation and basic table interaction</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">3-4</div>
+                <div>Editing headcount values</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">5-7</div>
+                <div>Submitting and revising changes</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">8-9</div>
+                <div>Commenting and tagging functionality</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">10-11</div>
+                <div>History review</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cs-testing-section">
+            <h5>Summaries Pages Tasks:</h5>
+            <div class="cs-testing-tasks">
+              <div class="cs-testing-task">
+                <div class="cs-task-number">12</div>
+                <div>Navigating to summary views</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">13</div>
+                <div>Locating specific headcount data</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">14-15</div>
+                <div>Customizing table columns and views</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">16</div>
+                <div>Comparing group information</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h4 class="cs-subheading">Metric Collection Methodology</h4>
+        <p>To ensure a data-driven approach to usability evaluation, I implemented a comprehensive metrics collection system that tracked key performance indicators throughout testing sessions:</p>
+        
+        <div class="cs-gallery">
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat1Screenshots/alltime.png" alt="Overall Task Completion Time" />
+            <p class="cs-caption">Overall task completion time across all participants</p>
+          </div>
+          
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat1avgtime.png" alt="Round One Average Task Completion Time" />
+            <p class="cs-caption">Average task completion time by task</p>
+          </div>
+          
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat1misclicks.png" alt="Round One Misclick Rate" />
+            <p class="cs-caption">Misclick distribution across tasks</p>
+          </div>
+          
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat1Screenshots/success.png" alt="Task Success Rate" />
+            <p class="cs-caption">Completion of Task success rate</p>
+          </div>
+          
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat1heuristic.png" alt="Round One Heuristic Violations" />
+            <p class="cs-caption">Heuristic violations using Nielsen's usability principles</p>
+          </div>
+        </div>
+        
+        <p>This comprehensive metrics collection approach allowed me to precisely identify usability issues and prioritize improvements based on quantitative data rather than subjective opinions. The early testing revealed several critical usability issues:</p>
+        
+        <div class="cs-findings">
+          <div class="cs-finding">
+            <div class="cs-finding-number">01</div>
+            <div class="cs-finding-content">
+              <h4>Commenting System Issues</h4>
+              <p>Users struggled to find and properly tag comments to specific Programs and Groups. Testing revealed high misclick rates:</p>
+              <div class="cs-metric-block">
+                <div class="cs-metric-block-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                  </svg>
+                </div>
+                <div class="cs-metric-block-content">
+                  <div class="cs-metric-block-stats">
+                    <div>
+                      <div class="cs-metric-block-value">17</div>
+                      <div class="cs-metric-block-label">misclicks for navigation</div>
+                    </div>
+                    <div>
+                      <div class="cs-metric-block-value cs-metric-error">32</div>
+                      <div class="cs-metric-block-label">misclicks for commenting</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p>Users attempted to comment via search bar or struggled with the multi-tag selection process.</p>
+              <div class="cs-solution-section">
+                <p><strong>Solution:</strong> Implemented direct comment addition via the side menu next to each Program, which automatically applies the proper tags.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">02</div>
+            <div class="cs-finding-content">
+              <h4>History Panel Visibility</h4>
+              <p>Users had difficulty locating the History panel. Issues stemmed from prototype limitations regarding tooltip visibility.</p>
+              <div class="cs-metric-block">
+                <div class="cs-metric-block-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="cs-metric-block-content">
+                  <div class="cs-metric-block-value cs-metric-error">44s</div>
+                  <div class="cs-metric-block-label">average search time</div>
+                </div>
+              </div>
+              <div class="cs-solution-section">
+                <p><strong>Solution:</strong> Implemented tooltips on mouseover for icon buttons in the live application.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">03</div>
+            <div class="cs-finding-content">
+              <h4>Table Modifications in Summaries</h4>
+              <p>Users experienced high misclick rates and extended completion times when working with table modifications:</p>
+              <div class="cs-metric-grid">
+                <div class="cs-metric-block">
+                  <div class="cs-metric-block-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                  </div>
+                  <div class="cs-metric-block-content">
+                    <div class="cs-metric-block-value">33%</div>
+                    <div class="cs-metric-block-label">took alternative paths</div>
+                  </div>
+                </div>
+                <div class="cs-metric-block">
+                  <div class="cs-metric-block-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div class="cs-metric-block-content">
+                    <div class="cs-metric-block-value">83%</div>
+                    <div class="cs-metric-block-label">tried previous components</div>
+                  </div>
+                </div>
+              </div>
+              <p>Users expressed desire for Quip-like column/row hiding functionality.</p>
+              <div class="cs-solution-section">
+                <p><strong>Solution:</strong> Standardized table preferences by implementing column/row popovers and moving Group filters to the Preferences section.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Live Testing</h3>
+        <p>After implementing design improvements based on prototype testing feedback, we conducted a second round of testing with the same set of participants using the live application. This testing focused on key task areas with the redesigned interface:</p>
+        
+        <div class="cs-testing-focus">
+          <h4>Testing Tasks Focus</h4>
+          
+          <div class="cs-testing-section">
+            <h5>Multi-user Editable Table Tasks:</h5>
+            <div class="cs-testing-tasks">
+              <div class="cs-testing-task">
+                <div class="cs-task-number">1-4</div>
+                <div>Navigation and table sorting/filtering</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">5</div>
+                <div>Identifying editable elements</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">6-11</div>
+                <div>Making and revising headcount changes</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">7-8</div>
+                <div>Viewing totals across categories</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">12</div>
+                <div>Managing concurrent editing scenarios</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">13-14</div>
+                <div>Customizing table views</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cs-testing-section">
+            <h5>History Tasks:</h5>
+            <div class="cs-testing-tasks">
+              <div class="cs-testing-task">
+                <div class="cs-task-number">15</div>
+                <div>Accessing and filtering history data</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">16</div>
+                <div>Reviewing specific organizational changes</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cs-testing-section">
+            <h5>Audit Tasks:</h5>
+            <div class="cs-testing-tasks">
+              <div class="cs-testing-task">
+                <div class="cs-task-number">17-18</div>
+                <div>Navigating audit functionality</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">19</div>
+                <div>Filtering audit records</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">20-21</div>
+                <div>Identifying change authors and details</div>
+              </div>
+              <div class="cs-testing-task">
+                <div class="cs-task-number">22-24</div>
+                <div>Finding additional change information</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h4 class="cs-subheading">Metric Collection Methodology</h4>
+        <p>Using the same metrics approach as Round One, we captured comprehensive performance data to compare with our baseline results:</p>
+        
+        <div class="cs-gallery">
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat2Screenshots/totaltime.png" alt="Overall Task Completion Time" />
+            <p class="cs-caption">Overall task completion time across all participants in Round Two</p>
+          </div>
+          
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat2avgtime.png" alt="Round Two Average Task Completion Time" />
+            <p class="cs-caption">Average task completion time by task category</p>
+          </div>
+          
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat2misclicks.png" alt="Round Two Misclick Rate" />
+            <p class="cs-caption">Misclick distribution across test tasks</p>
+          </div>
+          
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat2Screenshots/success.png" alt="Task Success Rate" />
+            <p class="cs-caption">Success rate measurement with task completion tracking</p>
+          </div>
+          
+          <div class="cs-gallery-item">
+            <MDXImage src="/images/Egret/metrics/uat2heuristic.png" alt="Round Two Heuristic Violations" />
+            <p class="cs-caption">Heuristic violations using Nielsen's usability principles</p>
+          </div>
+        </div>
+        
+        <p>This comprehensive metrics collection approach demonstrated significant improvements in usability compared to Round One testing. The key findings include:</p>
+        
+        <div class="cs-findings">
+          <div class="cs-finding">
+            <div class="cs-finding-number">01</div>
+            <div class="cs-finding-content">
+              <h4>Commenting System Improvements</h4>
+              <p>The redesigned commenting system with automatic tagging showed dramatic improvements. Users reported finding the system "intuitive" and "much easier to use than before."</p>
+              <div class="cs-metric-block">
+                <div class="cs-metric-block-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                  </svg>
+                </div>
+                <div class="cs-metric-block-content">
+                  <div class="cs-metric-block-stats">
+                    <div>
+                      <div class="cs-metric-block-value">76%</div>
+                      <div class="cs-metric-block-label">fewer misclicks</div>
+                    </div>
+                    <div>
+                      <div class="cs-metric-block-value">40%</div>
+                      <div class="cs-metric-block-label">faster completion</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cs-solution-section">
+                <p><strong>Result:</strong> Comments were tagged correctly 100% of the time, eliminating a major source of friction.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">02</div>
+            <div class="cs-finding-content">
+              <h4>History Panel Adoption</h4>
+              <p>With improved visibility and labeling, 100% of users successfully located and used the history panel. Task completion time decreased significantly with zero critical errors recorded.</p>
+              <div class="cs-metric-block">
+                <div class="cs-metric-block-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="cs-metric-block-content">
+                  <div class="cs-metric-transition">
+                    <span class="cs-metric-from">44s</span>
+                    <span class="cs-metric-arrow">→</span>
+                    <span class="cs-metric-to">15s</span>
+                  </div>
+                  <div class="cs-metric-block-label">average access time improvement</div>
+                </div>
+              </div>
+              <div class="cs-solution-section">
+                <p><strong>Result:</strong> 65% reduction in task completion time, with average access time dropping from 44 to 15 seconds.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cs-finding">
+            <div class="cs-finding-number">03</div>
+            <div class="cs-finding-content">
+              <h4>Enhanced Table Interactions</h4>
+              <p>Spreadsheet-like editing capabilities and improved column/row operations delivered exceptional results. Users praised the "familiar" interaction model.</p>
+              <div class="cs-metric-block">
+                <div class="cs-metric-block-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div class="cs-metric-block-content">
+                  <div class="cs-metric-block-stats">
+                    <div>
+                      <div class="cs-metric-block-value">70%</div>
+                      <div class="cs-metric-block-label">fewer misclicks</div>
+                    </div>
+                    <div>
+                      <div class="cs-metric-block-value">83%</div>
+                      <div class="cs-metric-block-label">better success rate</div>
+                    </div>
+                    <div>
+                      <div class="cs-metric-block-value">3x</div>
+                      <div class="cs-metric-block-label">faster completion</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cs-solution-section">
+                <p><strong>Result:</strong> Users were able to complete table customization tasks 3x faster than in Round One testing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Data Comparison Between Sessions</h3>
+        
+        <div class="cs-iterations">
+          <h4 class="cs-micro-title">Average Task Completion Time</h4>
+          <div class="cs-iteration-container">
+            <div class="cs-iteration-item">
+              <h5>Round One</h5>
+              <MDXImage src="/images/Egret/metrics/uat1avgtime.png" alt="Average task time before redesign" />
+              <p>Initial testing showed an average task completion time of 1:49 across all test scenarios.</p>
+            </div>
+            <div class="cs-iteration-arrow">→</div>
+            <div class="cs-iteration-item">
+              <h5>Round Two</h5>
+              <MDXImage src="/images/Egret/metrics/uat2avgtime.png" alt="Average task time after redesign" />
+              <p>After redesign, average task completion time dropped to 1:25, representing a <span class="cs-metric-highlight">22% improvement</span>.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cs-iterations">
+          <h4 class="cs-micro-title">Comparison of Task Completion Time for Same Tasks</h4>
+          <div class="cs-iteration-container cs-iteration-full">
+            <div class="cs-iteration-item">
+              <MDXImage src="/images/Egret/metrics/uat2Screenshots/comparisonTime.png" alt="Task time comparison between Round One and Round Two" />
+              <p>Detailed feature-by-feature comparison showing time improvements across all task categories, with editing and viewing history showing the most dramatic improvements (<span class="cs-metric-highlight">65%</span> and <span class="cs-metric-highlight">61%</span> respectively).</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cs-iterations">
+          <h4 class="cs-micro-title">Misclick Rate</h4>
+          <div class="cs-iteration-container">
+            <div class="cs-iteration-item">
+              <h5>Round One</h5>
+              <MDXImage src="/images/Egret/metrics/uat1misclicks.png" alt="Misclick rate before redesign" />
+              <p>Users experienced frequent misclicks, particularly in the commenting and table customization features.</p>
+            </div>
+            <div class="cs-iteration-arrow">→</div>
+            <div class="cs-iteration-item">
+              <h5>Round Two</h5>
+              <MDXImage src="/images/Egret/metrics/uat2misclicks.png" alt="Misclick rate after redesign" />
+              <p>Redesigned interaction patterns reduced misclicks by <span class="cs-metric-highlight">70%</span> across all tested features.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cs-iterations">
+          <h4 class="cs-micro-title">Task Success Rate</h4>
+          <div class="cs-iteration-container">
+            <div class="cs-iteration-item">
+              <h5>Round One</h5>
+              <MDXImage src="/images/Egret/metrics/uat1Screenshots/success.png" alt="Success rate before redesign" />
+              <p>Initial testing showed significant task failures, with only 68% of tasks completed successfully.</p>
+            </div>
+            <div class="cs-iteration-arrow">→</div>
+            <div class="cs-iteration-item">
+              <h5>Round Two</h5>
+              <MDXImage src="/images/Egret/metrics/uat2Screenshots/success.png" alt="Success rate after redesign" />
+              <p>After redesign, task success rate improved to <span class="cs-metric-highlight">94%</span>, with most participants completing all tasks without assistance.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cs-iterations">
+          <h4 class="cs-micro-title">Heuristic Violations</h4>
+          <div class="cs-iteration-container">
+            <div class="cs-iteration-item">
+              <h5>Round One</h5>
+              <MDXImage src="/images/Egret/metrics/uat1heuristic.png" alt="Heuristic violations before redesign" />
+              <p>Initial design contained numerous usability issues according to Nielsen's heuristic evaluation standards.</p>
+            </div>
+            <div class="cs-iteration-arrow">→</div>
+            <div class="cs-iteration-item">
+              <h5>Round Two</h5>
+              <MDXImage src="/images/Egret/metrics/uat2heuristic.png" alt="Heuristic violations after redesign" />
+              <p>Targeted improvements resulted in an <span class="cs-metric-highlight">80% reduction</span> in observed heuristic violations.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -383,62 +1029,115 @@ import '../../styles/history-panel.css';
   <div class="container">
     <div class="cs-section-grid">
       <div class="cs-sidebar">
-        <h2 class="cs-sidebar-title">Outcome</h2>
+        <h2 class="cs-sidebar-title" data-section-id="outcome">Outcome</h2>
       </div>
       <div class="cs-content">
         <p class="cs-large-text">
-          The redesigned Egret platform successfully transformed from a tool at risk of deprecation to an essential component of Amazon Robotics' operational planning ecosystem. The improvements not only solved immediate usability issues but also established a foundation for future enhancements.
+          The redesigned Egret platform represented a complete transformation from a frustrating form-based tool to an intuitive collaborative workspace. The design addressed all three key improvement areas through a completely revamped interface and user experience.
         </p>
         
-        <h3 class="cs-subtitle">Key Achievements</h3>
+        <h3 class="cs-subtitle">The Headcount Editor: Core of the Experience</h3>
+        <p>
+          At the heart of the redesign was the Headcount Editor, a spreadsheet-style interface that provided a familiar, efficient way for users to manage resource allocations across teams and programs.
+        </p>
         
-        <div class="cs-outcomes">
-          <div class="cs-outcome">
-            <div class="cs-outcome-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h4>Customer Satisfaction</h4>
-            <p>Increased from 2.5 to 4.5 out of 5, representing a 76% improvement in user satisfaction scores</p>
+        <div class="cs-image-container">
+          <MDXImage src="/images/Egret/Headcount editor.png" alt="Headcount Editor" />
+          <p class="cs-caption">The redesigned Headcount Editor with multi-user collaborative editing capabilities</p>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-          
-          <div class="cs-outcome">
-            <div class="cs-outcome-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="10" stroke="#0050FF" stroke-width="2"/>
-                <polyline points="12 6 12 12 16 14" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h4>Efficiency Gains</h4>
-            <p>22% reduction in task completion time and 10-15% development efficiency improvement</p>
+          <div class="cs-highlight-content">
+            <p>Key features of the Headcount Editor included direct inline editing, visible user presence indicators, program filters, column customization, and integrated commenting—all designed to maximize efficiency and collaboration.</p>
           </div>
-          
-          <div class="cs-outcome">
-            <div class="cs-outcome-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="9" cy="7" r="4" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h4>User Adoption</h4>
-            <p>Platform saved from deprecation with strong user adoption across all three user groups</p>
+        </div>
+
+        <h3 class="cs-subtitle">Commenting System: Bridging Communication Gaps</h3>
+        <p>
+          A major challenge in the previous version was fragmented communication across multiple channels. The new contextual commenting system integrated discussions directly into the workflow, allowing users to comment on specific changes in addition to existing supplementary Slack channels and email communication.
+        </p>
+        
+        <div class="cs-image-container">
+          <MDXImage src="/images/Egret/comments.gif" alt="Contextual Commenting System Animation" />
+          <p class="cs-caption">The comments panel with integrated tagging of user roles, programs, and deliverables</p>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-          
-          <div class="cs-outcome">
-            <div class="cs-outcome-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M14 2V8H20" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="16" y1="13" x2="8" y2="13" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="16" y1="17" x2="8" y2="17" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="10 9 9 9 8 9" stroke="#0050FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h4>Organizational Impact</h4>
-            <p>Demonstrated value of UX design, leading to expanded UX team and increased investment</p>
+          <div class="cs-highlight-content">
+            <p>The commenting system allows users to communicate via their role type around specific programs and deliverables. This enables greater visibility, in-context discussion threads, while also preserving comment history.</p>
+          </div>
+        </div>
+
+        <h3 class="cs-subtitle">History Panel: Transparent Data Tracking</h3>
+        <p>
+          Data traceability was a critical requirement for the platform. The redesigned history panel provided cell-level access to all historical changes, allowing users to see who made changes, when they occurred, and the specific values that were modified.
+        </p>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>The History panel displays changes with filters for Groups, Programs, and Deliverables, each marked with visual badges. It tracks edits made in the live editor before submission. Once submitted, these changes become finalized within OP revisions and are used for actual headcount allocation.</p>
+          </div>
+        </div>
+
+        <h3 class="cs-subtitle">Summary Views: Data-Driven Decision Making</h3>
+        <p>
+          To support leadership and program-level decision making, we created customizable summary views that aggregated estimates and displayed them in formats optimized for different user roles and use cases.
+        </p>
+        
+        <div class="cs-image-container">
+          <MDXImage src="/images/Egret/summaries.gif" alt="Summary Views Animation" />
+          <p class="cs-caption">A snapshot of the different levels of data for operational planning estimates.</p>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>Summary views include a tabular display of headcount allocation data aggregated at multiple levels, allowing users to easily analyze and compare resource distribution across different hierarchies.</p>
+          </div>
+        </div>
+
+        <h3 class="cs-subtitle">Audit System: Accountability and Compliance</h3>
+        <p>
+          For organizational compliance and accountability requirements, the audit system provided comprehensive tracking of all system activities, with detailed logs, notifications for critical changes, and role-based access controls.
+        </p>
+        
+        <div class="cs-image-container">
+          <MDXImage src="/images/Egret/audits.gif" alt="Audit System Animation" />
+          <p class="cs-caption">The audit system interface showing detailed activity logs, filtering capabilities, and role-based access controls</p>
+        </div>
+        
+        <div class="cs-highlight-block">
+          <div class="cs-highlight-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.4 7.2L20 8.4L16 12.4L17.2 18L12 15.4L6.8 18L8 12.4L4 8.4L9.6 7.2L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 21C5 21 7 19 12 19C17 19 19 21 19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cs-highlight-content">
+            <p>The audit system included filterable activity logs, detailed event records, notification rules for critical changes, and role-based access controls—meeting organizational compliance requirements while providing actionable insights.</p>
           </div>
         </div>
       </div>
@@ -450,37 +1149,206 @@ import '../../styles/history-panel.css';
   <div class="container">
     <div class="cs-section-grid">
       <div class="cs-sidebar">
-        <h2 class="cs-sidebar-title">Impact</h2>
+        <h2 class="cs-sidebar-title" data-section-id="impact">Impact</h2>
       </div>
       <div class="cs-content">
         <p class="cs-large-text">
-          Beyond the immediate improvements to the platform, this project had far-reaching impacts on both the organization's approach to product development and the perception of UX design within Amazon Robotics.
+          The redesigned Egret platform transformed from a tool at risk of deprecation to a vital system with overwhelming user approval. Through systematic UX improvements, we not only enhanced usability but also delivered significant business value and organizational change.
         </p>
         
-        <div class="cs-highlight-block">
-          <div class="cs-highlight-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 21V19C20 17.9391 19.5786 16.9217 19.0711 16.4142C18.5636 15.9066 17.8565 15.6428 16.1173 15.5523" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M8 21V19C8 17.9391 8.42143 16.9217 9.17157 16.1716C9.92172 15.4214 10.9391 15 12 15H16C17.0609 15 18.0783 15.4214 18.8284 16.1716C19.5786 16.9217 20 17.9391 20 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <h3 class="cs-subtitle">User Experience Survey Results</h3>
+        <p>Following the second round of user acceptance testing, we surveyed 11 participants across different organizations to measure the impact of our redesigned workflows. The results validated our design approach with strong scores across all key metrics:</p>
+        
+        <div class="metric-cards-container">
+          {/* Collaboration Enhancement Card */}
+          <div class="metric-card">
+            <div class="metric-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h4 class="metric-title">Collaboration Enhancement</h4>
+            <div class="metric-score">4.36</div>
+            <div class="metric-label">out of 5</div>
+            <div class="metric-visual">
+              <div class="circular-progress">
+                <svg width="120" height="120">
+                  <circle cx="60" cy="60" r="54" class="progress-bg"></circle>
+                  <circle cx="60" cy="60" r="54" class="progress-fill" 
+                          style={{strokeDasharray: '339.29', strokeDashoffset: '43.48'}}></circle>
+                </svg>
+              </div>
+              <div class="percentage-text">87.2% positive response</div>
+            </div>
           </div>
-          <div class="cs-highlight-content">
-            <p><strong>Presented to Leadership:</strong> The project's success was presented to senior leadership, securing budget approval for expanding the UX team and establishing UX as a critical function within the organization.</p>
+          
+          {/* Work Efficiency Card */}
+          <div class="metric-card">
+            <div class="metric-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h4 class="metric-title">Work Efficiency</h4>
+            <div class="metric-score">4.36</div>
+            <div class="metric-label">out of 5</div>
+            <div class="metric-visual">
+              <div class="bar-progress">
+                <div class="bar-fill"></div>
+              </div>
+              <div class="percentage-text">87.2% improvement expected</div>
+            </div>
+          </div>
+          
+          {/* Recommendation Likelihood Card */}
+          <div class="metric-card">
+            <div class="metric-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+              </svg>
+            </div>
+            <h4 class="metric-title">Recommendation Likelihood</h4>
+            <div class="metric-score">4.45</div>
+            <div class="metric-label">out of 5</div>
+            <div class="metric-visual">
+              <div class="star-rating">
+                <div class="star filled">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <div class="star filled">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <div class="star filled">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <div class="star filled">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <div class="star half-filled">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <linearGradient id="half-star-gradient">
+                        <stop offset="50%" style={{stopColor:'#0050FF'}} />
+                        <stop offset="50%" style={{stopColor:'#e0e0e0'}} />
+                      </linearGradient>
+                    </defs>
+                    <path fill="url(#half-star-gradient)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="percentage-text">89% would recommend</div>
+            </div>
           </div>
         </div>
         
-        <h3 class="cs-subtitle">Long-term Benefits</h3>
+        <div class="highlight-quote" style={{marginTop: '40px'}}>
+          <div class="highlight-quote-highlight"></div>
+          <blockquote>Huge kudos to the Falcon/Egret team for knocking it out of the park yet again! Entering headcount during a serious time crunch became so much easier with the help of the sandbox feature. The team's responsiveness is absolutely top-notch, handling every question I send their way with speed and precision. Their bias for action and customer obsession are truly commendable.</blockquote>
+          <cite>Program Manager</cite>
+        </div>
         
-        <ul class="cs-list">
-          <li><strong>Cultural Shift:</strong> The project demonstrated the tangible value of user-centered design, shifting organizational perception from "nice to have" to "essential for success"</li>
-          <li><strong>Process Improvement:</strong> Established a framework for incorporating UX testing and iterative design into the product development lifecycle</li>
-          <li><strong>Resource Allocation:</strong> Success metrics justified additional headcount and resources for UX design across other Amazon Robotics products</li>
-          <li><strong>Knowledge Transfer:</strong> Created documentation and processes that enabled consistent UX practices across teams</li>
-        </ul>
+        <div class="highlight-quote" style={{marginTop: '24px'}}>
+          <div class="highlight-quote-highlight"></div>
+          <blockquote>Thank you so much!!! You all are awesome! The sandbox makes it ridiculously simple! I love the new UI - thanks to the entire team.</blockquote>
+          <cite>Program Manager</cite>
+        </div>
         
-        <div class="cs-note-block">
-          <p>The success of this project fundamentally changed how Amazon Robotics approaches product development, establishing UX design as a critical success factor for internal tools and platforms.</p>
+        <h3 class="cs-subtitle">Business Impact</h3>
+        
+        <p>Beyond the user sentiment metrics, the redesigned Egret platform delivered significant business value:</p>
+        
+        <div class="cs-impact-grid">
+          <div class="cs-impact-card">
+            <div class="cs-impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </div>
+            <h4 class="cs-impact-title">User Approval</h4>
+            <div class="cs-impact-value">100%</div>
+            <p class="cs-impact-description">Of participants approved of the new experience in post-implementation testing</p>
+          </div>
+          
+          <div class="cs-impact-card">
+            <div class="cs-impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+              </svg>
+            </div>
+            <h4 class="cs-impact-title">Customer Satisfaction</h4>
+            <div class="cs-impact-value">76%</div>
+            <p class="cs-impact-description">Increase in CSAT score (from 2.5 to 4.5)</p>
+          </div>
+          
+          <div class="cs-impact-card">
+            <div class="cs-impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 17 10 11 4 5"></polyline>
+                <line x1="12" y1="19" x2="20" y2="19"></line>
+              </svg>
+            </div>
+            <h4 class="cs-impact-title">Development Efficiency</h4>
+            <div class="cs-impact-value">10-15%</div>
+            <p class="cs-impact-description">Efficiency gain with reduced iterations (from 7 rounds to 1 for key features)</p>
+          </div>
+        </div>
+        
+        <h3 class="cs-subtitle">Organizational UX Development</h3>
+        
+        <p>After completing the project, I led several "paper reads" of the case study with organizational leadership, including the head of the organization. These presentations demonstrated the value of UX in creating efficient, user-friendly enterprise tools and directly led to significant organizational changes that represent progress in building UX maturity within the organization and establishing user-centered design as a core value in product development.</p>
+        
+        <div class="cs-impact-grid">
+          <div class="cs-impact-card">
+            <div class="cs-impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h4 class="cs-impact-title">UX Team Growth</h4>
+            <div class="cs-impact-value">+1</div>
+            <p class="cs-impact-description">Project success led to hiring of a second UX designer to expand UX capacity</p>
+          </div>
+          
+          <div class="cs-impact-card">
+            <div class="cs-impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 8 9 8 11"></polyline>
+              </svg>
+            </div>
+            <h4 class="cs-impact-title">Established UX Process</h4>
+            <div class="cs-impact-value">3-Phase</div>
+            <p class="cs-impact-description">Created repeatable methodology now applied to other enterprise applications</p>
+          </div>
+          
+          <div class="cs-impact-card">
+            <div class="cs-impact-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+            </div>
+            <h4 class="cs-impact-title">Strategic UX Involvement</h4>
+            <div class="cs-impact-value">Proactive</div>
+            <p class="cs-impact-description">Increased UX participation in early project phases & executive discussions</p>
+          </div>
         </div>
       </div>
     </div>
@@ -491,41 +1359,55 @@ import '../../styles/history-panel.css';
   <div class="container">
     <div class="cs-section-grid">
       <div class="cs-sidebar">
-        <h2 class="cs-sidebar-title">Reflections</h2>
+        <h2 class="cs-sidebar-title" data-section-id="reflections">Reflections</h2>
       </div>
       <div class="cs-content">
-        <p class="cs-large-text">
-          This project reinforced the importance of data-driven design decisions and the value of comprehensive usability testing. Working within the constraints of an existing system while delivering significant improvements taught me valuable lessons about pragmatic design solutions.
-        </p>
+        <h3 class="cs-subtitle">Challenges</h3>
         
-        <h3 class="cs-subtitle">Key Learnings</h3>
-        
-        <div class="cs-learnings">
-          <div class="cs-learning">
-            <h4>Quantifying UX Impact</h4>
-            <p>By implementing rigorous metrics collection from the start, I was able to demonstrate clear ROI on UX investment, making it easier to secure buy-in for future projects.</p>
+        <div class="reflection-grid">
+          <div class="reflection-card">
+            <div class="reflection-number">01</div>
+            <h4 class="reflection-title">Joining Mid-Project</h4>
+            <p class="reflection-description">
+              Diving into a project where initial research had already been conducted required quickly understanding the technical and user context without having been part of the initial discovery phase.
+            </p>
           </div>
           
-          <div class="cs-learning">
-            <h4>Iterative Testing Value</h4>
-            <p>The two-phase testing approach allowed us to catch and fix issues before development, saving significant time and resources while ensuring a better final product.</p>
-          </div>
-          
-          <div class="cs-learning">
-            <h4>Stakeholder Communication</h4>
-            <p>Regular updates with quantifiable progress helped maintain stakeholder confidence even when initial feedback was challenging.</p>
-          </div>
-          
-          <div class="cs-learning">
-            <h4>Technical Constraints as Design Drivers</h4>
-            <p>Working within the limitations of the existing technical infrastructure forced creative solutions that often resulted in simpler, more elegant designs.</p>
+          <div class="reflection-card">
+            <div class="reflection-number">02</div>
+            <h4 class="reflection-title">Prototype Limitations</h4>
+            <p class="reflection-description">
+              Creating realistic test scenarios in a prototype environment proved challenging – users sometimes struggled with generic organization names and test data, requiring additional context during testing sessions.
+            </p>
           </div>
         </div>
         
-        <div class="cs-quote">
-          <blockquote>
-            <p>"The Egret redesign didn't just save a critical tool from deprecation—it demonstrated the transformative power of user-centered design within our organization, paving the way for a broader UX practice at Amazon Robotics."</p>
-          </blockquote>
+        <h3 class="cs-subtitle">Key Learnings</h3>
+        
+        <div class="reflection-grid">
+          <div class="reflection-card">
+            <div class="reflection-number">01</div>
+            <h4 class="reflection-title">Data-Driven Design Validation</h4>
+            <p class="reflection-description">
+              Combining qualitative heuristic evaluation with quantitative usability metrics created a much more compelling case for design changes than either approach alone could have achieved.
+            </p>
+          </div>
+          
+          <div class="reflection-card">
+            <div class="reflection-number">02</div>
+            <h4 class="reflection-title">Enterprise UX Balance</h4>
+            <p class="reflection-description">
+              Gained valuable insights into balancing ideal user experience against technical constraints and business requirements in complex operational systems, particularly in data-heavy enterprise applications.
+            </p>
+          </div>
+          
+          <div class="reflection-card">
+            <div class="reflection-number">03</div>
+            <h4 class="reflection-title">Methodical Testing Approach</h4>
+            <p class="reflection-description">
+              The systematic approach to testing and metrics collection reinforced how critical it is to establish baseline measurements before implementing design changes in enterprise environments.
+            </p>
+          </div>
         </div>
       </div>
     </div>

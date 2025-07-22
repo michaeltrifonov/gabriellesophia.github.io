@@ -1,0 +1,656 @@
+/* Egret Case Study Specific Styles */
+
+/* Persona and stakeholder styles now in shared case-study.css */
+
+/* UAT Metrics Cards */
+.cs-uat-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 30px 0 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cs-uat-metric {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 28px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.cs-uat-metric:nth-child(1) { animation-delay: 0.1s; }
+.cs-uat-metric:nth-child(2) { animation-delay: 0.2s; }
+
+.cs-uat-metric:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.cs-uat-metric-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 80, 255, 0.1);
+  border-radius: 50%;
+}
+
+.cs-uat-metric-icon svg {
+  width: 24px;
+  height: 24px;
+  color: #0050FF;
+}
+
+.cs-uat-metric h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.cs-uat-metric-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0050FF;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.cs-uat-metric-label {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.cs-uat-metric-subtext {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+}
+
+/* Testing Focus Section */
+.cs-testing-focus {
+  background-color: rgba(0, 80, 255, 0.05);
+  border-radius: 12px;
+  padding: 24px 30px;
+  margin: 20px 0 30px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cs-testing-focus h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.cs-testing-section {
+  margin-bottom: 20px;
+}
+
+.cs-testing-section h5 {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.cs-testing-tasks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.cs-testing-task {
+  display: flex;
+  align-items: flex-start;
+}
+
+.cs-task-number {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 50%;
+  background-color: rgba(0, 80, 255, 0.1);
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  flex-shrink: 0;
+  color: rgba(0, 80, 255, 0.8);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Metric Blocks */
+.cs-metric-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 16px 0;
+  padding: 16px;
+  background-color: rgba(0, 80, 255, 0.04);
+  border-radius: 8px;
+  border-left: 4px solid #0050FF;
+}
+
+.cs-metric-block-icon {
+  min-width: 40px;
+  height: 40px;
+  background-color: rgba(0, 80, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-metric-block-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #0050FF;
+}
+
+.cs-metric-block-content {
+  flex: 1;
+}
+
+.cs-metric-block-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0050FF;
+  line-height: 1;
+}
+
+.cs-metric-block-value.cs-metric-error {
+  color: #FF3B30;
+}
+
+.cs-metric-block-label {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.cs-metric-block-stats {
+  display: flex;
+  gap: 24px;
+}
+
+.cs-metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.cs-metric-grid .cs-metric-block {
+  margin: 0;
+}
+
+/* Solution Features */
+.solution-feature {
+  margin-bottom: 5rem;
+  margin-top: 3rem;
+}
+
+.solution-feature:first-child {
+  margin-top: 3rem;
+}
+
+.solution-feature:last-child {
+  margin-bottom: 0;
+}
+
+.solution-feature-content {
+  margin-bottom: 2rem;
+}
+
+.solution-feature-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.solution-feature-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.solution-feature-media {
+  margin-bottom: 2rem;
+}
+
+.solution-feature-media .cs-caption {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Solution Section */
+.cs-solution-section {
+  background-color: rgba(0, 80, 255, 0.04);
+  border-left: 3px solid #0050FF;
+  padding: 16px 16px 16px 20px;
+  margin-top: 20px;
+  border-radius: 0 8px 8px 0;
+}
+
+.cs-solution-section p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.cs-solution-section strong {
+  color: #0050FF;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* Metric Transition */
+.cs-metric-transition {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.cs-metric-from {
+  font-size: 24px;
+  font-weight: 700;
+  color: #FF3B30;
+}
+
+.cs-metric-arrow {
+  font-size: 18px;
+  color: #666;
+}
+
+.cs-metric-to {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0050FF;
+}
+
+/* Metric Highlight */
+.cs-metric-highlight {
+  display: inline-block;
+  position: relative;
+  font-weight: 600;
+  color: #0050FF;
+}
+
+.cs-metric-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: rgba(0, 80, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Gallery Items */
+.cs-gallery {
+  margin: 2rem 0;
+}
+
+.cs-gallery-item {
+  margin-bottom: 2rem;
+}
+
+.cs-gallery-item img {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border: 1px solid #e0e0e0;
+}
+
+/* Iterations */
+.cs-iterations {
+  margin: 3rem 0;
+}
+
+.cs-micro-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.cs-iteration-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cs-iteration-container.cs-iteration-full {
+  display: block;
+}
+
+.cs-iteration-item {
+  flex: 1;
+}
+
+.cs-iteration-item h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.cs-iteration-item img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.cs-iteration-arrow {
+  font-size: 2rem;
+  color: #0050FF;
+  flex-shrink: 0;
+  align-self: center;
+  padding-bottom: 3rem; /* Offset to account for caption height */
+}
+
+/* Findings Grid - using shared styles from case-study.css */
+
+/* Metric Cards Container for Survey Results */
+.metric-cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.metric-card {
+  background-color: var(--color-bg-primary);
+  padding: 32px 24px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.metric-card:nth-child(1) { animation-delay: 0.1s; }
+.metric-card:nth-child(2) { animation-delay: 0.2s; }
+.metric-card:nth-child(3) { animation-delay: 0.3s; }
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.metric-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 80, 255, 0.1);
+  border-radius: 50%;
+}
+
+.metric-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #0050FF;
+}
+
+.metric-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metric-score {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  font-weight: 700;
+  color: #0050FF;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.metric-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.metric-visual {
+  margin-top: 20px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.percentage-text {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+}
+
+/* Circular Progress */
+.circular-progress {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.circular-progress svg {
+  transform: rotate(-90deg);
+}
+
+.progress-bg {
+  stroke: #e0e0e0;
+  stroke-width: 8;
+  fill: none;
+}
+
+.progress-fill {
+  stroke: #0050FF;
+  stroke-width: 8;
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s ease;
+  animation: progressAnimation 1.5s ease forwards;
+}
+
+@keyframes progressAnimation {
+  from {
+    stroke-dashoffset: 339.29;
+  }
+}
+
+/* Bar Progress */
+.bar-progress {
+  width: 100%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  margin: 56px 0;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: #0050FF;
+  border-radius: 4px;
+  width: 0;
+  animation: barAnimation 1.5s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes barAnimation {
+  to {
+    width: 87.2%;
+  }
+}
+
+/* Star Rating */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 44px 0;
+}
+
+.star {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.star svg {
+  width: 100%;
+  height: 100%;
+  fill: #e0e0e0;
+  transition: fill 0.3s ease;
+}
+
+.star.filled svg {
+  fill: #0050FF;
+  animation: starPop 0.4s ease;
+}
+
+.star.half-filled svg {
+  /* Gradient fill handled in SVG */
+}
+
+@keyframes starPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 1024px) {
+  .metric-cards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .metric-cards-container {
+    gap: 16px;
+  }
+  
+  .metric-card {
+    padding: 24px;
+  }
+  
+  .metric-score {
+    font-size: 36px;
+  }
+  
+  .circular-progress {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .circular-progress svg {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .circular-progress circle {
+    cx: 50;
+    cy: 50;
+    r: 45;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cs-uat-metrics {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-uat-metrics {
+    gap: 16px;
+  }
+  
+  .cs-uat-metric {
+    padding: 24px;
+  }
+  
+  .cs-uat-metric-value {
+    font-size: 30px;
+  }
+  
+  .cs-testing-tasks {
+    grid-template-columns: 1fr;
+  }
+  
+  .cs-metric-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cs-iteration-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-testing-focus {
+    padding: 20px;
+  }
+  
+  .cs-metric-block-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
